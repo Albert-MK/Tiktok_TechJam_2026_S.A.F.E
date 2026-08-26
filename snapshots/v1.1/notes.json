@@ -1,0 +1,44 @@
+{
+  "version": "v1.1",
+  "parent": "v1",
+  "dataset": "data/public_set.jsonl",
+  "added_vs_v1": [
+    "distinctive_exact_bonus",
+    "category_must_match"
+  ],
+  "metrics": {
+    "sample_count": 200,
+    "hit_rate_at_10": 1.0,
+    "mrr": 0.702738,
+    "mttc": 2.385,
+    "efficiency": 0.8615,
+    "recommended_technical_score": 0.883121,
+    "scenario_metrics": {
+      "boundary": {
+        "sample_count": 10,
+        "hit_rate_at_10": 1.0,
+        "mrr": 0.8,
+        "mttc": 3.6
+      },
+      "browsing": {
+        "sample_count": 80,
+        "hit_rate_at_10": 1.0,
+        "mrr": 0.679177,
+        "mttc": 2.15
+      },
+      "buying": {
+        "sample_count": 80,
+        "hit_rate_at_10": 1.0,
+        "mrr": 0.685481,
+        "mttc": 1.85
+      },
+      "intent_override": {
+        "sample_count": 30,
+        "hit_rate_at_10": 1.0,
+        "mrr": 0.779167,
+        "mttc": 4.033333
+      }
+    }
+  },
+  "v1_technical_score": 0.881511
+}
