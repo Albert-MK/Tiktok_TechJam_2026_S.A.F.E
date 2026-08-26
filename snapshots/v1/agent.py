@@ -49,13 +49,6 @@ LOOKING_FOR_RE = re.compile(
 KEY_REQ_RE = re.compile(r"a key requirement is:\s*(.+)$", re.I)
 MATTERS_RE = re.compile(r"for that, what matters is:\s*(.+)$", re.I)
 NEED_IS_RE = re.compile(r"what i need is:\s*(.+)$", re.I)
-GENERIC_PHRASES = {
-    "imported", "cotton", "polyester", "leather", "nylon", "wool", "spandex",
-    "silk", "rayon", "fabric", "100% leather", "100% cotton", "100% polyester",
-    "100 leather", "100 cotton", "100 polyester", "machine wash",
-    "buckle closure", "zipper closure", "pull on closure", "button closure",
-    "tie closure", "no closure closure",
-}
 OVERRIDE_RE = re.compile(r"ignore my earlier preference", re.I)
 PRICE_RE = re.compile(r"\$\s*(\d+(?:\.\d+)?)", re.I)
 
@@ -81,18 +74,6 @@ def _terms(text: str) -> list[str]:
 def _split_constraints(blob: str) -> list[str]:
     parts = [part.strip(" -;,.\t\n") for part in re.split(r";|\n", blob)]
     return [part for part in parts if part]
-
-
-def _normalize_alnum(text: str) -> str:
-    return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9]+", " ", text.lower())).strip()
-
-
-def _is_generic_constraint(phrase: str) -> bool:
-    compact = re.sub(r"\s+", " ", phrase.lower()).strip()
-    if compact in GENERIC_PHRASES:
-        return True
-    terms = _terms(phrase)
-    return len(terms) <= 2 and len(compact) < 24
 
 
 class Agent:
@@ -127,13 +108,11 @@ class Agent:
                 blob = " ".join(
                     part for part in (title, categories, features, details, store, description) if part
                 )
-                blob_l = blob.lower()
                 self._products[asin] = {
                     "title": title,
                     "categories": categories,
                     "store": store,
-                    "blob": blob_l,
-                    "blob_norm": _normalize_alnum(blob_l),
+                    "blob": blob.lower(),
                     "price": product.get("price"),
                     "rating": float(product.get("average_rating") or 0.0),
                     "rating_n": int(product.get("rating_number") or 0),
@@ -198,11 +177,13 @@ class Agent:
             state["mode"] = "override"
             # Pre-override recs are not scored, so they may contain the target.
             state["shown"] = set()
-            if self.cfg.get("override_clear_old") or not self.cfg.get("override_keep"):
+            if self.cfg.get("override_keep"):
+                # Keep compatible slots (category + earlier details) and rewrite intent.
+                pass
+            else:
                 state["constraints"] = []
                 state["exhausted"] = set()
                 state["asked"] = []
-                state["empty_streak"] = 0
 
         looking = LOOKING_FOR_RE.search(text)
         if looking:
@@ -305,16 +286,6 @@ class Agent:
         except sqlite3.OperationalError:
             return []
 
-    def _needle_in_product(self, needle: str, product: dict) -> bool:
-        if not needle:
-            return False
-        if needle in product["blob"]:
-            return True
-        if self.cfg.get("punct_normalize"):
-            norm = _normalize_alnum(needle)
-            return bool(norm) and norm in product["blob_norm"]
-        return False
-
     def _exact_candidates(self, phrases: list[str]) -> list[str]:
         needles: list[str] = []
         for phrase in phrases:
@@ -328,8 +299,9 @@ class Agent:
         hits: list[str] = []
         seen: set[str] = set()
         for asin, product in self._products.items():
+            blob = product["blob"]
             for needle in needles:
-                if self._needle_in_product(needle, product):
+                if needle in blob:
                     if asin not in seen:
                         seen.add(asin)
                         hits.append(asin)
@@ -338,19 +310,6 @@ class Agent:
 
     def _retrieve(self, state: dict, top_k: int) -> list[dict]:
         phrases, tokens = self._query_parts(state)
-        if self.cfg.get("distinctive_query_focus") and any(
-            self._is_distinctive(phrase) for phrase in state["constraints"]
-        ):
-            focused = [state["category"]] if state["category"] else []
-            focused.extend(phrase for phrase in state["constraints"] if self._is_distinctive(phrase))
-            tokens = []
-            seen_tokens: set[str] = set()
-            for phrase in focused:
-                for token in _terms(phrase):
-                    if token not in seen_tokens:
-                        seen_tokens.add(token)
-                        tokens.append(token)
-            phrases = focused
         if not tokens:
             return []
         fetch_k = max(top_k, int(self.cfg["retrieve_k"])) if self.cfg["phrase_rerank"] else top_k
@@ -380,14 +339,7 @@ class Agent:
         if category_terms:
             cat_expr = " AND ".join(f'"{token}"' for token in category_terms[:4])
             constraint_terms = []
-            source_constraints = state["constraints"]
-            if self.cfg.get("distinctive_query_focus") and any(
-                self._is_distinctive(phrase) for phrase in state["constraints"]
-            ):
-                source_constraints = [
-                    phrase for phrase in state["constraints"] if self._is_distinctive(phrase)
-                ]
-            for phrase in source_constraints:
+            for phrase in state["constraints"]:
                 constraint_terms.extend(_terms(phrase))
             constraint_terms = list(dict.fromkeys(constraint_terms))[:8]
             if constraint_terms:
@@ -420,46 +372,28 @@ class Agent:
                 break
         category_terms = _terms(state["category"])
         constraint_needles = []
-        distinctive_needles = []
         for phrase in state["constraints"]:
             raw = re.sub(r"\s+", " ", phrase.lower()).strip()
             if raw:
                 constraint_needles.append(raw)
-                if self._is_distinctive(phrase) and not _is_generic_constraint(phrase):
-                    distinctive_needles.append(raw)
             joined = " ".join(_terms(phrase))
             if joined and joined not in constraint_needles:
                 constraint_needles.append(joined)
-        scored: list[tuple[float, int, str]] = []
+        scored: list[tuple[float, str]] = []
         for asin in candidates:
             product = self._products.get(asin)
             if not product:
                 continue
             blob = product["blob"]
             score = 0.0
-            cover = 0
             score -= 0.02 * bm25_rank.get(asin, 100)
             for needle in constraint_needles:
-                matched = self._needle_in_product(needle, product) if self.cfg.get("punct_normalize") else (needle in blob)
-                generic = _is_generic_constraint(needle)
-                distinctive = any(needle == d or needle in d or d in needle for d in distinctive_needles) or (
-                    len(_terms(needle)) >= 4
-                )
-                if matched:
-                    if self.cfg.get("distinctive_exact_bonus") and generic:
-                        score += 1.2
-                    elif self.cfg.get("distinctive_exact_bonus") and distinctive:
-                        score += 20.0 + min(len(needle), 80) / 8.0
-                        cover += 1
-                    else:
-                        score += 8.0 + min(len(needle), 80) / 10.0
-                        if distinctive:
-                            cover += 1
+                if needle and needle in blob:
+                    score += 8.0 + min(len(needle), 80) / 10.0
                 else:
                     hits = sum(1 for token in needle.split() if token in blob)
                     score += 0.35 * hits
             cat_blob = product["categories"].lower()
-            cat_hits = 0
             if category_terms:
                 cat_hits = sum(1 for token in category_terms if token in cat_blob or token in blob)
                 score += 1.8 * cat_hits
@@ -468,12 +402,6 @@ class Agent:
             title = product["title"].lower()
             title_hits = sum(1 for token in tokens[:20] if token in title)
             score += 0.25 * title_hits
-            if self.cfg.get("title_distinctive_boost"):
-                for needle in distinctive_needles:
-                    if needle and needle in title:
-                        score += 12.0
-                    elif needle and _normalize_alnum(needle) in _normalize_alnum(title):
-                        score += 6.0
             if budget is not None:
                 price = product["price"]
                 try:
@@ -486,11 +414,6 @@ class Agent:
                 score += 0.05 * product["rating"]
                 if product["rating_n"] > 200:
                     score += 0.1
-            if self.cfg.get("category_must_match") and category_terms and cat_hits < len(category_terms):
-                score -= 8.0
-            scored.append((cover if self.cfg.get("cover_sort") else 0, score, asin))
-        if self.cfg.get("cover_sort"):
-            scored.sort(key=lambda item: (item[0], item[1]), reverse=True)
-        else:
-            scored.sort(key=lambda item: item[1], reverse=True)
-        return [asin for _, _, asin in scored]
+            scored.append((score, asin))
+        scored.sort(key=lambda item: item[0], reverse=True)
+        return [asin for _, asin in scored]
