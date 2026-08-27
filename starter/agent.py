@@ -1,3 +1,33 @@
+"""多轮购物推荐 Agent（当前默认：v1.3）。
+
+===============================================================================
+给非计算机背景同学的总览
+===============================================================================
+
+这个 Agent 的任务很像“导购员”：
+  1) 听顾客说了什么（解析自然语言）；
+  2) 记下关键需求（类目、材质、细节约束……）；
+  3) 必要时追问一个属性（ask_attribute）；
+  4) 从 5 万商品里找出最像目标的 Top-10 推荐。
+
+它不调用大模型 API，主要靠：
+  - 规则解析（正则匹配固定句式）
+  - 全文检索 BM25（SQLite FTS5，像“增强版关键词搜索”）
+  - 手工设计的重排打分（谁更像目标就排谁前面）
+
+一轮对话的标准流水线：
+  reset() 初始化会话
+    -> respond() 收到用户一句话
+      -> _update_state() 更新“记忆”
+      -> _retrieve() 多路召回候选商品
+      -> _rerank() 精细打分排序
+      -> _next_ask() 决定要不要再问一个问题
+      -> 返回 message / ask_attribute / recommendations
+
+评分只看 parent_asin 是否命中隐藏目标商品，所以排序非常关键。
+详细实验记录见 docs/OPTIMIZATION_REPORT_V1_3.md。
+"""
+
 from __future__ import annotations
 
 import json
@@ -9,7 +39,14 @@ from pathlib import Path
 from starter.config import active_config
 
 
+# ---------------------------------------------------------------------------
+# 文本处理与句式模板
+# ---------------------------------------------------------------------------
+
+# 抽出英文/数字词：把句子切成 token（词片）。
 TOKEN_RE = re.compile(r"[a-z0-9]+", re.IGNORECASE)
+
+# 停用词：这些词太普通，几乎不帮助区分商品，检索时丢掉。
 STOPWORDS = {
     "a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "from",
     "i", "in", "is", "it", "me", "my", "of", "on", "or", "please", "some",
@@ -19,14 +56,22 @@ STOPWORDS = {
     "not", "have", "preference", "additional", "judgment", "your", "use",
     "ignore", "earlier", "actually", "what", "need", "matters", "here",
 }
+
+# 按“具体属性类型”提问时的顺序。
 ASK_ORDER_TYPED = (
     "material", "color", "feature", "budget", "style", "size",
     "use_case", "brand", "category", "other",
 )
+
+# 当前默认：先问 other。
+# 原因：评测模拟器遇到 ask_attribute=other 时，会把剩余约束（最多 2 条）
+# 一次性吐出来，通常比一个个问 material/color 更快。
 ASK_ORDER_OTHER_FIRST = (
     "other", "material", "color", "feature", "budget", "style", "size",
     "use_case", "brand", "category",
 )
+
+# 每个 ask_attribute 对应的顾客可见问题文案。
 ASK_QUESTIONS = {
     "category": "Which product category or type matters most?",
     "material": "Do you have a material preference?",
@@ -39,17 +84,27 @@ ASK_QUESTIONS = {
     "use_case": "What will you use this for?",
     "other": "Is there any other must-have detail I should lock in?",
 }
+
+# ---- 下面这些正则，用来识别评测模拟器的固定句式 ----
+
+# “我没有某某偏好” -> 该属性已问空，之后别再问。
 NO_PREF_RE = re.compile(
     r"i don't have (?:an additional )?preference for ([a-z_]+)",
     re.I,
 )
+# “I'm looking for Sun Hats.” / “... but I'm still exploring.”
 LOOKING_FOR_RE = re.compile(
     r"i(?:'m| am) looking for (.+?)(?:\.|, but i'm still exploring)",
     re.I,
 )
+# Buying 场景常见：A key requirement is: ...
 KEY_REQ_RE = re.compile(r"a key requirement is:\s*(.+)$", re.I)
+# 追问后常见：For that, what matters is: ...
 MATTERS_RE = re.compile(r"for that, what matters is:\s*(.+)$", re.I)
+# Override / 直接陈述：What I need is: ...
 NEED_IS_RE = re.compile(r"what i need is:\s*(.+)$", re.I)
+
+# 泛化词：太常见，单独出现时几乎锁不住唯一商品（如 leather、cotton）。
 GENERIC_PHRASES = {
     "imported", "cotton", "polyester", "leather", "nylon", "wool", "spandex",
     "silk", "rayon", "fabric", "100% leather", "100% cotton", "100% polyester",
@@ -57,11 +112,18 @@ GENERIC_PHRASES = {
     "buckle closure", "zipper closure", "pull on closure", "button closure",
     "tie closure", "no closure closure",
 }
+
+# Intent Override 触发句。
 OVERRIDE_RE = re.compile(r"ignore my earlier preference", re.I)
+# 预算数字，例如 "$29.99"。
 PRICE_RE = re.compile(r"\$\s*(\d+(?:\.\d+)?)", re.I)
 
 
 def _text(value: object) -> str:
+    """把商品字段统一转成可检索的纯文本。
+
+    catalog 里 features/details 可能是字符串、列表或字典，这里都拼成一段话。
+    """
     if value is None:
         return ""
     if isinstance(value, dict):
@@ -72,6 +134,11 @@ def _text(value: object) -> str:
 
 
 def _field_entries(value: object) -> list[str]:
+    """把 features/details 拆成“原始条目列表”。
+
+    官方模拟器生成的约束，往往来自这些条目本身。
+    v1.3 用“前缀是否一致”做很弱的来源证据加分。
+    """
     if isinstance(value, dict):
         return [f"{key}: {item}" for key, item in value.items() if item not in (None, "", [])]
     if isinstance(value, list):
@@ -80,6 +147,7 @@ def _field_entries(value: object) -> list[str]:
 
 
 def _terms(text: str) -> list[str]:
+    """分词：去掉停用词和单字母，得到检索用 token 列表。"""
     return [
         token.lower()
         for token in TOKEN_RE.findall(text)
@@ -88,15 +156,21 @@ def _terms(text: str) -> list[str]:
 
 
 def _split_constraints(blob: str) -> list[str]:
+    """模拟器常把多条约束用分号拼在一句里，这里拆开成独立约束。"""
     parts = [part.strip(" -;,.\t\n") for part in re.split(r";|\n", blob)]
     return [part for part in parts if part]
 
 
 def _normalize_alnum(text: str) -> str:
+    """只保留字母数字并压空白。用于弱化标点差异（实验开关控制是否启用）。"""
     return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9]+", " ", text.lower())).strip()
 
 
 def _is_generic_constraint(phrase: str) -> bool:
+    """判断约束是否过于泛化。
+
+    泛化约束（如 leather）召回面太大，不能当“主证据”过度加分。
+    """
     compact = re.sub(r"\s+", " ", phrase.lower()).strip()
     if compact in GENERIC_PHRASES:
         return True
@@ -105,7 +179,10 @@ def _is_generic_constraint(phrase: str) -> bool:
 
 
 def _is_semi_distinctive(phrase: str) -> bool:
-    """Shorter than full distinctive, but still more specific than generic tokens."""
+    """介于“泛化”和“强区分度”之间的中等具体短语。
+
+    例如长度还行、但不算很长的特征描述。
+    """
     if _is_generic_constraint(phrase):
         return False
     terms = _terms(phrase)
@@ -114,19 +191,38 @@ def _is_semi_distinctive(phrase: str) -> bool:
 
 
 class Agent:
-    """Hybrid shopping agent: slot tracking, dual-track retrieval, phrase rerank."""
+    """混合购物 Agent：槽位记忆 + 多路召回 + 短语重排。
+
+    对外只保证两个接口（竞赛契约）：
+      - reset(session_id, user_profile)
+      - respond(session_id, user_message, turn, top_k) -> dict
+    """
 
     def __init__(self, catalog_path: str | Path = "data/catalog.jsonl") -> None:
+        # 商品目录文件路径（默认 5 万条 Clothing 商品）。
         self.catalog_path = Path(catalog_path)
+        # 当前策略开关（来自 config.py）。
         self.cfg = active_config()
+        # 内存数据库：启动时把目录建索引，检索时不反复扫文件。
         self.connection = sqlite3.connect(":memory:")
+        # 每个会话一份独立记忆（不同顾客互不影响）。
         self._sessions: dict[str, dict] = {}
+        # ASIN -> 预处理后的商品字段，方便重排时快速读取。
         self._products: dict[str, dict] = {}
+        # 词稀有度缓存（实验用；默认权重为 0 时几乎不触发）。
         self._idf_cache: dict[str, float] = {}
         self._build_index()
 
     def _build_index(self) -> None:
+        """启动时构建检索索引。
+
+        做两件事：
+          1) FTS5 全文表：支持关键词/短语搜索（BM25）；
+          2) 内存字典 _products：重排时按字段加分用。
+        """
         cursor = self.connection.cursor()
+        # parent_asin 不参与全文匹配（UNINDEXED），只作为返回的商品 ID。
+        # 后面几个字段按重要程度在 BM25 公式里给不同权重。
         cursor.execute(
             "CREATE VIRTUAL TABLE products USING fts5("
             "parent_asin UNINDEXED, title, categories, features, details, store, description, "
@@ -143,6 +239,7 @@ class Agent:
                 details = _text(product.get("details"))
                 store = _text(product.get("store"))
                 description = _text(product.get("description"))
+                # blob = 所有文本拼在一起，重排时做“整段包含”检查。
                 blob = " ".join(
                     part for part in (title, categories, features, details, store, description) if part
                 )
@@ -153,6 +250,7 @@ class Agent:
                     "features": features.lower(),
                     "details": details.lower(),
                     "description": description.lower(),
+                    # 原始 features/details 条目（规范化后），供 v1.3 前缀匹配。
                     "constraint_entries": [
                         _normalize_alnum(entry)
                         for entry in (
@@ -168,15 +266,23 @@ class Agent:
                     "rating_n": int(product.get("rating_number") or 0),
                 }
                 batch.append((asin, title, categories, features, details, store, description))
+                # 分批写入，避免一次塞太多行导致内存尖峰。
                 if len(batch) >= 1000:
                     cursor.executemany("INSERT INTO products VALUES (?, ?, ?, ?, ?, ?, ?)", batch)
                     batch.clear()
         if batch:
             cursor.executemany("INSERT INTO products VALUES (?, ?, ?, ?, ?, ?, ?)", batch)
+        # 词表：可查某个词出现在多少商品里（用于可选的 IDF 实验）。
         cursor.execute("CREATE VIRTUAL TABLE product_vocab USING fts5vocab(products, 'row')")
         self.connection.commit()
 
     def _idf(self, token: str) -> float:
+        """计算词的稀有度（Inverse Document Frequency）。
+
+        白话：一个词出现在越少商品里，就越“稀有”，越有区分力。
+        当前默认配方里 idf_coverage_weight=0，所以这条路径通常不生效；
+        保留是为了本地消融实验可复现。
+        """
         cached = self._idf_cache.get(token)
         if cached is not None:
             return cached
@@ -190,16 +296,21 @@ class Agent:
         return value
 
     def reset(self, session_id: str, user_profile: dict) -> None:
+        """开始一个新会话时清空记忆。
+
+        user_profile 是官方给的匿名画像，例如 preference_tags=["fit","comfort"]。
+        我们不会拿到真实用户 ID / 历史评论原文。
+        """
         self._sessions[session_id] = {
-            "profile": user_profile or {},
-            "category": "",
-            "constraints": [],
-            "asked": [],
-            "exhausted": set(),
-            "mode": "browsing",
-            "history": [],
-            "shown": set(),
-            "empty_streak": 0,
+            "profile": user_profile or {},   # 匿名画像
+            "category": "",                  # 用户正在找的粗类目，如 "Sun Hats"
+            "constraints": [],               # 已披露的硬/软约束列表
+            "asked": [],                     # 已经问过哪些属性
+            "exhausted": set(),              # 用户明确说“没有偏好”的属性
+            "mode": "browsing",              # browsing / buying / override
+            "history": [],                   # 原始用户句（调试用）
+            "shown": set(),                  # 已推荐过的 ASIN（未命中则后续排除）
+            "empty_streak": 0,               # 连续“无更多偏好”次数
         }
 
     def respond(
@@ -209,17 +320,31 @@ class Agent:
         turn: int,
         top_k: int,
     ) -> dict:
+        """处理一轮对话，返回竞赛要求的结构化结果。
+
+        返回字段：
+          - message: 给顾客看的自然语言
+          - ask_attribute: 结构化追问字段（或 null）
+          - recommendations: 最多 top_k 个 {parent_asin}
+          - usage: token 用量（本 Agent 不用 LLM，固定为 0）
+        """
         if session_id not in self._sessions:
             raise RuntimeError("reset must be called before respond")
         state = self._sessions[session_id]
+
+        # 1) 听懂并记住这轮新信息
         self._update_state(state, user_message, turn)
+        # 2) 根据记忆检索并排序
         recommendations = self._retrieve(state, top_k)
+        # 3) 把本轮推过的商品记入 shown（若仍未命中，后面会排除它们）
         if self.cfg.get("exclude_shown", True):
             for item in recommendations:
                 state["shown"].add(str(item["parent_asin"]))
+        # 4) 决定下一问（也可能不问）
         ask_attribute = self._next_ask(state) if self.cfg["ask"] else None
         if ask_attribute:
             state["asked"].append(ask_attribute)
+
         message = ASK_QUESTIONS.get(ask_attribute, "Here are the closest matches I found.")
         if recommendations and ask_attribute:
             message = f"{message} I also shortlisted options that already match what you told me."
@@ -233,25 +358,39 @@ class Agent:
         }
 
     def _update_state(self, state: dict, user_message: str, turn: int) -> None:
+        """从用户这句话里抽取信息，更新会话记忆。
+
+        主要识别四类信号：
+          A. Intent Override（忽略先前偏好）
+          B. looking for ...（类目 + browsing/buying 模式）
+          C. 没有某属性偏好（exhausted）
+          D. key requirement / what matters / what I need（具体约束）
+        """
         text = (user_message or "").strip()
         state["history"].append(text)
         lowered = text.lower()
 
+        # ---- A. Intent Override ----
+        # 协议规定：覆盖消息发出前，即使推到目标也不计分。
+        # 覆盖后，原先 shown 黑名单要清空，避免误杀真正目标。
         if self.cfg["override_reset"] and OVERRIDE_RE.search(text):
             state["mode"] = "override"
             # Pre-override recs are not scored, so they may contain the target.
             state["shown"] = set()
             if self.cfg.get("override_reset_asked"):
+                # 实验开关（默认关）：覆盖后重开提问序列。
                 # The replacement intent starts a new information-gathering phase.
                 # Keep useful product constraints, but allow the high-yield "other"
                 # question to be asked again immediately.
                 state["asked"] = []
             if self.cfg.get("override_clear_old") or not self.cfg.get("override_keep"):
+                # 默认 final 配方是 override_keep=True，所以通常不会走清空分支。
                 state["constraints"] = []
                 state["exhausted"] = set()
                 state["asked"] = []
                 state["empty_streak"] = 0
 
+        # ---- B. 类目与模式 ----
         looking = LOOKING_FOR_RE.search(text)
         if looking:
             state["category"] = looking.group(1).strip()
@@ -262,11 +401,13 @@ class Agent:
             elif state["mode"] != "override":
                 state["mode"] = "buying"
 
+        # ---- C. “没有偏好” ----
         no_pref = NO_PREF_RE.search(text)
         if no_pref:
             state["exhausted"].add(no_pref.group(1).lower().strip())
             state["empty_streak"] = int(state.get("empty_streak") or 0) + 1
 
+        # ---- D. 抽取具体约束 ----
         extracted: list[str] = []
         for pattern in (KEY_REQ_RE, MATTERS_RE, NEED_IS_RE):
             match = pattern.search(text)
@@ -274,6 +415,7 @@ class Agent:
                 extracted.extend(_split_constraints(match.group(1)))
         if state["mode"] == "override" and not extracted:
             # Keep the trailing clause after the override preamble.
+            # 有些 Override 句子结构略怪，再兜底切一次。
             tail = re.split(r"what i need is:", text, flags=re.I)
             if len(tail) == 2:
                 extracted.extend(_split_constraints(tail[1]))
@@ -286,17 +428,28 @@ class Agent:
 
         if not self.cfg["accumulate"]:
             # Baseline: forget history except the current utterance terms.
+            # 基线模式：不累积历史，几乎等于“每轮重新开始”。
             state["constraints"] = extracted[:] if extracted else [text]
             if looking:
                 state["category"] = looking.group(1).strip()
 
     def _next_ask(self, state: dict) -> str | None:
+        """决定下一轮问哪个属性；若不需要再问则返回 None。
+
+        设计原则（白话）：
+          - 优先问 other，让模拟器一次吐出剩余细节；
+          - 不要重复问已经问过的，或用户已说“没偏好”的；
+          - 若 typed 问空且还没有强约束，允许再问一次 other（v1 关键修复）。
+        """
         order = ASK_ORDER_OTHER_FIRST if self.cfg["ask_mode"] == "other_first" else ASK_ORDER_TYPED
         asked = set(state["asked"])
         exhausted = state["exhausted"]
         other_asks = sum(1 for attr in state["asked"] if attr == "other")
         last_ask = state["asked"][-1] if state["asked"] else None
         has_distinctive = any(self._is_distinctive(phrase) for phrase in state["constraints"])
+
+        # 实验开关（默认关）：拿到首批 other 回答后立刻再问一次 other。
+        # 实测会伤害 Hit/MRR，所以默认不启用。
         if (
             self.cfg.get("eager_second_other")
             and other_asks == 1
@@ -304,8 +457,11 @@ class Agent:
             and "other" not in exhausted
         ):
             return "other"
+
         # After a typed attribute comes back empty, ask "other" once more so
         # leftover constraints of any type can still be disclosed.
+        # 经典场景：Boundary 烧掉第一次 other 后，typed 只拿到泛词，
+        # 真正有区分度的长句还藏着，需要第二次 other。
         if (
             other_asks == 1
             and last_ask not in {None, "other"}
@@ -313,15 +469,19 @@ class Agent:
             and not has_distinctive
         ):
             return "other"
+
         for attr in order:
             if attr in asked or attr in exhausted:
                 continue
             return attr
+
+        # 兜底：仍无强约束时，最多再给一次 other。
         if other_asks < 2 and not has_distinctive:
             return "other"
         return None
 
     def _query_parts(self, state: dict) -> tuple[list[str], list[str]]:
+        """把会话记忆整理成：短语列表 + token 列表，供检索使用。"""
         phrases = [state["category"]] if state["category"] else []
         phrases.extend(state["constraints"])
         tokens: list[str] = []
@@ -334,6 +494,10 @@ class Agent:
         return phrases, tokens
 
     def _fts_expression(self, phrases: list[str], tokens: list[str]) -> str:
+        """构造较宽的 FTS 查询：短语 OR 单词。
+
+        宽查询负责“别漏掉”，精确排序交给后面的 _rerank。
+        """
         clauses: list[str] = []
         for phrase in phrases:
             cleaned = " ".join(_terms(phrase)[:12])
@@ -344,6 +508,11 @@ class Agent:
         return " OR ".join(clauses)
 
     def _is_distinctive(self, phrase: str) -> bool:
+        """判断约束是否“足够具体”，值得当主证据。
+
+        规则大致是：词够多，或文本够长；
+        v1.2+ 在 relaxed_distinctive 打开时，也会接纳半具体短语。
+        """
         terms = _terms(phrase)
         if len(terms) >= 4:
             return True
@@ -355,6 +524,11 @@ class Agent:
         return False
 
     def _match(self, expression: str, limit: int) -> list[tuple[str, float]]:
+        """执行一次 FTS5 BM25 检索，返回 [(asin, rank), ...]。
+
+        bm25(...) 里的一串数字是各字段权重：
+          title 最重，其次 categories / features / details，description 最轻。
+        """
         try:
             return self.connection.execute(
                 "SELECT parent_asin, bm25(products, 0.0, 6.0, 4.0, 2.5, 2.5, 1.5, 1.0) AS rank "
@@ -362,9 +536,11 @@ class Agent:
                 (expression, limit),
             ).fetchall()
         except sqlite3.OperationalError:
+            # 查询语法异常时返回空，避免整轮会话崩溃。
             return []
 
     def _needle_in_product(self, needle: str, product: dict) -> bool:
+        """检查某段约束文本是否出现在商品全文里。"""
         if not needle:
             return False
         if needle in product["blob"]:
@@ -375,6 +551,10 @@ class Agent:
         return False
 
     def _exact_candidates(self, phrases: list[str]) -> list[str]:
+        """精确短语召回：把“足够具体”的约束当针，在全库做子串命中。
+
+        这是对 FTS 的补充：有时长句被拆词后，目标反而被挤出 Top-N。
+        """
         needles: list[str] = []
         for phrase in phrases:
             if not self._is_distinctive(phrase):
@@ -396,7 +576,17 @@ class Agent:
         return hits
 
     def _retrieve(self, state: dict, top_k: int) -> list[dict]:
+        """多路召回：先尽量把目标捞进候选池，再交给重排。
+
+        召回顺序（越靠前的路径越“精确”）：
+          1) 精确长短语子串命中
+          2) 每个强约束的 FTS 短语查询
+          3) 类目 AND 约束词
+          4) 宽 OR 查询兜底
+        """
         phrases, tokens = self._query_parts(state)
+
+        # 实验开关：有强约束时，检索只盯强约束（默认关，历史实测帮助不大）。
         if self.cfg.get("distinctive_query_focus") and any(
             self._is_distinctive(phrase) for phrase in state["constraints"]
         ):
@@ -410,18 +600,28 @@ class Agent:
                         seen_tokens.add(token)
                         tokens.append(token)
             phrases = focused
+
         if not tokens:
             return []
+
+        # 重排需要比最终 top_k 更大的候选池。
         fetch_k = max(top_k, int(self.cfg["retrieve_k"])) if self.cfg["phrase_rerank"] else top_k
         shown = state["shown"] if self.cfg.get("exclude_shown", True) else set()
         fetch_k = max(fetch_k, top_k + len(shown) + 20)
+
         ranked: list[str] = []
         seen: set[str] = set()
         bm25_rank: dict[str, int] = {}
         route_ranks: list[dict[str, int]] = []
+        # 只有打开 route_rrf_weight 时才记录各路排名（默认关）。
         collect_route_ranks = bool(self.cfg.get("route_rrf_weight"))
 
         def add_rows(rows: list[tuple], bonus: int = 0) -> None:
+            """把一路检索结果并入总候选。
+
+            bonus 越大，表示这路结果越“值得优先”。
+            bm25_rank 会变成后续重排的“名次惩罚”输入。
+            """
             route: dict[str, int] = {}
             for route_rank, row in enumerate(rows, 1):
                 asin = str(row[0])
@@ -435,15 +635,20 @@ class Agent:
             if collect_route_ranks and route:
                 route_ranks.append(route)
 
+        # 路径 1：精确长短语
         add_rows([(asin, 0.0) for asin in self._exact_candidates(state["constraints"])], bonus=50)
         phrase_limit = 60 if self.cfg.get("wide_phrase_retrieve") else 30
         phrase_bonus = 35 if self.cfg.get("wide_phrase_retrieve") else 20
+
+        # 路径 2：每个强约束单独做短语检索
         for phrase in state["constraints"]:
             if not self._is_distinctive(phrase):
                 continue
             cleaned = " ".join(_terms(phrase)[:12])
             if cleaned:
                 add_rows(self._match(f'"{cleaned}"', phrase_limit), bonus=phrase_bonus)
+
+        # 路径 3：类目 AND 约束（要求候选同时贴合类目和细节）
         category_terms = _terms(state["category"])
         if category_terms:
             cat_expr = " AND ".join(f'"{token}"' for token in category_terms[:4])
@@ -463,11 +668,17 @@ class Agent:
                 add_rows(self._match(f"({cat_expr}) AND ({extra})", 120))
             else:
                 add_rows(self._match(cat_expr, 80))
+
+        # 路径 4：宽 OR 兜底
         add_rows(self._match(self._fts_expression(phrases, tokens), fetch_k))
         if not ranked and tokens:
             add_rows(self._match(" OR ".join(f'"{token}"' for token in tokens[:30]), fetch_k))
+
+        # 精细重排
         if self.cfg["phrase_rerank"]:
             ranked = self._rerank(state, phrases, tokens, ranked, bm25_rank, route_ranks)
+
+        # 排除本会话已展示且未命中的商品（协议下它们不可能是目标）
         if shown:
             ranked = [asin for asin in ranked if asin not in shown]
         return [{"parent_asin": asin} for asin in ranked[:top_k]]
@@ -481,14 +692,32 @@ class Agent:
         bm25_rank: dict[str, int],
         route_ranks: list[dict[str, int]],
     ) -> list[str]:
+        """对候选商品做精细打分，分数高者排前。
+
+        可以把它理解成“导购打分表”：
+          + 具体约束精确命中        （很重要）
+          + 叶类目 / 标题 / 店铺匹配
+          + 预算接近、评分略高
+          - 粗类目对不上
+          - 关键词检索名次太靠后
+
+        v1.3 额外两点：
+          1) features/details 原始条目前缀一致 -> 小加分
+          2) 仅在 Override 后，画像标签词命中 -> 极弱加分
+        """
+        # ---- 预算：若约束里写了 $xx，则价格越接近越好 ----
         budget = None
         for phrase in state["constraints"]:
             match = PRICE_RE.search(phrase)
             if match:
                 budget = float(match.group(1))
                 break
+
         category_terms = _terms(state["category"])
+        # 叶类目 = 类目路径里最后一个词，通常最具体（如 "Sun Hats"）。
         leaf_category = category_terms[-1] if category_terms else ""
+
+        # 把约束整理成：全部针 / 强区分针 / 半具体针
         constraint_needles = []
         distinctive_needles = []
         semi_needles = []
@@ -503,6 +732,7 @@ class Agent:
             joined = " ".join(_terms(phrase))
             if joined and joined not in constraint_needles:
                 constraint_needles.append(joined)
+
         has_distinctive = bool(distinctive_needles)
         bm25_coef = float(self.cfg.get("bm25_coef", 0.02))
         generic_exact = float(self.cfg.get("generic_exact_score", 1.2))
@@ -519,6 +749,7 @@ class Agent:
             for tag in state.get("profile", {}).get("preference_tags", [])
             for token in _terms(str(tag))
         ]
+
         scored: list[tuple[float, int, str]] = []
         for asin in candidates:
             product = self._products.get(asin)
@@ -527,14 +758,20 @@ class Agent:
             blob = product["blob"]
             features = product.get("features") or ""
             score = 0.0
-            cover = 0
+            cover = 0  # 命中了几条强约束
+
+            # 关键词检索名次：越靠后扣越多（系数由 bm25_coef 控制）。
             score -= bm25_coef * bm25_rank.get(asin, 100)
+
+            # 多路 RRF（默认关）：在多条召回路里都靠前的商品会加分。
             if route_rrf_weight:
                 score += route_rrf_weight * sum(
                     1.0 / (route_rrf_k + route[asin])
                     for route in route_ranks
                     if asin in route
                 )
+
+            # ---- 约束匹配是最核心的分数来源 ----
             for needle in constraint_needles:
                 matched = (
                     self._needle_in_product(needle, product)
@@ -550,8 +787,10 @@ class Agent:
                 )
                 if matched:
                     if self.cfg.get("distinctive_exact_bonus") and generic:
+                        # 泛词命中只给很低分，避免 leather 这类词统治排序。
                         score += generic_exact
                     elif self.cfg.get("distinctive_exact_bonus") and distinctive:
+                        # 具体长短语精确命中：主证据。
                         score += distinctive_exact_base + min(len(needle), 80) / 8.0
                         cover += 1
                     elif self.cfg.get("semi_distinctive_bonus") and semi:
@@ -563,11 +802,16 @@ class Agent:
                     if self.cfg.get("features_field_boost") and needle in features:
                         score += 4.0 if distinctive or semi else 1.0
                 else:
+                    # 没整段命中时，按命中单词数给一点部分分。
                     partial_coef = (
                         0.8 if (self.cfg.get("distinctive_partial_boost") and distinctive) else 0.35
                     )
                     hits = sum(1 for token in needle.split() if token in blob)
                     score += partial_coef * hits
+
+            # ---- v1.3：字段条目前缀一致性 ----
+            # 如果用户约束刚好像某条原始 features/details 的开头，
+            # 说明更可能“同源”，给很弱加分；越靠前的条目权重略高。
             if entry_prefix_weight:
                 for needle in dict.fromkeys(constraint_needles):
                     if _is_generic_constraint(needle):
@@ -579,6 +823,8 @@ class Agent:
                         if entry.startswith(normalized):
                             score += entry_prefix_weight / (1.0 + 0.2 * entry_index)
                             break
+
+            # 稀有词覆盖（默认关）
             if idf_coverage_weight:
                 matched_tokens = {
                     token
@@ -586,6 +832,7 @@ class Agent:
                     if len(token) > 1 and token in blob
                 }
                 score += idf_coverage_weight * sum(self._idf(token) for token in matched_tokens)
+
             if soft_cover and cover:
                 score += soft_cover * cover
             if (
@@ -594,6 +841,8 @@ class Agent:
                 and cover >= len(distinctive_needles)
             ):
                 score += 12.0
+
+            # ---- 类目匹配 ----
             cat_blob = product["categories"].lower()
             cat_hits = 0
             if category_terms:
@@ -606,6 +855,8 @@ class Agent:
                     score += 4.5
                 elif leaf_category in blob:
                     score += 2.0
+
+            # ---- 标题 / 店铺 ----
             title = product["title"].lower()
             title_hits = sum(1 for token in tokens[:20] if token in title)
             score += 0.25 * title_hits
@@ -622,6 +873,8 @@ class Agent:
                 if store:
                     store_hits = sum(1 for token in tokens[:20] if len(token) > 2 and token in store)
                     score += 0.6 * store_hits
+
+            # ---- 预算接近度 ----
             if budget is not None:
                 price = product["price"]
                 try:
@@ -630,6 +883,8 @@ class Agent:
                     score += max(0.0, 3.0 - delta / max(budget, 1.0))
                 except (TypeError, ValueError):
                     score -= 0.2
+
+            # ---- 评分/热度微弱加权（不是主信号）----
             apply_profile = self.cfg["profile_boost"]
             if apply_profile and self.cfg.get("profile_when_generic_only") and has_distinctive:
                 apply_profile = False
@@ -637,6 +892,9 @@ class Agent:
                 score += 0.05 * product["rating"]
                 if product["rating_n"] > 200:
                     score += 0.1
+
+            # ---- v1.3：画像标签弱加权（默认仅 Override 后）----
+            # preference_tags 如 fit/comfort 只是弱提示，不能压过明确商品约束。
             apply_profile_tags = bool(profile_tag_weight and profile_tags)
             if self.cfg.get("profile_tags_generic_only") and has_distinctive:
                 apply_profile_tags = False
@@ -646,11 +904,18 @@ class Agent:
                 score += profile_tag_weight * sum(
                     1 for token in profile_tags if token in blob
                 )
+
+            # 热门商品惩罚（默认关）：避免超高评论数商品抢镜。
             if self.cfg.get("popularity_dampen") and product["rating_n"] > 500 and has_distinctive:
                 score -= 0.35
+
+            # 粗类目对不上：重罚（默认开）。
             if self.cfg.get("category_must_match") and category_terms and cat_hits < len(category_terms):
                 score -= category_miss_penalty
+
             scored.append((cover if self.cfg.get("cover_sort") else 0, score, asin))
+
+        # 默认按总分降序；可选先按“强约束覆盖数”再按总分。
         if self.cfg.get("cover_sort"):
             scored.sort(key=lambda item: (item[0], item[1]), reverse=True)
         else:
