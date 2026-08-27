@@ -1,0 +1,17 @@
+sample_id: public_0094
+scenario_type: buying
+target: B01L99SW78
+title: Ariat Fatbaby Western Boot – Women’s Leather Western Boots
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Boots Mid-Calf. A key requirement is: leather.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B07MNF68KH', 'B00Q9NPS18', 'B08S6SXF31', 'B00NI6BALQ', 'B0BCJVQ7RT', 'B07XBMLV4H', 'B08FSTW789', 'B07KW31YGZ', 'B00BWBLXIE', 'B0098BNL58']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: Synthetic sole; Shaft measures approximately 8" from arch.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B01L99SW78', 'B01KORH54W', 'B017S42AY4', 'B00R54V2IS', 'B07WZDN4PH', 'B00BU1BYD0', 'B002BXAC0W', 'B00RKJ2N8G', 'B00RNI3G3U', 'B00I85XO34']
+[Turn 2] target_rank: 1 | scored_hit: True

@@ -1,0 +1,17 @@
+sample_id: combo_0008_comfort_mixed_4p0
+scenario_type: buying
+target: B0BPCC1KBT
+title: Hanes Womens Wireless Bra, Full-Coverage Pullover Stretch-Knit Bra, Smoothing T-Shirt Bra
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Bras Everyday Bras. A key requirement is: nylon.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B07T8CF4GW', 'B07XKXW75H', 'B071R1YM3N', 'B08P14CYYC', 'B000ATKB3C', 'B00BGCNWTW', 'B07H2JJC6L', 'B000249WB2', 'B00B2PN7MK', 'B0146Q9IN8']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: 96% Nylon, 4% Spandex; Pull-On closure.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B0BPCC1KBT', 'B08ML8YGDZ', 'B075V115P6', 'B08V1BDQNX', 'B00UPU7CC4', 'B083K11TY4', 'B072N2JTW8', 'B098JDBZJQ', 'B095LJX1MM', 'B095LJ53TW']
+[Turn 2] target_rank: 1 | scored_hit: True

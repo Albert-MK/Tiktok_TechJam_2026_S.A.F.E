@@ -1,0 +1,11 @@
+sample_id: combo_0141_material-style-durability_critical_1p0
+scenario_type: browsing
+target: B0BLH7JHG8
+title: Fzroezz 6Pcs Nose Studs L Shaped 20 Gauge Nose Piercings Nose Rings Studs Nose Piercing Jewelry Nose Piercing Stud Surgical Steel Nose Ring Nose Rings Studs Jewelry for Women Men 20G 2mm 2.5mm 3mm CZ 
+hit: True | first_hit_turn: 1 | best_rank: 7
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Piercing Jewelry Screws, but I'm still exploring.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B0BY2KGLW8', 'B001EU3ZR0', 'B09DV77JK1', 'B0BC17W7G7', 'B07DR9LGDW', 'B08DCFZ1WB', 'B0BLH7JHG8', 'B07RYS9CPP', 'B013XEOEEW', 'B07KWFT3XF']
+[Turn 1] target_rank: 7 | scored_hit: True

@@ -1,0 +1,17 @@
+sample_id: combo_0058_material-performance_mixed_4p0
+scenario_type: buying
+target: B08L83YQTZ
+title: JTANIB Women Packable Rain Jacket Waterproof Lightweight Raincoat Hooded for Hiking Outdoor Travel
+hit: True | first_hit_turn: 2 | best_rank: 3
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Rain & Anoraks Raincoats. A key requirement is: polyester.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B0871R9JDP', 'B07PR8GZS5', 'B09BN7KM2L', 'B07RQV43L5', 'B075FL65WP', 'B08GCH6PHB', 'B07X99HVSX', 'B077ZBHFRY', 'B07KSRCVKF', 'B07BCP8DG5']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: 100% Polyester; Imported.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B00IXJN2CI', 'B00R4TNC3M', 'B08L83YQTZ', 'B07TGGTKYL', 'B07TD4GFS5', 'B088P43333', 'B00JALSVUG', 'B08242X27K', 'B076RCCP4Y', 'B089QYV4SD']
+[Turn 2] target_rank: 3 | scored_hit: True

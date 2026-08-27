@@ -1,0 +1,29 @@
+sample_id: public_0192
+scenario_type: boundary
+target: B0C62MF2HV
+title: adidas unisex adult Adilette Clog Slide Sandal, Pink Tint/White/Pink Tint, 12 Women Men US
+hit: True | first_hit_turn: 4 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Athletic Sport Sandals & Slides, but I'm still exploring.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B08S6MBMDK', 'B073Z7D5NT', 'B07MTYM573', 'B09Y8TL49Y', 'B08X118F96', 'B092HZTCBF', 'B00ZTWQB2K', 'B00C5FPRX8', 'B07PJNZ82B', 'B07PHJY5MZ']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: I don't have a preference for other; please use your judgment.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B01J326O50', 'B08P6ZSBSK', 'B072K3YZGZ', 'B08F51YN5Q', 'B01N76AD6A', 'B094Z4X7Y9', 'B088KLHRHW', 'B088WYFQSS', 'B08RDV3L3B', 'B0C596XFV5']
+[Turn 2] target_rank: None | scored_hit: False
+
+[Turn 3] USER: I don't have an additional preference for material.
+[Turn 3] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 3] ask_attribute: other
+[Turn 3] recommendations: ['B07PK73X22', 'B08V13S9X7', 'B00YBBNX2G', 'B091SDXP15', 'B077Y5JD4L', 'B0916NM6JB', 'B005DJ7CKY', 'B092QJX38R', 'B0925MM7CD', 'B07F1XJKQC']
+[Turn 3] target_rank: None | scored_hit: False
+
+[Turn 4] USER: For that, what matters is: 100% Textile Synthetics; color: pink.
+[Turn 4] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.
+[Turn 4] ask_attribute: color
+[Turn 4] recommendations: ['B0C62MF2HV', 'B087CSYVVP', 'B08CZ8BRZ3', 'B00E0GOZ92', 'B072M3292Y', 'B01J2SFQYA', 'B005D7HSOQ', 'B008J5G6JC', 'B005D7HQFW', 'B00KWKCRZY']
+[Turn 4] target_rank: 1 | scored_hit: True

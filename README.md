@@ -93,9 +93,9 @@ docs/competition_specification.md participant rules and evaluation protocol
 docs/agent_api_contract.json      machine-readable Agent contract
 docs/evaluation_config.json       scoring configuration
 docs/baseline_results.json        reproducible weak-starter reference score
-starter/agent.py                  hybrid shopping agent (current: v1.1)
+starter/agent.py                  hybrid shopping agent (current: v1.3)
 starter/config.py                 strategy flags and VERSION
-docs/VERSION_HISTORY.md           baseline → v1.1 iteration log
+docs/VERSION_HISTORY.md           baseline → v1.3 iteration log
 snapshots/v1/                     frozen v1 snapshot
 snapshots/v1.1/                   frozen v1.1 snapshot
 evaluate_with_transcripts.py      local eval with dialogue transcripts

@@ -1,0 +1,29 @@
+sample_id: combo_0177_fit-comfort-weather_usually_positive_5p0
+scenario_type: intent_override
+target: B07HV9WW6Q
+title: ANIXAY Women's Short/Long Sleeve Henley Button up T Shirt Casual Basic Tops Blouse
+hit: True | first_hit_turn: 4 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Tops Tees & Blouses. Button closure
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B08GK645DZ', 'B08K36VN2C', 'B09228WKCF', 'B07ZHYSWZY', 'B0948HF7BG', 'B07S3FDZQB', 'B07QPN8D6X', 'B08CC256X3', 'B07QSRJR2K', 'B09CKZR69T']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: cotton; Cotton, Rayon.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B07RGT1NJH', 'B07HV9WW6Q', 'B08T8WGSZC', 'B07Q44NK5S', 'B07RWDPWG9', 'B08T8YBQ88', 'B0994DQB69', 'B01FJVB44A', 'B0977SQ53W', 'B01MSJ7PMK']
+[Turn 2] target_rank: 2 | scored_hit: False
+
+[Turn 3] USER: I don't have an additional preference for material.
+[Turn 3] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 3] ask_attribute: other
+[Turn 3] recommendations: ['B07M7B5FFS', 'B091DWXPZN', 'B083BVSL3F', 'B07VDBXWJZ', 'B09KGDR3KB', 'B07S4B1TPV', 'B08L4KLZDS', 'B08QJLWDX9', 'B078J5ZTT1', 'B0882LSYMV']
+[Turn 3] target_rank: None | scored_hit: False
+
+[Turn 4] USER: Actually, ignore my earlier preference. What I need is: cotton.
+[Turn 4] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.
+[Turn 4] ask_attribute: color
+[Turn 4] recommendations: ['B07HV9WW6Q', 'B07RGT1NJH', 'B08T8WGSZC', 'B08T8YBQ88', 'B07Q44NK5S', 'B07RWDPWG9', 'B0977SQ53W', 'B01FJVB44A', 'B0994DQB69', 'B01MSJ7PMK']
+[Turn 4] target_rank: 1 | scored_hit: True

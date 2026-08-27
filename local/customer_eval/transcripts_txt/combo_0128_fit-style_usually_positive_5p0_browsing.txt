@@ -1,0 +1,17 @@
+sample_id: combo_0128_fit-style_usually_positive_5p0
+scenario_type: browsing
+target: B0BNP1RZ2W
+title: PAVOI 14K Gold Plated Lightweight Chunky Open Hoops | Gold Hoop Earrings for Women
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Earrings Hoop, but I'm still exploring.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B016MYC0Z0', 'B01B9ZNCSQ', 'B08HGQQMP1', 'B08P89RNTG', 'B07PL9W3RR', 'B07RXXMB3Z', 'B0852N3D9G', 'B07YY85FW3', 'B08JLDRLFY', 'B081KX7RV2']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: ✦18K GOLD VERMEIL✦ A premium offering of our best selling styles, our vermeil jewelry is made with a solid s925 sterling silver base and plated in 18K gold that is 10x thicker than; color: yellow.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B0BNP1RZ2W', 'B08XB8C1LT', 'B0119NLCIA', 'B09WJ4Z19L', 'B0B7MF71NJ', 'B07JCCMKRP', 'B07SL245RZ', 'B0817WVY11', 'B0B1TSYK5C', 'B01BLUCCGM']
+[Turn 2] target_rank: 1 | scored_hit: True

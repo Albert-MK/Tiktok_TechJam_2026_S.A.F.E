@@ -4,8 +4,8 @@
 评分：`TechnicalScore = 0.5×Hit@10 + 0.3×MRR + 0.2×Efficiency`，`Efficiency = clip((11−MTTC)/10, 0, 1)`。  
 未命中记 MTTC=11。只改 `starter/agent.py`，不改官方 evaluator 与标签。
 
-当前发布版本：**v1.1**（代码在 `starter/`，快照在 `snapshots/v1.1/`）。  
-v1 快照：`snapshots/v1/`。
+当前发布版本：**v1.3**（代码在 `starter/`）。  
+快照：`snapshots/v1/`、`snapshots/v1.1/`、`snapshots/v1.3/`。
 
 ---
 
@@ -24,7 +24,9 @@ v1 快照：`snapshots/v1/`。
 | v0.8 Browsing 先问 material | 0.965 | 0.667 | 2.82 | 0.846 | **回滚** |
 | v0.9 剔除已展示商品 | 0.995 | 0.682 | 2.39 | 0.874 | |
 | **v1** 失败后再问一次 `other` | **1.000** | 0.695 | 2.35 | **0.882** | 冻结合格线 |
-| **v1.1** 长短语加分 + 类目必匹配 | **1.000** | **0.703** | 2.385 | **0.883** | 当前 |
+| **v1.1** 长短语加分 + 类目必匹配 | **1.000** | 0.703 | 2.385 | **0.883** | |
+| **v1.2** 叶类目/放宽区分度/店铺/BM25 | **1.000** | **0.753** | 2.44 | **0.897** | |
+| **v1.3** 字段条目前缀 + Override 画像弱加权 | **1.000** | **0.756** | 2.44 | **0.898** | 当前 |
 
 ---
 
@@ -162,7 +164,7 @@ v1 快照：`snapshots/v1/`。
 
 ---
 
-## v1.1 — 当前版本
+## v1.1 — 长短语加分 + 类目必匹配
 
 **相对 v1 新增：**
 1. `distinctive_exact_bonus`：泛词不再主导重排。
@@ -170,12 +172,69 @@ v1 快照：`snapshots/v1/`。
 
 **分数：** Hit **1.0** / MRR **0.703** / MTTC **2.385** / Score **0.883**
 
-**分场景：** Buying MTTC 1.85 / Browsing 2.15 / Override 4.03（覆盖前不能计分，接近下限）/ Boundary 3.6。
+**快照：** `snapshots/v1.1/`
 
-**快照：** `snapshots/v1.1/`  
-**默认策略：** `starter/config.py` 中 `VERSION = "v1.1"`，`PRESETS["final"]`。
+---
 
-公开集 Hit 已满，后续若再迭代，优先冲 MRR（约 40% 命中仍不是第 1 名），并做话术改写回归以防私有集不再原样回传商品 feature。
+## v1.2 — 排序消融（官方 public_set 200）
+
+规则：Hit 不得下降，TechnicalScore 必须严格更高才采用。基准为 v1.1 final。  
+完整机器可读日志：`runs/v3_rank_attempts.json`；复现脚本：`run_v3_rank_experiments.py`。
+
+| 实验 | 做法 | Score | ΔScore | 采用 |
+|------|------|-------|--------|------|
+| soft_cover_bonus | 区分度约束命中数 ×5 加分 | 0.883121 | 0 | 否 |
+| generic_match_dampen | 泛词精确命中 1.2→0.4 | 0.873574 | -0.0095 | 否 |
+| profile_when_generic_only | 有长约束时关掉评分加权 | 0.882371 | -0.0008 | 否 |
+| **leaf_category_boost** | 叶类目 token 命中加分 | **0.887827** | **+0.0047** | **是** |
+| title_category_boost | 类目词出现在 title 加分 | 0.879514 | -0.0083 | 否 |
+| features_field_boost | features 字段命中额外加分 | 0.885675 | -0.0022 | 否 |
+| semi_distinctive_bonus | 中等长度短语中等加分 | 0.887827 | 0 | 否 |
+| **relaxed_distinctive** | 放宽「有区分度」阈值（检索+重排） | **0.892761** | **+0.0049** | **是** |
+| distinctive_partial_boost | 长约束部分词命中 0.35→0.8 | 0.892761 | 0 | 否 |
+| full_cover_bonus | 全部长约束命中大加分 | 0.892761 | 0 | 否 |
+| **store_match_boost** | store/品牌字段词命中小加分 | **0.894332** | **+0.0016** | **是** |
+| popularity_dampen | 有长约束时惩罚超高评论数商品 | 0.889171 | -0.0052 | 否 |
+| stronger_category_penalty | 类目缺失惩罚 8→15 | 0.894332 | 0 | 否 |
+| bm25_lighter | BM25 名次惩罚系数 0.02→0.01 | 0.893811 | -0.0005 | 否 |
+| **bm25_heavier** | BM25 名次惩罚系数 0.02→0.04 | **0.897106** | **+0.0028** | **是** |
+| distinctive_exact_base_28 | 长约束精确命中基数 20→28 | 0.897106 | 0 | 否 |
+| wide_phrase_retrieve | 长约束 FTS 召回 30→60 | 0.897106 | 0 | 否 |
+| retrieve_k_150 | 候选池 80→150 | 0.897106 | 0 | 否 |
+| soft_cover_plus_leaf | soft_cover 叠在冠军上 | 0.897106 | 0 | 否 |
+
+**采用组合：** `leaf_category_boost` + `relaxed_distinctive` + `store_match_boost` + `bm25_coef=0.04`
+
+**分数：** Hit **1.0** / MRR **0.753** / MTTC **2.44** / Score **0.897**
+
+**默认策略：** `starter/config.py` 中 `VERSION = "v1.2"`，`PRESETS["final"]`。
+
+---
+
+## v1.3 — 字段来源证据与 Override 安全画像
+
+在 v1.2 官方全量基线（Score 0.897106）上继续做提问、RRF、IDF、BM25
+系数、字段来源和 profile 消融。采用规则不变：Hit@10 必须保持 1.0，
+TechnicalScore 必须严格提升，并在 customer probe 上复核方向。
+
+**采用项：**
+
+1. `entry_prefix_weight=1.1`：当已披露约束匹配原始 `features/details`
+   条目的前缀时给予很弱的来源一致性加分；官方 Score 0.897143。
+2. `profile_tag_weight=0.03` + `profile_tags_override_only=True`：只在
+   Intent Override 已发生后，将匿名偏好标签作为极弱 tie-break，避免影响
+   Buying/Browsing 的明确约束排序。
+3. 两者组合后，官方 MRR 从 0.753020 升至 0.755526，Score 从
+   0.897106 升至 **0.897858**；Hit@10=1.0、MTTC=2.44 不变。
+4. customer probe 同方向：MRR 0.748582→0.751263，Score
+   0.895484→**0.896288**，Hit@10=1.0。
+
+**未采用：** 全局/条件化 RRF、IDF coverage、BM25 系数网格、连续第二次
+`other`、Override 重置提问、全局 profile 加权，以及过强的字段前缀权重。
+完整记录见 `docs/OPTIMIZATION_REPORT_V1_3.md` 与 `runs/v4_*attempts.json`。
+
+**默认策略：** `starter/config.py` 中 `VERSION = "v1.3"`，
+`PRESETS["final"]`。
 
 ---
 
@@ -185,4 +244,9 @@ v1 快照：`snapshots/v1/`。
 # 解压官方 catalog 到 data/catalog.jsonl 后
 python -m evaluator.local_evaluator
 python evaluate_with_transcripts.py   # 对话覆盖写入 runs/latest
+python run_v3_rank_experiments.py     # 重跑 v1.2 排序消融
+python run_v4_experiments.py          # v1.3 第一轮检索/提问消融
+python run_v4_entry_experiments.py    # 字段条目前缀权重
+python run_v4_profile_experiments.py  # profile 弱加权
+python run_v4_conditional_experiments.py # 条件化与最终组合
 ```

@@ -1,0 +1,17 @@
+sample_id: combo_0018_performance_mixed_4p0
+scenario_type: buying
+target: B07H3T5YGH
+title: O2TEE Men's Workout Gym Tank Tops Men - Custom Tank Top - Customized & Personalized Tanktops Text
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Shirts Tanks Tops. A key requirement is: polyester.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B08TG8JRDZ', 'B07Z5S6GHC', 'B07F7JBYGB', 'B07QPN8D6X', 'B09PTT6QTH', 'B082XQ1YNZ', 'B07R9Q38RH', 'B097BL6G7S', 'B09S6DWDSD', 'B07NVRHG7N']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: Modal,Polyester,Cotton; Pull On closure.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B07H3T5YGH', 'B006KE5URI', 'B09P9JSQSK', 'B07D329MM1', 'B076HPCPW5', 'B08ZSGVPSN', 'B09ZH7HNCG', 'B08KRGMNL4', 'B00XF6IY04', 'B07H2JHM1Y']
+[Turn 2] target_rank: 1 | scored_hit: True

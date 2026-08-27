@@ -1,0 +1,23 @@
+sample_id: public_0024
+scenario_type: buying
+target: B076X3JXMW
+title: Riviera Sun Womens Off Shoulder Embroidered Jumpsuit Romper
+hit: True | first_hit_turn: 3 | best_rank: 9
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Rompers & Overalls Jumpsuits. A key requirement is: rayon.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B06X9B45YB', 'B09XK49V29', 'B072N4KTXN', 'B091YWBVQN', 'B01DTXNCXQ', 'B0BP6MDDKN', 'B07ZRWZ5S2', 'B0725WDGLV', 'B010C6876A', 'B0821XMHGR']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: 100 rayon; Machine Wash.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B088QZYSHB', 'B07CRCPMJ5', 'B00YXLRIG6', 'B07T4JQD9V', 'B07BNZC2X3', 'B07L56T464', 'B08R17NYW5', 'B09JZ8V2M3', 'B073H8XM8Z', 'B094D15B1V']
+[Turn 2] target_rank: None | scored_hit: False
+
+[Turn 3] USER: I don't have an additional preference for material.
+[Turn 3] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 3] ask_attribute: other
+[Turn 3] recommendations: ['B084KCDX92', 'B0B6964PXF', 'B07F2T95N2', 'B0BKWBTJ5R', 'B087X8DVYL', 'B094FBR7JL', 'B088WBT8LJ', 'B0912RNG8S', 'B076X3JXMW', 'B07QZ474L2']
+[Turn 3] target_rank: 9 | scored_hit: True

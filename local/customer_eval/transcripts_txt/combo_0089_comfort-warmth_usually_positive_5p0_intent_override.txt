@@ -1,0 +1,23 @@
+sample_id: combo_0089_comfort-warmth_usually_positive_5p0
+scenario_type: intent_override
+target: B0BXMCZLZV
+title: Vanity Fair Women's Perfectly Yours High Waisted Brief Panties
+hit: True | first_hit_turn: 3 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Panties Briefs. Elastic closure
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B08CVRVG72', 'B07JCMHH58', 'B0779H3N5H', 'B01LBFT5Q2', 'B07X9V6HZX', 'B09P32NQ8V', 'B000VCGC4U', 'B0745BRYW9', 'B07VBKWPFP', 'B09SYVPC12']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: nylon; 100% Nylon.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B0BXMCZLZV', 'B008V1XNSG', 'B08BJS2JMQ', 'B004VM5WDI', 'B002B23SK4', 'B09XT5HRBD', 'B07TTR77FF', 'B07X2DQKTZ', 'B077ZK6163', 'B077TNDGRQ']
+[Turn 2] target_rank: 1 | scored_hit: False
+
+[Turn 3] USER: Actually, ignore my earlier preference. What I need is: nylon.
+[Turn 3] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.
+[Turn 3] ask_attribute: color
+[Turn 3] recommendations: ['B0BXMCZLZV', 'B008V1XNSG', 'B08BJS2JMQ', 'B004VM5WDI', 'B002B23SK4', 'B09XT5HRBD', 'B07TTR77FF', 'B07X2DQKTZ', 'B077ZK6163', 'B077TNDGRQ']
+[Turn 3] target_rank: 1 | scored_hit: True

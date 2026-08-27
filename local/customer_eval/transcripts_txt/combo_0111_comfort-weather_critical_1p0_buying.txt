@@ -1,0 +1,17 @@
+sample_id: combo_0111_comfort-weather_critical_1p0
+scenario_type: buying
+target: B07H7BWMQF
+title: Lacozy Women's Off Shoulder Long Sleeve Oversized Pullover Sweater Knit Jumper Loose Tunic Tops
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Sweaters Pullovers. A key requirement is: polyester.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B08CMWRWW3', 'B07GWSBHB5', 'B075385L4K', 'B08C4PF2RW', 'B0B2QYRN15', 'B08NG2BBLB', 'B07ZM5K28H', 'B07WGKFKH7', 'B08GM5TMYB', 'B07MNMHG98']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: 60% Polyester, 35% Cotton, 5% Spandex; Imported.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B07H7BWMQF', 'B07X3922XV', 'B0B6CQG1Z6', 'B08NPT6P2Z', 'B096FXGVF5', 'B09FKW3M2N', 'B07CWQQ44M', 'B08762F8KF', 'B07BVMH555', 'B0915NM336']
+[Turn 2] target_rank: 1 | scored_hit: True

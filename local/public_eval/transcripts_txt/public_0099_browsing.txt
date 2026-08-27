@@ -1,0 +1,17 @@
+sample_id: public_0099
+scenario_type: browsing
+target: B0971YMPCR
+title: Core 10 Women's Super Soft Fleece Straight Leg Jogger Sweatpant
+hit: True | first_hit_turn: 2 | best_rank: 6
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Active Pants Sweatpants, but I'm still exploring.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B07VNC4QY3', 'B09SZ8TC1S', 'B08T61LQ9L', 'B01GU3YLQY', 'B0BS9GWCM2', 'B016BJK82I', 'B07MM3GLSM', 'B0014H5JXG', 'B077HVWC21', 'B0973M4832']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: cotton; 60% Cotton, 40% Polyester.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B07CGLPT17', 'B084GFK3GR', 'B0716XGGKN', 'B09GL65W9V', 'B075Y445MD', 'B0971YMPCR', 'B01NH331KT', 'B06W5Y4C25', 'B07NJMP7P2', 'B0C6542QR2']
+[Turn 2] target_rank: 6 | scored_hit: True

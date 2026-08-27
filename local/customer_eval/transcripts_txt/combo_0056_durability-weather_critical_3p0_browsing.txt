@@ -1,0 +1,17 @@
+sample_id: combo_0056_durability-weather_critical_3p0
+scenario_type: browsing
+target: B0B2RF64YD
+title: Amazon Essentials Men's Short-Sleeve Crewneck T-Shirt, Pack of 2
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Shirts T-Shirts, but I'm still exploring.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B097YB478K', 'B0065KQ5US', 'B07TP3ZKQ5', 'B01N66BXT4', 'B07D8FCZKP', 'B07XHPVVCW', 'B09Z8YGG4M', 'B07SVX4K3V', 'B09HPVDH4X', 'B07XXS4WDT']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: cotton; Solids: 100% Cotton; Heathers: 60% Cotton, 40% Polyester.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B0B2RF64YD', 'B07YDZZDGQ', 'B07YF1THQ6', 'B074JPGP9P', 'B071DPGH71', 'B0748D3JHK', 'B076J95B7F', 'B07CLKVV5K', 'B088QF5G58', 'B0BH113WW9']
+[Turn 2] target_rank: 1 | scored_hit: True

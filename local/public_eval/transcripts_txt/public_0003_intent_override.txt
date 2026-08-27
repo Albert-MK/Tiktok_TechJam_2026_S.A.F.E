@@ -1,0 +1,23 @@
+sample_id: public_0003
+scenario_type: intent_override
+target: B09YMTWDXJ
+title: Casio Men's Wrist Watch AQ-800E-7A
+hit: True | first_hit_turn: 3 | best_rank: 2
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Watches Wrist Watches. Stainless Steel Band
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B07C2VVXSZ', 'B09LZ4C7RM', 'B00K04PZJM', 'B00H40O794', 'B07S9W25K8', 'B085BMH2M9', 'B01ETFUBCS', 'B07Q2CRDLC', 'B07SWPYL9K', 'B0BJBC8H4M']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: Water Resistant; 3 Year Battery.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B07GBT82S7', 'B09YMTWDXJ', 'B079Q78Q9N', 'B07WDTRJK7', 'B0B6CYH17L', 'B09H3VT8JH', 'B0BQ6XY143', 'B0BM4WGCJ6', 'B079VQPVY1', 'B07PQK7WC4']
+[Turn 2] target_rank: 2 | scored_hit: False
+
+[Turn 3] USER: Actually, ignore my earlier preference. What I need is: Water Resistant.
+[Turn 3] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.
+[Turn 3] ask_attribute: color
+[Turn 3] recommendations: ['B07GBT82S7', 'B09YMTWDXJ', 'B079Q78Q9N', 'B07WDTRJK7', 'B0B6CYH17L', 'B09H3VT8JH', 'B0BQ6XY143', 'B07PQK7WC4', 'B0BM4WGCJ6', 'B079VQPVY1']
+[Turn 3] target_rank: 2 | scored_hit: True

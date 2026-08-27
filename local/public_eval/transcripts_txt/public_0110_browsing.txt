@@ -1,0 +1,17 @@
+sample_id: public_0110
+scenario_type: browsing
+target: B0C277G9FW
+title: Loritta 5 Pairs Womens Wool Socks Thick Knit Vintage Winter Warm Cozy Crew Socks Gifts
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Active Athletic Socks, but I'm still exploring.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B08BK3R4DS', 'B09WMRC8XQ', 'B07VGKGBBW', 'B081J57LP5', 'B072BK5BW5', 'B09PHB5Q5C', 'B07QSHQMY5', 'B07W5S7XZ4', 'B089Q1W56W', 'B07CXMHG7H']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: wool; 35% wool, 29% cotton, 36% polyester.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B0C277G9FW', 'B0749KMYK2', 'B07YWJ7KVZ', 'B0BFV7LR3F', 'B07ZQGLRH4', 'B07RBN9QR3', 'B0C246QRQS', 'B009LB8CX6', 'B0934TNWWR', 'B06ZXS9VX1']
+[Turn 2] target_rank: 1 | scored_hit: True

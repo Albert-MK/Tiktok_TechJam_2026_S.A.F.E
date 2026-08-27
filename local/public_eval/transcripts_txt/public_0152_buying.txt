@@ -1,0 +1,17 @@
+sample_id: public_0152
+scenario_type: buying
+target: B000EQU0NW
+title: Citizen Eco-Drive Corso Quartz Mens Watch, Stainless Steel with Leather strap, Classic, Brown (Model: BM8242-08E)
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Watches Wrist Watches. A key requirement is: leather.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B00H40O794', 'B00K04PZJM', 'B08MW9ZKJH', 'B01F6XULS6', 'B00WBD6OMM', 'B07S9W25K8', 'B01HLRMH8W', 'B00ESGGJXY', 'B01IXVPU6G', 'B00LECJKFY']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: color: brown; Gold-tone watch in stainless steel featuring black two-step dial with date window at 3 o'clock and croco-embossed leather band. Case diameter : 36 mm.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B000EQU0NW', 'B00ST40QBW', 'B0083EKZ1Y', 'B017ZK1D7Q', 'B00VBNKXYI', 'B01HZ86DG4', 'B0188LDEWI', 'B000OY434G', 'B00L059500', 'B01F1ZUDMI']
+[Turn 2] target_rank: 1 | scored_hit: True

@@ -1,0 +1,17 @@
+sample_id: public_0135
+scenario_type: buying
+target: B0C6BL4RNN
+title: Dearfoams Women's Rebecca Lightweight Cozy Memory Foam Closed Back Slipper with Wide Widths
+hit: True | first_hit_turn: 2 | best_rank: 5
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Shoes Slippers. A key requirement is: polyester.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B01N497PRZ', 'B07K4PZGQ4', 'B0B5VN4P5D', 'B074QKDQJS', 'B09BT9TVGK', 'B07HM5YD4K', 'B073RVMJ19', 'B07TN23HZT', 'B08C78VZ66', 'B00ELB3WEU']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: 100% Polyester; Imported.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B00KAZSLFQ', 'B00GJAO1CI', 'B00W7BB8ME', 'B01M9B53D4', 'B0C6BL4RNN', 'B01M21TVZ2', 'B00KT435WM', 'B09BPH5ZNM', 'B08N6VDT2H', 'B01CE02PWE']
+[Turn 2] target_rank: 5 | scored_hit: True

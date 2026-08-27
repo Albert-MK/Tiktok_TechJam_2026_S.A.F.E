@@ -1,0 +1,11 @@
+sample_id: public_0168
+scenario_type: buying
+target: B08YYHDJD1
+title: Desimtion Mothers Day Gifts,Mother Daughter Bracelets Set for 2,3,4,5,6.Matching Heart Back to School Bracelets for Mommy and Me Easter Gifts for Girl
+hit: True | first_hit_turn: 1 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Necklaces & Pendants Pendants. A key requirement is: Mother Daughter Bracelets - Heart bracelet on card meaning “Never Truly Part,Maybe in Distance,But Never in Heart”. All daughters love their mom, but sometimes we just forget to sa.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B08YYHDJD1', 'B08YQPNZN8', 'B007RD8VPY', 'B09BZC42ZK', 'B07C6C3T7X', 'B007RD9FYK', 'B007RDAVPW', 'B0BGQ7S582', 'B0BZ4DD6R4', 'B08JQB5NWP']
+[Turn 1] target_rank: 1 | scored_hit: True

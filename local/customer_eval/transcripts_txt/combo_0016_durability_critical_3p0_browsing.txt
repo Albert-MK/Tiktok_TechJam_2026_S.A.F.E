@@ -1,0 +1,29 @@
+sample_id: combo_0016_durability_critical_3p0
+scenario_type: browsing
+target: B07PH3X7QK
+title: Amazon Essentials Women's Lace-Up Combat Boot
+hit: True | first_hit_turn: 4 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Boots Mid-Calf, but I'm still exploring.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B00416VC9M', 'B091MDRQGG', 'B07MNF68KH', 'B07FZ49LDL', 'B00OLG411S', 'B00Q9NPS18', 'B00CZOHFVQ', 'B08S6SXF31', 'B07GH7V8MM', 'B00NI6BALQ']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: leather; Imported.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B07XBMLV4H', 'B0098BNL58', 'B08M68Q4J5', 'B00MOTXUC0', 'B01BPW6OYC', 'B017HXTLPW', 'B074JMZWN3', 'B00R54V2IS', 'B0BCJVQ7RT', 'B07QZYBGX2']
+[Turn 2] target_rank: None | scored_hit: False
+
+[Turn 3] USER: I don't have an additional preference for material.
+[Turn 3] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 3] ask_attribute: other
+[Turn 3] recommendations: ['B01DIOPTWS', 'B01KORH54W', 'B00AY48OP0', 'B08FSTW789', 'B00BWBLXIE', 'B07KW31YGZ', 'B00H4B83Y8', 'B000Q6N0XW', 'B008WMIF6E', 'B0074O30F2']
+[Turn 3] target_rank: None | scored_hit: False
+
+[Turn 4] USER: For that, what matters is: Rubber sole; Shaft measures approximately ankle-high from arch.
+[Turn 4] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.
+[Turn 4] ask_attribute: color
+[Turn 4] recommendations: ['B07PH3X7QK', 'B0C1582KYJ', 'B075G32GC9', 'B096Z29DJF', 'B07L2DGTC6', 'B07LBQTWMJ', 'B01NAL1PFG', 'B07MQ3DXSW', 'B06XSPLDCF', 'B07N9DDRTR']
+[Turn 4] target_rank: 1 | scored_hit: True

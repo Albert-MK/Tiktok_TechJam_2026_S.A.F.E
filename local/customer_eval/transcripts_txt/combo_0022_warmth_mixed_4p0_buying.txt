@@ -1,0 +1,17 @@
+sample_id: combo_0022_warmth_mixed_4p0
+scenario_type: buying
+target: B08F5G843H
+title: YESNO Summer Dresses for Women Casual Loose Bohemian Floral Dress with Pockets Spaghetti Strap Maxi Dress E75
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Dresses Casual. A key requirement is: fabric.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B07QCKPNG1', 'B07F7VS8VR', 'B07K7B7CRF', 'B07CR7TQJV', 'B0C3QR6D5P', 'B07DMDCNYH', 'B07483YC42', 'B0B7QHL77K', 'B09GZJS3ZY', 'B00WVZOEIQ']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: Fabric: 100% Cotton, Soft, Comfy, Breathable and keep you cool; Imported.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B08F5G843H', 'B082XV7WPC', 'B09XF84RFM', 'B07W4K48V5', 'B08PK7ZQN1', 'B07RFJQ81F', 'B09JYYMR2B', 'B07CCLV3XP', 'B0B3M52JYD', 'B07PK92NWP']
+[Turn 2] target_rank: 1 | scored_hit: True

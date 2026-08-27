@@ -1,0 +1,17 @@
+sample_id: public_0030
+scenario_type: buying
+target: B09V5RTXG9
+title: #followme Microfleece Men’s Buffalo Plaid Pajama Pants with Pockets
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Sleep & Lounge Sleep Bottoms. A key requirement is: polyester.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B08DXMB3TP', 'B07QFHTT1C', 'B08L3J44NS', 'B08JLGDC8G', 'B00V3XA5X0', 'B0963F8L33', 'B08H5QZKNT', 'B0895NZPK6', 'B074X7S7GZ', 'B00MUKX302']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: Polyester,Polar Fleece; Button closure.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B09V5RTXG9', 'B008OL9HS8', 'B0BL2HN7H1', 'B01MEF538D', 'B01D90JMUQ', 'B0BB79DXQ5', 'B01NA85GL1', 'B07JG7TL72', 'B08DBSW2KZ', 'B08GSNLHNY']
+[Turn 2] target_rank: 1 | scored_hit: True

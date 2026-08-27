@@ -1,0 +1,23 @@
+sample_id: combo_0178_fit-comfort-weather_critical_1p0
+scenario_type: buying
+target: B01FWQ8NH8
+title: Red Hot Chili Peppers Distressed Men's T-Shirt Black
+hit: True | first_hit_turn: 3 | best_rank: 3
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Shirts T-Shirts. A key requirement is: cotton.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B097YB478K', 'B07XHPVVCW', 'B01N66BXT4', 'B09P39YM3Z', 'B07567JYH2', 'B07H56H26J', 'B07GXGXSM6', 'B00SW39EBI', 'B00OIS8TSU', 'B08Z3YL2M4']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: color: red; 100% Cotton.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B0B6DFXV4C', 'B076TW4Z8Z', 'B085T9Q34Z', 'B005VDVFUU', 'B077GFQ7Y1', 'B00OU5NH6U', 'B082NZFTFK', 'B072JJCFK8', 'B07Y5273ZJ', 'B06XS8JL7T']
+[Turn 2] target_rank: None | scored_hit: False
+
+[Turn 3] USER: I don't have an additional preference for material.
+[Turn 3] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 3] ask_attribute: other
+[Turn 3] recommendations: ['B08JG9KPQZ', 'B07HKNZ7S9', 'B01FWQ8NH8', 'B01EVI2CMK', 'B00FRHRT8M', 'B0BRTLG26L', 'B00GNJX4BE', 'B07P5GHLX6', 'B00L8MV3VY', 'B09FFY4N7X']
+[Turn 3] target_rank: 3 | scored_hit: True

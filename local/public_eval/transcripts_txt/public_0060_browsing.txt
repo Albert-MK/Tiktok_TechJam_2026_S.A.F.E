@@ -1,0 +1,17 @@
+sample_id: public_0060
+scenario_type: browsing
+target: B08R61K9B9
+title: Fruit of the Loom mens Woven Sleep Pajama Pant
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Sleep & Lounge Sleep Bottoms, but I'm still exploring.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B087BZN23H', 'B08DXMB3TP', 'B08938GKDX', 'B07HPDN1TW', 'B07QPWZZNV', 'B08KPVJ1TF', 'B07Y8C4SM9', 'B08F7SLZ25', 'B00CXWF4P4', 'B08JLGDC8G']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: cotton; 55% Cotton, 45% Polyester.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B08R61K9B9', 'B01N288ZQ2', 'B08GR3VKSN', 'B01CFX0G3K', 'B00T4QED3G', 'B00T4QDN2S', 'B071RTZ2WT', 'B06XQ76JYT', 'B075MS8GVB', 'B019M1EBZW']
+[Turn 2] target_rank: 1 | scored_hit: True

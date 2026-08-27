@@ -1,0 +1,11 @@
+sample_id: combo_0176_material-style-weather_critical_1p0
+scenario_type: browsing
+target: B0C3MKNZJN
+title: adidas Originals Originals Sport Waist Pack
+hit: True | first_hit_turn: 1 | best_rank: 10
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Luggage & Travel Gear Waist Packs, but I'm still exploring.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B000XJOFZ4', 'B00NQ6L0UE', 'B0184VVUGY', 'B07KTQ23KX', 'B0B56SVFRZ', 'B005LXUUXI', 'B0BS22KZN7', 'B07BXFGLRW', 'B083LSHH3T', 'B0C3MKNZJN']
+[Turn 1] target_rank: 10 | scored_hit: True

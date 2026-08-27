@@ -1,0 +1,17 @@
+sample_id: public_0047
+scenario_type: browsing
+target: B0BYZX7B1L
+title: Lunarable Multicolor Unisex Bandana
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Accessories Bandanas, but I'm still exploring.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B086QZNTPF', 'B00PG84H9G', 'B071JDX7CX', 'B08CVKDHGG', 'B08882QBFT', 'B00HEQQSCW', 'B01D93MHDM', 'B0894MZ9JS', 'B07S2M3P7L', 'B0B7H2PZZJ']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: polyester; color: pink.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B0BYZX7B1L', 'B0BKPX1HGG', 'B0BYTB43KT', 'B0892JBCTP', 'B08GYDHPV4', 'B08JQ9KGD8', 'B08P51DJ6X', 'B07CVFRSYP', 'B08FJFZKXZ', 'B089374PMD']
+[Turn 2] target_rank: 1 | scored_hit: True

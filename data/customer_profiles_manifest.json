@@ -1,0 +1,51 @@
+{
+  "n_profiles": 187,
+  "n_sessions": 187,
+  "skipped_already_in_public_set": 125,
+  "format": {
+    "purchase_frequency": "3-4 prior purchases",
+    "rating_style": [
+      "usually positive",
+      "mixed",
+      "critical"
+    ],
+    "average_prior_rating": [
+      5.0,
+      4.0,
+      3.0,
+      1.0
+    ],
+    "preference_tags": [
+      "material",
+      "fit",
+      "comfort",
+      "style",
+      "durability",
+      "performance",
+      "warmth",
+      "weather",
+      "general shopping"
+    ],
+    "summary_template": "Prior purchases emphasize {tags}; ratings are {rating_style}."
+  },
+  "combo_group_counts": {
+    "single_tag": 28,
+    "rare_pair": 88,
+    "common_pair": 19,
+    "common_plus_rare_triple": 47,
+    "core_quad": 2,
+    "general_shopping": 3
+  },
+  "rating_style_counts": {
+    "mixed": 36,
+    "critical": 96,
+    "usually positive": 55
+  },
+  "n_tags_counts": {
+    "1": 31,
+    "2": 107,
+    "3": 47,
+    "4": 2
+  },
+  "note": "customer_profiles.jsonl is the profile library. customer_probe.jsonl wraps each profile onto a public_set product so the official evaluator can run."
+}

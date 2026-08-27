@@ -1,0 +1,17 @@
+sample_id: combo_0146_comfort-style-durability_critical_1p0
+scenario_type: buying
+target: B0BCQWYQLQ
+title: Sarin Mathews Womens One Shoulder Ruched Bodycon Dress Sexy Sleeveless Slit Midi Party Cocktail Wedding Guest Dresses
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Women Dresses. A key requirement is: rayon.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B00IQ22D9A', 'B00MH5QDMA', 'B00JWV7LQ4', 'B07VM7ZHDD', 'B08T6ZD987', 'B07TWRJ815', 'B079GWQ9P3', 'B07CVYKNWB', 'B08N2BVJ3H', 'B011VSTNB6']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: 50%Rayon+45%Polyester+5%Spandex; Imported.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B0BCQWYQLQ', 'B074R7Q81J', 'B06Y3YCN3Y', 'B01LY3MTX9', 'B07B4875PX', 'B089Y4683Q', 'B06XPK1G1L', 'B00DHX7L86', 'B01KHYG5WU', 'B07MCVZYB5']
+[Turn 2] target_rank: 1 | scored_hit: True

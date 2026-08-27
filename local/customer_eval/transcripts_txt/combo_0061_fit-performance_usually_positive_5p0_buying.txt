@@ -1,0 +1,11 @@
+sample_id: combo_0061_fit-performance_usually_positive_5p0
+scenario_type: buying
+target: B08HCP9YTV
+title: 1pc Surgical Steel Piercing Ring for Nose Septum Cartilage Helix Tragus Conch Rook Daith Lobe 20g-18g-16g-14g-12g-10g 5mm-6mm-7mm-8mm-9mm-10mm-11mm-12mm-14mm-16mm Silver/Gold/Rose Gold/Black/Rainbow
+hit: True | first_hit_turn: 1 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Piercing Jewelry Rings. A key requirement is: Snap closure.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B08HCP9YTV', 'B09Q7VYP3Q', 'B089DZT2C7', 'B08J295KCZ', 'B094MPP2P4', 'B016ZY19PE', 'B0B7W58PS9', 'B08PD7JQNB', 'B0B18HXMGV', 'B08DNXPDYZ']
+[Turn 1] target_rank: 1 | scored_hit: True

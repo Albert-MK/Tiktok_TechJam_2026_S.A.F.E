@@ -1,0 +1,17 @@
+sample_id: combo_0140_material-style-durability_usually_positive_5p0
+scenario_type: browsing
+target: B09BT6LSJV
+title: Grlasen Women's Casual Long Blazers Ruched 3/4 Sleeve Lapel Oversized Suit Jacket Elegant Work Office Blazer Jackets
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Suiting & Blazers Blazers, but I'm still exploring.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B0BGHD8BJQ', 'B00WNHL9J4', 'B00I9ZZQU2', 'B0817HM1TP', 'B07FXZ4V43', 'B075CH87CD', 'B07VWJD36D', 'B07Q3FG946', 'B07H763P8Q', 'B07YWM4SQZ']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: polyester; Polyester,Spandex.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B09BT6LSJV', 'B01LZAJBAP', 'B08FXCR6KM', 'B01N8Y33RM', 'B095HJYFCJ', 'B07F4LRFXL', 'B091Y7WL2V', 'B0093U9EIW', 'B07LFZJ8XY', 'B07NLLF94Y']
+[Turn 2] target_rank: 1 | scored_hit: True

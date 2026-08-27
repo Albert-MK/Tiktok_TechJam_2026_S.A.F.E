@@ -1,0 +1,17 @@
+sample_id: public_0001
+scenario_type: buying
+target: B09PYB7B6Z
+title: QIAN0813 Celttic Knot Triple Moon Pentagram Pentacle Star Wicca Pendant Necklace Round Pagan Jewelry
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Jewelry Necklaces. A key requirement is: Material:alloy.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B0140NWUGE', 'B072PTLN1L', 'B09LV2N6CM', 'B07TS5Q2G6', 'B07ZFM77HB', 'B07RPV75CN', 'B01EX670LS', 'B07ZKZNMJ5', 'B013Q214QW', 'B00RKW35S0']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: Triple Moon Pentagram Symbol; The Triple Moon represents the Phases of the Moon which are linked to the three aspects of the Goddess and the phases of the Life of Women.The Pentagram representing the holistic r.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B09PYB7B6Z', 'B0C5J7FCYR', 'B08F4VQ8JC', 'B07HRJVGP2', 'B008OYIY3O', 'B07T7TQJPD', 'B08P7G15VB', 'B087CP31XD', 'B0BG21X73H', 'B09196J1XP']
+[Turn 2] target_rank: 1 | scored_hit: True

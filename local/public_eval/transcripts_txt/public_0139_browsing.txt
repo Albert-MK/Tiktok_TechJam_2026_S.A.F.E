@@ -1,0 +1,17 @@
+sample_id: public_0139
+scenario_type: browsing
+target: B09SGYPW3M
+title: OFEEFAN Womens Tops Ruffle Short Sleeve V Neck T-Shirts Casual Loose Fit
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Tees & Blouses T-Shirts, but I'm still exploring.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B09228WKCF', 'B07ZHYSWZY', 'B08GK645DZ', 'B07S3FDZQB', 'B08VJDPWPN', 'B0948HF7BG', 'B07SVX4K3V', 'B07P6ZC4XN', 'B09FYBP7NM', 'B08BRNZ624']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: fabric; Fabric: 35%Rayon,60% Polyester and 5% Spandex,very soft and comfortable for spring and summer.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B09SGYPW3M', 'B08XJZCW18', 'B0882LSYMV', 'B096FXGVF5', 'B085BKWZ3D', 'B08T8WGSZC', 'B08T8YBQ88', 'B0829XYMBH', 'B0CGRC72YG', 'B0B49LYMFG']
+[Turn 2] target_rank: 1 | scored_hit: True

@@ -1,0 +1,17 @@
+sample_id: public_0054
+scenario_type: buying
+target: B08PP1ZJQ5
+title: Verdusa Women's Basic Casual Long Sleeve Round Neck Crop Top Pullover Sweatshirt
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Women Fashion Hoodies & Sweatshirts. A key requirement is: fabric.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B07VSNK5J1', 'B08P7HS6QL', 'B07X3CX1C3', 'B07RP71WXG', 'B09C1Z192C', 'B08KGT944P', 'B07VX63TJV', 'B08NTCR6KN', 'B0893RM7HK', 'B08DD9X139']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: Soft Fabric; Pull On closure.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B08PP1ZJQ5', 'B07ZVF8S3X', 'B098ST3N85', 'B09Q318TGL', 'B08JPVWF9W', 'B07KD1GX79', 'B09MMRCQSS', 'B08F4YSKR8', 'B075J62MZK', 'B07YJVQYKK']
+[Turn 2] target_rank: 1 | scored_hit: True

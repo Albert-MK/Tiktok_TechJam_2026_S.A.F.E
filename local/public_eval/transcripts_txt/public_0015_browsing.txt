@@ -1,0 +1,17 @@
+sample_id: public_0015
+scenario_type: browsing
+target: B08513YB2T
+title: Crocs Unisex-Adult Classic Clog
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Shoes Mules & Clogs, but I'm still exploring.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B07569S1RP', 'B0859GMZHZ', 'B096KWG7YN', 'B07ZXM8JDC', 'B09SYXX4CH', 'B09BL5MKJS', 'B09QYG95BH', 'B086G2FTGY', 'B071RLLDT2', 'B08T5X8TKH']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: fabric; Made in the USA or Imported.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B08513YB2T', 'B09KVJ6J6D', 'B076H7YQPV', 'B081FK41NY', 'B09GF1RWH5', 'B09MVF4SDH', 'B0C6TT7L94', 'B09FQ892TL', 'B077T7P7BM', 'B0C5RLJDSF']
+[Turn 2] target_rank: 1 | scored_hit: True

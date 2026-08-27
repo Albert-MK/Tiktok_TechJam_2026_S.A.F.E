@@ -1,0 +1,21 @@
+{
+  "version": "v1.3",
+  "parent": "v1.2",
+  "dataset": "data/public_set.jsonl",
+  "added_vs_v1.2": [
+    "entry_prefix_weight=1.1",
+    "profile_tag_weight=0.03",
+    "profile_tags_override_only=true"
+  ],
+  "metrics": {
+    "sample_count": 200,
+    "hit_rate_at_10": 1.0,
+    "mrr": 0.755526,
+    "mttc": 2.44,
+    "efficiency": 0.856,
+    "recommended_technical_score": 0.897858
+  },
+  "v1.2_technical_score": 0.897106,
+  "customer_probe_score": 0.896288,
+  "report": "docs/OPTIMIZATION_REPORT_V1_3.md"
+}

@@ -1,0 +1,11 @@
+sample_id: public_0156
+scenario_type: buying
+target: B0C3KZXV4B
+title: adidas Alliance II Sackpack, Shadow Navy/Snowglobe/Dash Grey, One Size
+hit: True | first_hit_turn: 1 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Gym Bags Drawstring Bags. A key requirement is: Easy cinch opening with durable cording.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B0C3KZXV4B', 'B00P28B5WW', 'B07DZTNWHQ', 'B08MHYVSLV', 'B082SV421C', 'B08S3JKHVT', 'B00AWMRV26', 'B00PDBKKCO', 'B08ZJDHBDQ', 'B00RDEUZI8']
+[Turn 1] target_rank: 1 | scored_hit: True

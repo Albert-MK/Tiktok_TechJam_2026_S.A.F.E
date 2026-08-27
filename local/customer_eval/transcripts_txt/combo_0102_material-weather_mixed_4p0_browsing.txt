@@ -1,0 +1,17 @@
+sample_id: combo_0102_material-weather_mixed_4p0
+scenario_type: browsing
+target: B07PWZXZVX
+title: FallSweet Padded Push Up Lace Bras for 34A to 44C Underwire
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Bras Everyday Bras, but I'm still exploring.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B07R3YS1TV', 'B07T8CF4GW', 'B07ST2MMYX', 'B07PNVKM8M', 'B087BK77JL', 'B083JNXSHJ', 'B09726G8B2', 'B07PMX3R6Y', 'B07XKXW75H', 'B074VTHG8P']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: Hand Wash Only; Push Up Bra, A/B/C cup 3 centimeters Thickness Pad inside. But noted that D cup is thin cup,lightly padded.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B07PWZXZVX', 'B000MXB6NA', 'B07Q2MLX5N', 'B00L5YKFA0', 'B074V39WT8', 'B0BPCC1KBT', 'B08ZKFD4GM', 'B07YT6W4QZ', 'B084JG8PK9', 'B00CYNKSTE']
+[Turn 2] target_rank: 1 | scored_hit: True

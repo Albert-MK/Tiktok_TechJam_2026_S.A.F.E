@@ -1,0 +1,29 @@
+sample_id: public_0064
+scenario_type: intent_override
+target: B019DU687Q
+title: Memorose Womens Sexy Long Sleeve Cut-Out Bandage Bodycon Clubwear Midi Dress
+hit: True | first_hit_turn: 4 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Dresses Club & Night Out. Hand Wash Only
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B09Q659744', 'B07RGPMWHT', 'B01M7NX0A7', 'B0BBM3PKQY', 'B09MW845GT', 'B095XYTTVF', 'B08HKHPPBT', 'B00JKMOH1C', 'B01MRIKMIV', 'B00JTN1FPI']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: cotton; cotton blend.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B019DU687Q', 'B07F33VP6X', 'B019DU6AL0', 'B07QLLTJWS', 'B0B9B3KPS8', 'B07GZH4814', 'B07Z3P2C5W', 'B0798TR9J9', 'B0892BKBLJ', 'B08XP1G6QS']
+[Turn 2] target_rank: 1 | scored_hit: False
+
+[Turn 3] USER: I don't have an additional preference for material.
+[Turn 3] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 3] ask_attribute: other
+[Turn 3] recommendations: ['B07R43T314', 'B00SL1CAQC', 'B08NZGBBPY', 'B07LF2JLWC', 'B08DQZQ7WP', 'B00OZIGHKA', 'B07PXMTZQK', 'B074VX7ZSD', 'B087M4BNKS', 'B07BMV97PB']
+[Turn 3] target_rank: None | scored_hit: False
+
+[Turn 4] USER: Actually, ignore my earlier preference. What I need is: cotton.
+[Turn 4] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.
+[Turn 4] ask_attribute: color
+[Turn 4] recommendations: ['B019DU687Q', 'B07F33VP6X', 'B019DU6AL0', 'B07QLLTJWS', 'B095XYTTVF', 'B0B9B3KPS8', 'B07GZH4814', 'B0892BKBLJ', 'B07Z3P2C5W', 'B0798TR9J9']
+[Turn 4] target_rank: 1 | scored_hit: True

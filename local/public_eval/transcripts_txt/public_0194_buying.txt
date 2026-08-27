@@ -1,0 +1,17 @@
+sample_id: public_0194
+scenario_type: buying
+target: B09WR1NZ48
+title: Graphic Tees for Women Short Sleeve Tshirts,Womens Summer Tops Crewneck Shirt Blouse
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Tees & Blouses T-Shirts. A key requirement is: rayon.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B08CC256X3', 'B09685SVS1', 'B06XRMQMWB', 'B0922HWF19', 'B01N7WJO4J', 'B00CNZ06O0', 'B09N798HRQ', 'B00KH7GUWS', 'B0994DQB69', 'B072M4K5LF']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: 95% Rayon, 5% Spandex; Pull On closure.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B09WR1NZ48', 'B07CT52HY2', 'B07SN26M1D', 'B07MVR31QJ', 'B07QK7DT5T', 'B01CZ2KY7Y', 'B09M5XXWR3', 'B085PQW3YC', 'B08Y8ZJJC1', 'B01B8BV4GI']
+[Turn 2] target_rank: 1 | scored_hit: True

@@ -1,0 +1,17 @@
+sample_id: public_0170
+scenario_type: browsing
+target: B08LRQX5RH
+title: UGG Women's Harrison Lace Fashion Boot
+hit: True | first_hit_turn: 2 | best_rank: 9
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Fashion Combat, but I'm still exploring.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B01M2YTS5G', 'B01M6DWDYU', 'B088NW8C9X', 'B0743JB8JY', 'B075M71RBT', 'B07FDQ49J9', 'B00KR6GGP0', 'B00LX7KH5W', 'B07G8G3FMP', 'B084KZX69S']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: leather; 100% Leather.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B00R54VJFY', 'B07CN7853D', 'B007KD3ONA', 'B081SKLFXN', 'B07NYVTK6H', 'B00J6OD0RQ', 'B00JLZH99U', 'B004KNWPHE', 'B08LRQX5RH', 'B00MBVY7K0']
+[Turn 2] target_rank: 9 | scored_hit: True

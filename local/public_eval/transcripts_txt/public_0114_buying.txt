@@ -1,0 +1,17 @@
+sample_id: public_0114
+scenario_type: buying
+target: B07H34Z5V6
+title: Athlefit Women's Wedge Sneakers Hidden Heel Platform Wedge Booties Hidden Wedgie Sneakers
+hit: True | first_hit_turn: 2 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Shoes Fashion Sneakers. A key requirement is: Rubber sole.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B01K4DCMNA', 'B00KTDL0CK', 'B07WWS8QB8', 'B08C5KZKZ8', 'B07CT2CXQR', 'B07Z49C41Y', 'B08HYJBPJH', 'B09G8B9YSY', 'B07L5CT1HS', 'B07K3971WM']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: Great go-to shoes with multicolor choice and steady design suitable for all age; Take a natural step forward with a clean look, for sure go with your daily t-shirt and jeans, jackets,casual midi dress,any outfit you have.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B07H34Z5V6', 'B07GV2176N', 'B07CVH5Y1T', 'B083FKF1ZH', 'B0B7X4XRWP', 'B0C677SDSK', 'B07WSR7VSJ', 'B07X5Z6CVC', 'B08MBJ9RPX', 'B006V99KQE']
+[Turn 2] target_rank: 1 | scored_hit: True

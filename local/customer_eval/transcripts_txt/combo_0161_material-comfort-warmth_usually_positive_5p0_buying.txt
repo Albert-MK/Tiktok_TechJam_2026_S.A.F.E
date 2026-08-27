@@ -1,0 +1,23 @@
+sample_id: combo_0161_material-comfort-warmth_usually_positive_5p0
+scenario_type: buying
+target: B0B6N6TJ6V
+title: Thankful Grateful Blessed Shirt for Women Plaid Pumpkin Long Sleeve Tshirts Leopard Stripe Striped Thanksgiving Fall Tee Tops
+hit: True | first_hit_turn: 3 | best_rank: 1
+------------------------------------------------------------------------
+[Turn 1] USER: I'm looking for Tees & Blouses T-Shirts. A key requirement is: cotton.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] ask_attribute: other
+[Turn 1] recommendations: ['B07GF3YT1X', 'B07GCKFRN6', 'B01N1Z1D8U', 'B07QSRJR2K', 'B07XKGWK4G', 'B07KNRH5QB', 'B0B7PXR6YQ', 'B011MDIFT6', 'B07KNSRXTN', 'B07T3DYNK1']
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: cotton blend; Imported.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B0C1YPPMQ1', 'B0B5N8VVJ2', 'B091DWXPZN', 'B07Q7F76FJ', 'B0BW2Y7JNS', 'B08J9TRGJV', 'B0BDMJ4TDN', 'B089JSYRN6', 'B00JPT3BTO', 'B0792QTYTF']
+[Turn 2] target_rank: None | scored_hit: False
+
+[Turn 3] USER: I don't have an additional preference for material.
+[Turn 3] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 3] ask_attribute: other
+[Turn 3] recommendations: ['B0B6N6TJ6V', 'B00L3XQ7EG', 'B08RWPDL46', 'B0935ZL61W', 'B07RBP6CRX', 'B07YCT5VV6', 'B08C4PN3LQ', 'B088NP48MV', 'B08ZJB5H9R', 'B08T7G47R7']
+[Turn 3] target_rank: 1 | scored_hit: True
