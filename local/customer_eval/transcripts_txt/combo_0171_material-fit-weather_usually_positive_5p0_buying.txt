@@ -5,13 +5,13 @@ title: ZAFUL Bikini Set for Women Solid V Neck Knot Front Push Up High Leg Thong
 hit: True | first_hit_turn: 2 | best_rank: 2
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Bikinis Sets. A key requirement is: nylon.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B08DF9F8KG', 'B07T13FSKG', 'B07WDV3SGZ', 'B07RG5ZJRT', 'B08VRX7ZXP', 'B09Q5T3D67', 'B07RBN2CBL', 'B07QR1MM48', 'B08VWPKZZL', 'B0793GYL9T']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: Elastic; Imported.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B09JJYFXBN', 'B0BFVFFHKS', 'B09PDV687N', 'B0BN2SZCY4', 'B082YMXPND', 'B00YFUMG12', 'B086L9P9SX', 'B09JS72K73', 'B087N9QRFS', 'B087Q6L93Q']
+[Turn 2] recommendations: ['B09JJYFXBN', 'B0BFVFFHKS', 'B09PDV687N', 'B0BN2SZCY4', 'B07QR1MM48', 'B082YMXPND', 'B00YFUMG12', 'B086L9P9SX', 'B09JS72K73', 'B087N9QRFS']
 [Turn 2] target_rank: 2 | scored_hit: True

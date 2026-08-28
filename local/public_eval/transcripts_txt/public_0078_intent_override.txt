@@ -5,15 +5,15 @@ title: Hanes Women's Value, Crew Soft Moisture-Wicking Socks, Available in 10 an
 hit: True | first_hit_turn: 3 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Socks No Show & Liner Socks. Pull On closure
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B07NVHPRHJ', 'B07P17Q1H6', 'B095WGCF79', 'B075T9HH34', 'B087WTFBWH', 'B00B2Q9U4S', 'B07J3SXM84', 'B0714G4HM5', 'B07XH1PJY3', 'B01M71S0IB']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: cotton; 78% Cotton, 21% Polyester, 1% Spandex.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B0C5RLJDSF', 'B009GGVUFS', 'B0928MYH3Q', 'B0C4P8PDM4', 'B082PKZ7DP', 'B09Z34PD75', 'B09YYT5KT2', 'B08664M5ZF', 'B0C7SMTSMT', 'B0B14MPD3N']
+[Turn 2] recommendations: ['B0C5RLJDSF', 'B009GGVUFS', 'B0928MYH3Q', 'B07J3SXM84', 'B0C4P8PDM4', 'B082PKZ7DP', 'B09Z34PD75', 'B09YYT5KT2', 'B08664M5ZF', 'B0C7SMTSMT']
 [Turn 2] target_rank: 1 | scored_hit: False
 
 [Turn 3] USER: Actually, ignore my earlier preference. What I need is: cotton.

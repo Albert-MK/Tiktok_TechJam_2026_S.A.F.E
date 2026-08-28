@@ -5,9 +5,9 @@ title: Sanuk Yoga Sling 2 Light Natural 5 B (M)
 hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Sandals Flats. A key requirement is: fabric.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B00JTKXCIO', 'B00GOCKGW0', 'B00B8YUBCO', 'B0C496CNQN', 'B01AC9W08I', 'B01IBK0Z96', 'B00BT7FNDC', 'B08C356KK3', 'B07958DVC8', 'B00M8JJL38']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: Back for a second time, it's the ever comfy, ever stylish Yoga Sling 2 sandal from Sanuk®. A sandal that's a flexible as you—win!; New lightweight, two-way stretch knit upper with sling comfort construction.

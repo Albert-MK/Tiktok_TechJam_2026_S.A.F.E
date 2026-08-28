@@ -5,13 +5,13 @@ title: Levi's Men's 505 Regular Fit Shorts (Also Available in Big & Tall)
 hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Shorts Denim. A key requirement is: cotton.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B06ZYX4PD5', 'B07613FW3G', 'B01BMYTAR6', 'B08429V9RQ', 'B08VDBVSQZ', 'B01FUUZ76G', 'B091G1SZQF', 'B07CMP685Y', 'B06ZZMDH2R', 'B08596LMCR']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: color: black; 100% Cotton.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B0C614ZPK3', 'B00IRL6KRG', 'B07TXDTP4F', 'B08DJXX7FD', 'B01N5H0LA0', 'B07T9TGRQC', 'B0B2WPYG12', 'B0B7WY3DYM', 'B08Y7NHC2R', 'B071YN6LN2']
+[Turn 2] recommendations: ['B0C614ZPK3', 'B00IRL6KRG', 'B07TXDTP4F', 'B08DJXX7FD', 'B01N5H0LA0', 'B06ZYX4PD5', 'B07T9TGRQC', 'B0B2WPYG12', 'B01BMYTAR6', 'B0B7WY3DYM']
 [Turn 2] target_rank: 1 | scored_hit: True

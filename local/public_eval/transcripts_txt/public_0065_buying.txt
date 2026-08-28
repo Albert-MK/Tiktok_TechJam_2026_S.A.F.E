@@ -2,10 +2,16 @@ sample_id: public_0065
 scenario_type: buying
 target: B0BSQ9TCYC
 title: Arctix Women's Essential Insulated Bib Overalls
-hit: True | first_hit_turn: 1 | best_rank: 6
+hit: True | first_hit_turn: 2 | best_rank: 5
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Bibs & Pants Bibs. A key requirement is: polyester.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B074BMLZTL', 'B0BSGLK7MN', 'B00D4L7VV8', 'B00WB99UL8', 'B01HDT1Y9G', 'B0BSQ9TCYC', 'B07N8SGDV8', 'B07WDRMN82', 'B08TBGWX4M', 'B09QHWPHSM']
-[Turn 1] target_rank: 6 | scored_hit: True
+[Turn 1] recommendations: []
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: 100% Polyester; Imported.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B00D4L7VV8', 'B00WB99UL8', 'B01HDT1Y9G', 'B07N8SGDV8', 'B0BSQ9TCYC', 'B07WDRMN82', 'B08TBGWX4M', 'B074BMLZTL', 'B0BSGLK7MN', 'B09QHWPHSM']
+[Turn 2] target_rank: 5 | scored_hit: True

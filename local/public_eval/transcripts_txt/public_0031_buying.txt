@@ -5,13 +5,13 @@ title: Signature by Levi Strauss & Co. Gold Label Women's Modern Skinny Jeans (S
 hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Women Jeans. A key requirement is: cotton.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B076ZV7BQJ', 'B076J13CQH', 'B00S82UE7Q', 'B0083SWG5I', 'B073ZR8CG6', 'B00C5KG9DA', 'B00LO0BUUO', 'B00BUQWX5S', 'B07H11PHW1', 'B016KKZF3U']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: 78% Cotton, 20% Polyester, 2% Elastane; Imported.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B0BQDTGHMZ', 'B072HKPZD5', 'B07HD5DWKJ', 'B078MQRQ38', 'B07BKFFJ23', 'B073H3GF9H', 'B071W9P2WM', 'B01G71ZXG6', 'B01A16Y0RG', 'B09L5KY5CH']
+[Turn 2] recommendations: ['B0BQDTGHMZ', 'B072HKPZD5', 'B07HD5DWKJ', 'B078MQRQ38', 'B07BKFFJ23', 'B00S82UE7Q', 'B073H3GF9H', 'B071W9P2WM', 'B01G71ZXG6', 'B01A16Y0RG']
 [Turn 2] target_rank: 1 | scored_hit: True

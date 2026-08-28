@@ -5,9 +5,9 @@ title: Feraco Mens Bikers Bracelet Stainless Steel Motorcycle Bike Chain Bracele
 hit: True | first_hit_turn: 4 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Bracelets Link. Bracelet Size: Length-8.34 inch, width-0.4 inch, weight: 54g. smooth chain, lightweight and comfortable to wear, perfect for bike enthusiasts etc
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B07YY5W794', 'B08F9R5RJG', 'B07YNY57Z1', 'B06VYGMZT7', 'B09HT6X2XR', 'B0B2CWBVSB', 'B0054QYVK0', 'B08CZL8M7P', 'B003CULPOK', 'B008K0MURS']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: Stainless Steel Bike Bracelet: Handcrafted with high quality material, 100% HYPOALLERGENIC, Lead & Nickel Free, Stronger and very LOW MAINTENANCE Metal, long lasting IP vacuum Plat; color: black.
@@ -19,7 +19,7 @@ hit: True | first_hit_turn: 4 | best_rank: 1
 [Turn 3] USER: I don't have an additional preference for material.
 [Turn 3] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.
 [Turn 3] ask_attribute: color
-[Turn 3] recommendations: ['B0132L6P02', 'B00APG8WV8', 'B08CXZV73C', 'B009NNE4X4', 'B00HFIENYY', 'B016P6QVYQ', 'B081TMSYH8', 'B09MF7BXGK', 'B00FW48F2E', 'B0BR86BXJB']
+[Turn 3] recommendations: ['B0132L6P02', 'B00APG8WV8', 'B08CXZV73C', 'B009NNE4X4', 'B00HFIENYY', 'B016P6QVYQ', 'B081TMSYH8', 'B09MF7BXGK', 'B00FW48F2E', 'B0B2CWBVSB']
 [Turn 3] target_rank: None | scored_hit: False
 
 [Turn 4] USER: Actually, ignore my earlier preference. What I need is: Stainless Steel Bike Bracelet: Handcrafted with high quality material, 100% HYPOALLERGENIC, Lead & Nickel Free, Stronger and very LOW MAINTENANCE Metal, long lasting IP vacuum Plat.

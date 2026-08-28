@@ -4,8 +4,8 @@
 评分：`TechnicalScore = 0.5×Hit@10 + 0.3×MRR + 0.2×Efficiency`，`Efficiency = clip((11−MTTC)/10, 0, 1)`。  
 未命中记 MTTC=11。只改 `starter/agent.py`，不改官方 evaluator 与标签。
 
-当前发布版本：**v1.3**（代码在 `starter/`）。  
-快照：`snapshots/v1/`、`snapshots/v1.1/`、`snapshots/v1.3/`。
+当前发布版本：**v1.4**（代码在 `starter/`）。  
+快照：`snapshots/v1/`、`snapshots/v1.1/`、`snapshots/v1.3/`、`snapshots/v1.4/`。
 
 ---
 
@@ -26,7 +26,8 @@
 | **v1** 失败后再问一次 `other` | **1.000** | 0.695 | 2.35 | **0.882** | 冻结合格线 |
 | **v1.1** 长短语加分 + 类目必匹配 | **1.000** | 0.703 | 2.385 | **0.883** | |
 | **v1.2** 叶类目/放宽区分度/店铺/BM25 | **1.000** | **0.753** | 2.44 | **0.897** | |
-| **v1.3** 字段条目前缀 + Override 画像弱加权 | **1.000** | **0.756** | 2.44 | **0.898** | 当前 |
+| **v1.3** 字段条目前缀 + Override 画像弱加权 | **1.000** | **0.756** | 2.44 | **0.898** | |
+| **v1.4** 首轮无强约束时暂缓交卷 | **1.000** | **0.812** | 2.61 | **0.911** | 当前 |
 
 ---
 
@@ -238,6 +239,25 @@ TechnicalScore 必须严格提升，并在 customer probe 上复核方向。
 
 ---
 
+## v1.4 — 弱约束首轮暂缓交卷
+
+v1.3 已把官方 Hit@10 做到 1.0，剩余瓶颈是首次命中时的名次。
+评测在目标第一次进入 Top-10 时锁死 rank，因此本轮实验了三个方向：
+动态 typed 提问、用一轮效率换更高 MRR、以及不用向量库的商品条目相似度。
+
+**采用项：**
+
+1. `delay_generic_first=True`：任意场景的第 1 轮，若还没有强约束，先返回空推荐并继续提问。避免把目标锁在 Top-10 尾部。
+2. 官方 Score 0.897858→**0.911382**（MRR 0.755526→0.811940，MTTC 2.44→2.61）。Hit@10 保持 1.0。
+3. customer probe 同方向：Score 0.896288→**0.908216**，Hit@10=1.0。
+
+**未采用：** 动态 typed 提问 / feature-first 顺序（出现 miss）、已展示商品 Jaccard 惩罚（伤 MRR）、锚点条目重叠（无变化）。完整记录见 `docs/OPTIMIZATION_REPORT_V1_4.md` 与 `runs/v5_direction_attempts.json`。
+
+**默认策略：** `starter/config.py` 中 `VERSION = "v1.4"`，
+`PRESETS["final"]`。
+
+---
+
 ## 复现
 
 ```text
@@ -249,4 +269,5 @@ python run_v4_experiments.py          # v1.3 第一轮检索/提问消融
 python run_v4_entry_experiments.py    # 字段条目前缀权重
 python run_v4_profile_experiments.py  # profile 弱加权
 python run_v4_conditional_experiments.py # 条件化与最终组合
+python run_v5_direction_experiments.py   # v1.4 动态提问 / 延迟交卷 / 相似度
 ```

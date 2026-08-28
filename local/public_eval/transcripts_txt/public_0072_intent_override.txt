@@ -5,16 +5,16 @@ title: Facitisu Womens Winter Warm Jacket Long Down Faux Fur Hooded Quilted Sher
 hit: True | first_hit_turn: 3 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Rain & Anoraks Anoraks. Department: womens
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B09JG4V9ZR', 'B07NC4R7LH', 'B07TZMPRKJ', 'B07DCR28L1', 'B08DV86BZF', 'B08GZP1FLM', 'B07GGLPKN7', 'B07SV1J1KL', 'B07DC4NNCG', 'B01KIVIGAG']
-[Turn 1] target_rank: 1 | scored_hit: False
+[Turn 1] recommendations: []
+[Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: Faux Fur; Drawstring closure.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B07J9JCNJD', 'B077ZBHFRY', 'B01KPFK9ZA', 'B07BLNDH2D', 'B07BCP8DG5', 'B07KSRCVKF', 'B0787PD5VR', 'B015ZIWZ7M', 'B07K46GBFM', 'B07H5GPJ9H']
-[Turn 2] target_rank: None | scored_hit: False
+[Turn 2] recommendations: ['B09JG4V9ZR', 'B07J9JCNJD', 'B01KIVIGAG', 'B077ZBHFRY', 'B08GZP1FLM', 'B01KPFK9ZA', 'B07BLNDH2D', 'B07BCP8DG5', 'B07KSRCVKF', 'B0787PD5VR']
+[Turn 2] target_rank: 1 | scored_hit: False
 
 [Turn 3] USER: Actually, ignore my earlier preference. What I need is: Faux Fur.
 [Turn 3] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.

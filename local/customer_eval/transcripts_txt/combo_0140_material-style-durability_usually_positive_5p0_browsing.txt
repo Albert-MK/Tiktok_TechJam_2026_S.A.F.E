@@ -5,9 +5,9 @@ title: Grlasen Women's Casual Long Blazers Ruched 3/4 Sleeve Lapel Oversized Sui
 hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Suiting & Blazers Blazers, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B0BGHD8BJQ', 'B00WNHL9J4', 'B00I9ZZQU2', 'B0817HM1TP', 'B07FXZ4V43', 'B075CH87CD', 'B07VWJD36D', 'B07Q3FG946', 'B07H763P8Q', 'B07YWM4SQZ']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: polyester; Polyester,Spandex.

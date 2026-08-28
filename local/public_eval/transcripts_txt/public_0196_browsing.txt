@@ -5,13 +5,13 @@ title: DREAM PAIRS Women's Sole-Simple Ballerina Walking Flats Shoes
 hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Shoes Flats, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B00VSBN73W', 'B07ZKC8VTB', 'B09NCXHNKF', 'B00OPQBQ4O', 'B08XX83YZG', 'B01I5DX7VW', 'B07T1WG5D2', 'B09HGKYPMJ', 'B089CWJF8D', 'B08P4FV2MY']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: Rubber sole; Design in USA.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B073T364MM', 'B07VWRNGFQ', 'B089DMMH4X', 'B0B5YD1RHY', 'B07K6J7HH7', 'B09RQVM4KV', 'B09778WSLF', 'B0B38V1VWY', 'B08QVVDSQQ', 'B08B8T9BMS']
+[Turn 2] recommendations: ['B073T364MM', 'B00VSBN73W', 'B07VWRNGFQ', 'B089DMMH4X', 'B0B5YD1RHY', 'B07K6J7HH7', 'B09RQVM4KV', 'B09778WSLF', 'B0B38V1VWY', 'B08QVVDSQQ']
 [Turn 2] target_rank: 1 | scored_hit: True

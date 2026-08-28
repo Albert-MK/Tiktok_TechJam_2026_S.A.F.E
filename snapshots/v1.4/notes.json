@@ -1,0 +1,26 @@
+{
+  "version": "v1.4",
+  "parent": "v1.3",
+  "dataset": "data/public_set.jsonl",
+  "added_vs_v1.3": [
+    "delay_generic_first=true"
+  ],
+  "rejected": [
+    "skip_covered_attrs",
+    "dynamic_typed_ask",
+    "ask_mode=feature_first",
+    "shown_dissimilarity_weight",
+    "neighbor_overlap_weight"
+  ],
+  "metrics": {
+    "sample_count": 200,
+    "hit_rate_at_10": 1.0,
+    "mrr": 0.81194,
+    "mttc": 2.61,
+    "efficiency": 0.839,
+    "recommended_technical_score": 0.911382
+  },
+  "v1.3_technical_score": 0.897858,
+  "customer_probe_score": 0.908216,
+  "report": "docs/OPTIMIZATION_REPORT_V1_4.md"
+}

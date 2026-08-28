@@ -2,22 +2,22 @@ sample_id: public_0175
 scenario_type: browsing
 target: B07D5M61T2
 title: Ariat Men’s M2 Relaxed Boot Cut Jean
-hit: True | first_hit_turn: 3 | best_rank: 2
+hit: True | first_hit_turn: 3 | best_rank: 5
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Men Jeans, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B00RFWWN5Q', 'B07TM8B1XV', 'B005RD7GIO', 'B01N6P39PK', 'B00XUPV2P4', 'B085FT43TV', 'B07HG7731Q', 'B00QTOJWKA', 'B00DS6XR94', 'B0B6LK1WBM']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: cotton; 100% Cotton.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B07L629WL1', 'B07JQG2X4Y', 'B01LMZ9GCO', 'B007P0HDBW', 'B0822N3W7W', 'B00K5PAYOM', 'B0021516BY', 'B08H4H9ZST', 'B00AASDZQ8', 'B0034BUC9Q']
+[Turn 2] recommendations: ['B085FT43TV', 'B00QTOJWKA', 'B07L629WL1', 'B07JQG2X4Y', 'B01LMZ9GCO', 'B007P0HDBW', 'B0822N3W7W', 'B0B6LK1WBM', 'B00K5PAYOM', 'B0021516BY']
 [Turn 2] target_rank: None | scored_hit: False
 
 [Turn 3] USER: I don't have an additional preference for material.
 [Turn 3] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
 [Turn 3] ask_attribute: other
-[Turn 3] recommendations: ['B0085IF2IY', 'B07D5M61T2', 'B07CNJKP2G', 'B09JFJ5PSK', 'B00KOIFTNG', 'B001LRMX92', 'B00AJLML1Q', 'B0788BN8FD', 'B005DIHK70', 'B07MP1PC6N']
-[Turn 3] target_rank: 2 | scored_hit: True
+[Turn 3] recommendations: ['B08H4H9ZST', 'B00AASDZQ8', 'B0034BUC9Q', 'B0085IF2IY', 'B07D5M61T2', 'B07CNJKP2G', 'B09JFJ5PSK', 'B00KOIFTNG', 'B001LRMX92', 'B00AJLML1Q']
+[Turn 3] target_rank: 5 | scored_hit: True

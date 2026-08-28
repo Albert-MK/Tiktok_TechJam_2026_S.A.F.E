@@ -2,10 +2,16 @@ sample_id: combo_0155_fit-style-performance_usually_positive_5p0
 scenario_type: buying
 target: B0C4VLWWYY
 title: GearTOP Net Hat UV Protection Sun Hat Head Net Hat Fishing Hat for Men & Women Wide Brim Hat w/Removable Net
-hit: True | first_hit_turn: 1 | best_rank: 8
+hit: True | first_hit_turn: 2 | best_rank: 2
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Hats & Caps Sun Hats. A key requirement is: polyester.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B094CX2ZK5', 'B08576BP9W', 'B00I16OKKQ', 'B08GCLDHX7', 'B06XXJCVCR', 'B087G1XD9B', 'B01KTV400A', 'B0C4VLWWYY', 'B07F366Z5Z', 'B086T3QQPM']
-[Turn 1] target_rank: 8 | scored_hit: True
+[Turn 1] recommendations: []
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: 100% Polyester; Imported.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B01KTV400A', 'B0C4VLWWYY', 'B09MLW2KC7', 'B092JJHWL5', 'B0731YKYCJ', 'B00HPWSJZY', 'B094CX2ZK5', 'B0B4KH11PV', 'B00I16OKKQ', 'B01CDF43DY']
+[Turn 2] target_rank: 2 | scored_hit: True

@@ -5,9 +5,9 @@ title: PrinStory Womens Sleepwear Short Sleeve Nightgown Soft Sleepshirt Pleated
 hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Sleep & Lounge Nightgowns & Sleepshirts, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B08CVM46SH', 'B08FR11WBL', 'B08QCF1R7C', 'B08FDPMWHN', 'B07N39GNNY', 'B08X73Q126', 'B0772RC146', 'B08MF6XVNL', 'B07LH1K3GW', 'B01M0IH5B6']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: rayon; 95% Rayon, 5% Spandex.

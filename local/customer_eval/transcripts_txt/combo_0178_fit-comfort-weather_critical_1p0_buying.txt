@@ -5,9 +5,9 @@ title: Red Hot Chili Peppers Distressed Men's T-Shirt Black
 hit: True | first_hit_turn: 3 | best_rank: 3
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Shirts T-Shirts. A key requirement is: cotton.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B097YB478K', 'B07XHPVVCW', 'B01N66BXT4', 'B09P39YM3Z', 'B07567JYH2', 'B07H56H26J', 'B07GXGXSM6', 'B00SW39EBI', 'B00OIS8TSU', 'B08Z3YL2M4']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: color: red; 100% Cotton.

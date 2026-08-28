@@ -2,10 +2,16 @@ sample_id: public_0193
 scenario_type: buying
 target: B07YM55NLW
 title: Shimmer Anna Shine USA American Flag Patriotic Scarf
-hit: True | first_hit_turn: 1 | best_rank: 7
+hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Scarves & Wraps Fashion Scarves. A key requirement is: fabric.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B0763JNDNQ', 'B07G44G8TV', 'B08FHPTVNF', 'B0B64HRC7M', 'B00BMP9W10', 'B01IZXYCRU', 'B07YM55NLW', 'B0997G1BVP', 'B00FTBA2NU', 'B00CXT54ES']
-[Turn 1] target_rank: 7 | scored_hit: True
+[Turn 1] recommendations: []
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: color: red; Chiffon.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B07YM55NLW', 'B0B64HRC7M', 'B0997G1BVP', 'B0763JNDNQ', 'B081SB5C7V', 'B01M640RRN', 'B01MDM2VBG', 'B01IZXYCRU', 'B00WN2T770', 'B08BPB4WRR']
+[Turn 2] target_rank: 1 | scored_hit: True

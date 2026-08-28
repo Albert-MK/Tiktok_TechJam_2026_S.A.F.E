@@ -2,16 +2,22 @@ sample_id: public_0026
 scenario_type: buying
 target: B093R14VP1
 title: ASICS Men's Gel-Venture 6 MX Running Shoes
-hit: True | first_hit_turn: 2 | best_rank: 8
+hit: True | first_hit_turn: 3 | best_rank: 3
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Running Trail Running. A key requirement is: 100% Synthetic.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B008JEWBAG', 'B017O307X0', 'B016MPXB02', 'B00AO3BMPU', 'B00E6EMTNC', 'B01HGW7NE0', 'B00KXIMWVY', 'B00KZIWOXI', 'B005BQXZV4', 'B00GUTG3SS']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: Imported; Rubber sole.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B0002M13Q6', 'B00B9TVIBQ', 'B073K3Z3JM', 'B00KZIV0Q0', 'B00AKB9N7K', 'B00ARODBG4', 'B008JFE84W', 'B093R14VP1', 'B00AO32448', 'B01N07NPIP']
-[Turn 2] target_rank: 8 | scored_hit: True
+[Turn 2] recommendations: ['B008JEWBAG', 'B016MPXB02', 'B00KXIMWVY', 'B00GUTG3SS', 'B0002M13Q6', 'B00B9TVIBQ', 'B00KZIWOXI', 'B073K3Z3JM', 'B00KZIV0Q0', 'B00AKB9N7K']
+[Turn 2] target_rank: None | scored_hit: False
+
+[Turn 3] USER: I don't have an additional preference for material.
+[Turn 3] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 3] ask_attribute: other
+[Turn 3] recommendations: ['B00ARODBG4', 'B008JFE84W', 'B093R14VP1', 'B00AO32448', 'B01N07NPIP', 'B00HMN9QM6', 'B01HH8VH8Q', 'B00PBFVMOC', 'B00BMLXS0U', 'B00NYPA9RW']
+[Turn 3] target_rank: 3 | scored_hit: True

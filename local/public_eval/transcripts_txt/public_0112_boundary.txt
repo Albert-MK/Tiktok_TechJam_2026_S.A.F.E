@@ -5,15 +5,15 @@ title: Nautica Men's Casual Slip-On Fashion Sneakers-Walking Shoes-Lightweight J
 hit: True | first_hit_turn: 3 | best_rank: 2
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Athletic Walking, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B0972ZHF2Z', 'B00C31HKWA', 'B0822HFZS9', 'B08JPG26WF', 'B08Y91Y5KL', 'B083VTTSPY', 'B091F49R8N', 'B08RMT7665', 'B08F3FVWHX', 'B07TT9FB84']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: I don't have a preference for other; please use your judgment.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B07VNL2XLS', 'B08SC7QKC8', 'B08JLGGXG1', 'B07PLCCVHT', 'B083PSSQXP', 'B01KXFLXO8', 'B0814HRT47', 'B092Z73G1R', 'B07BQFDRNF', 'B08TLVZXKL']
+[Turn 2] recommendations: ['B0972ZHF2Z', 'B00C31HKWA', 'B0822HFZS9', 'B08JPG26WF', 'B08Y91Y5KL', 'B083VTTSPY', 'B091F49R8N', 'B08RMT7665', 'B08F3FVWHX', 'B07TT9FB84']
 [Turn 2] target_rank: None | scored_hit: False
 
 [Turn 3] USER: For that, what matters is: leather; Leather sole.

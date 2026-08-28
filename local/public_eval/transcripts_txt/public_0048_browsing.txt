@@ -2,16 +2,16 @@ sample_id: public_0048
 scenario_type: browsing
 target: B00VQBMJUQ
 title: Vizari Infinity FG Soccer Cleat (Toddler/Little Kid/Big Kid)
-hit: True | first_hit_turn: 2 | best_rank: 9
+hit: True | first_hit_turn: 2 | best_rank: 10
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Athletic Soccer, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B0819CN25R', 'B006TNHI6G', 'B07NP5TYG1', 'B00LV8H9DG', 'B09L61B2Z7', 'B0995GRFQD', 'B07MCNNN7Y', 'B06XH495W2', 'B07D8KB668', 'B07GQ6M3P5']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: 100% Synthetic; Rubber sole.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B07D9HP7TN', 'B087BW81C2', 'B00CCQ779M', 'B0777S4HDN', 'B009RBI23A', 'B00QJ080WA', 'B0778X3S4Y', 'B010Q0VDZ4', 'B00VQBMJUQ', 'B01N9H8GHM']
-[Turn 2] target_rank: 9 | scored_hit: True
+[Turn 2] recommendations: ['B07D9HP7TN', 'B006TNHI6G', 'B087BW81C2', 'B00CCQ779M', 'B0777S4HDN', 'B009RBI23A', 'B00QJ080WA', 'B0778X3S4Y', 'B010Q0VDZ4', 'B00VQBMJUQ']
+[Turn 2] target_rank: 10 | scored_hit: True

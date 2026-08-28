@@ -5,9 +5,9 @@ title: CLUCI Crossbody Purses for Women, Medium Size Zipper Pocket Adjustable St
 hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Handbags & Wallets Crossbody Bags. A key requirement is: leather.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B07G6WBSX9', 'B07S8NW7PV', 'B08VN4NHC1', 'B07QV4HRW2', 'B01LZIGLSU', 'B08L8PV9ZW', 'B07R6G9CTG', 'B09RTYB1GG', 'B08KGF3HG4', 'B097DDFD8Z']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: Artificial Leather,Leather,Pu Leather; Imported.

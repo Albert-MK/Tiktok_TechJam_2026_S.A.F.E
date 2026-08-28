@@ -5,9 +5,9 @@ title: Crocs Unisex-Adult Classic Clog
 hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Shoes Mules & Clogs, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B07569S1RP', 'B0859GMZHZ', 'B096KWG7YN', 'B07ZXM8JDC', 'B09SYXX4CH', 'B09BL5MKJS', 'B09QYG95BH', 'B086G2FTGY', 'B071RLLDT2', 'B08T5X8TKH']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: fabric; Made in the USA or Imported.

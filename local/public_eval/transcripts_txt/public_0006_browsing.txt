@@ -2,16 +2,16 @@ sample_id: public_0006
 scenario_type: browsing
 target: B071F2Z7JG
 title: Pro Club Men's Heavyweight Mesh Basketball Shorts
-hit: True | first_hit_turn: 2 | best_rank: 6
+hit: True | first_hit_turn: 2 | best_rank: 7
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Basketball Men, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B00J9P56BK', 'B006JPNAPW', 'B08LC68G6C', 'B00AQ9JQ1E', 'B00HQCY3CG', 'B003W2IAUU', 'B00E5O1VPU', 'B07DVCKK1Q', 'B014GADXJO', 'B0058TAO4U']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: polyester; 100% Polyester.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B08R3CKZ67', 'B0BJ9HLZ9L', 'B08CSQGXTC', 'B0B7HG5FQC', 'B002KNDDZO', 'B071F2Z7JG', 'B001ST5FSE', 'B001NCDFVA', 'B007023PU8', 'B08N6D5FXX']
-[Turn 2] target_rank: 6 | scored_hit: True
+[Turn 2] recommendations: ['B08R3CKZ67', 'B00HQCY3CG', 'B0BJ9HLZ9L', 'B08CSQGXTC', 'B0B7HG5FQC', 'B002KNDDZO', 'B071F2Z7JG', 'B001ST5FSE', 'B001NCDFVA', 'B007023PU8']
+[Turn 2] target_rank: 7 | scored_hit: True

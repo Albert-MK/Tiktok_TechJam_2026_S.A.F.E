@@ -5,9 +5,9 @@ title: URBAN REPUBLIC Women's Winter Jacket - Heavyweight Water Resistant Expedi
 hit: True | first_hit_turn: 7 | best_rank: 6
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Jackets & Vests Down Jackets & Parkas. Zipper closure
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B08D9MX2YY', 'B0123YHODG', 'B07XLNJXDW', 'B01LYCJSER', 'B07Y8VL8QH', 'B07P5GYCWN', 'B075JGL3JG', 'B07Z7JMYXT', 'B07JCXYC2D', 'B07Z9D8DXZ']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: polyester; 100% Polyester.

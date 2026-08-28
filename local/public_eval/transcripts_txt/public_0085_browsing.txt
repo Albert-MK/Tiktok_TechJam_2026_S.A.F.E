@@ -5,9 +5,9 @@ title: welltree Slides for Women Men Pillow Slippers Non-Slip Bathroom Shower Sa
 hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Sandals Slides, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B08GQF9V3M', 'B08S7DBH4S', 'B09ZHKJRLP', 'B08LYCLNG4', 'B08X118F96', 'B08DNX8QWC', 'B08S76BKMG', 'B081SSBG6X', 'B08ZHFJYW9', 'B08CKJRPBZ']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: Ethylene Vinyl Acetate sole; Heel measures approximately 1.57".

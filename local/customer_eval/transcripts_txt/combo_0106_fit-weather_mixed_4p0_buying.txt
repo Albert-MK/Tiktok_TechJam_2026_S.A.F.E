@@ -2,16 +2,16 @@ sample_id: combo_0106_fit-weather_mixed_4p0
 scenario_type: buying
 target: B0776SVXW9
 title: Mens Socks Dress Cotton Socks Fashion Patterned Argyle Socks &Formal Business Socks Classic Cotton Dress Casual Socks for Men
-hit: True | first_hit_turn: 2 | best_rank: 4
+hit: True | first_hit_turn: 2 | best_rank: 5
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Socks Calf Socks. A key requirement is: cotton.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B07C24QYMM', 'B019E9YJEA', 'B01BJYOWKY', 'B07W86XT9X', 'B07VGKGBBW', 'B07JHXMLK9', 'B07G1ZR6JZ', 'B083NTCHML', 'B09DJ9H1WB', 'B00UKXH1XG']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: Polyester,Cotton,Spandex; Machine Wash.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B01HWNHYI8', 'B077NYNQZN', 'B08P99CVYR', 'B0776SVXW9', 'B08BBXVJS4', 'B07X4239HW', 'B078SG8WWK', 'B078JZT5NV', 'B0928MYH3Q', 'B09J3F9Z71']
-[Turn 2] target_rank: 4 | scored_hit: True
+[Turn 2] recommendations: ['B01HWNHYI8', 'B077NYNQZN', 'B08P99CVYR', 'B019E9YJEA', 'B0776SVXW9', 'B08BBXVJS4', 'B07X4239HW', 'B078SG8WWK', 'B078JZT5NV', 'B0928MYH3Q']
+[Turn 2] target_rank: 5 | scored_hit: True

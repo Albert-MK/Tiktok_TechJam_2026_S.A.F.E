@@ -5,13 +5,13 @@ title: Arctic Air Adjustable Sports Cap, Beige, Hat
 hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Hats & Caps Baseball Caps. A key requirement is: polyester.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B00PCZ3OO2', 'B08GKDZN24', 'B09J5B5P6Q', 'B089NP1YYK', 'B075N8Q1ZC', 'B00TFU92VY', 'B0B1LS931C', 'B07B5N7SF8', 'B084SNJ8G2', 'B071HNYGMJ']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: 52% Polyester, 32% Nylon, 10% EVA, 2% POM, 2% Cotton, 2% Metal; Made in the USA.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B07TN1845M', 'B0C3MGJTQ4', 'B08KGS4F66', 'B0B4KH11PV', 'B07JLX59M8', 'B09H9HJF6S', 'B0B92C8FFY', 'B078NHHTK9', 'B0148K8YNC', 'B0C3MHQGKJ']
+[Turn 2] recommendations: ['B07TN1845M', 'B0C3MGJTQ4', 'B08KGS4F66', 'B0B4KH11PV', 'B07JLX59M8', 'B09H9HJF6S', 'B08GKDZN24', 'B0B92C8FFY', 'B078NHHTK9', 'B0B1LS931C']
 [Turn 2] target_rank: 1 | scored_hit: True

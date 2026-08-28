@@ -5,9 +5,9 @@ title: Emmalise Women's Basic Casual Long Camisole Adjustable Strap Cami Layerin
 hit: True | first_hit_turn: 4 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Tops & Tees Tanks & Camis. Long torso camisole for extra coverage with spagetti adjustable strap for perfect fit
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B093SZLRDS', 'B07MF1ZW24', 'B0915WMMLL', 'B07R7L1GBJ', 'B089GHN8TN', 'B06WW6JCGW', 'B00MY60OYU', 'B08HJGNWZ5', 'B081GHFSNP', 'B00IOB7T1U']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: polyester; Polyester,Cotton,Spandex.

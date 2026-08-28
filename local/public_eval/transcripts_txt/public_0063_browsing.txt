@@ -5,9 +5,9 @@ title: BALEAF Womens' 7" Long Running Athletic Shorts with Liner Workout Zipper 
 hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Women Shorts, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B0967CJ4P7', 'B0BQ9ZZBKZ', 'B08GQY6WBK', 'B086PH5NKT', 'B08HS62XXW', 'B08CTZHV7R', 'B093SJ5ZB3', 'B09J85LDSC', 'B0C4DXRPG1', 'B0995J3HYK']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: polyester; Body: 95% Polyester, 5% Spandex; Waist: 90% Polyester, 10% Spandex; Liner: 90% Polyester, 10% Spandex.

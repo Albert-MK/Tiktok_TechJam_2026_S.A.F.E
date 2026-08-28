@@ -2,16 +2,16 @@ sample_id: combo_0149_material-comfort-performance_usually_positive_5p0
 scenario_type: buying
 target: B07CBYYHTL
 title: SDIYABOLO Small Black Sling Crossbody Backpack Shoulder Bag for Men Women Vintage PU Leather Sling Backpack Cycling
-hit: True | first_hit_turn: 2 | best_rank: 3
+hit: True | first_hit_turn: 2 | best_rank: 4
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Backpacks Casual Daypacks. A key requirement is: leather.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B00KR9JNRA', 'B00EYXSBAU', 'B077SV6MZ8', 'B07M6LBQN7', 'B01BBCVK4K', 'B00UVKY0P0', 'B07GSKPHG8', 'B0045UAOPM', 'B07RBRWFLZ', 'B08S7N7966']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: color: black; PU.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B0BB9NCZ97', 'B0972GHDQS', 'B07CBYYHTL', 'B01MTNPEMI', 'B0183FH952', 'B08C76XXG6', 'B001MUKWQ4', 'B00GBQ5F9I', 'B00GB5LEGW', 'B07N42N7L2']
-[Turn 2] target_rank: 3 | scored_hit: True
+[Turn 2] recommendations: ['B0BB9NCZ97', 'B08S7N7966', 'B0972GHDQS', 'B07CBYYHTL', 'B01MTNPEMI', 'B07M6LBQN7', 'B00EYXSBAU', 'B0183FH952', 'B07RBRWFLZ', 'B08C76XXG6']
+[Turn 2] target_rank: 4 | scored_hit: True

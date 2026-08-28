@@ -5,9 +5,9 @@ title: IZOD Men's Advantage Performance Short Sleeve Polo Shirt
 hit: True | first_hit_turn: 3 | best_rank: 2
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Shirts Polos. Button closure
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B07MZ942LH', 'B08GS74QC3', 'B08DPB6M87', 'B079HQ9TPF', 'B07TTZSSRZ', 'B07QL3CB7P', 'B07TGBKJRW', 'B09FJ3NHQ9', 'B08GX981MW', 'B00KTXKSRI']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: cotton; 60% Cotton, 40% Polyester.

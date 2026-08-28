@@ -5,9 +5,9 @@ title: LongBay Women's Chenille Knit Bootie Slippers Cute Plush Fleece Memory Fo
 hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Shoes Slippers, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B07GNJPL1J', 'B0B8NXLF4R', 'B07YHCNWCN', 'B08FT1SJKK', 'B0BGJ469RY', 'B095NQG1V3', 'B07GS3VLP4', 'B07H3X9GP9', 'B09BMW3DQR', 'B09S6KXRX3']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: Rubber sole; PRETTY ANKLE BOOTS - Cozy up the cold season with these attractive warm house slippers while luxe chenille knit styling adds a chic and cute touch to your comfort. Subtle scrunchin.

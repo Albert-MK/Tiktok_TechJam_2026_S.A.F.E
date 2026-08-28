@@ -2,16 +2,16 @@ sample_id: combo_0133_comfort-style_mixed_4p0
 scenario_type: buying
 target: B01KILT64Q
 title: Flying Fisherman womens 7719cs sunglasses, Camo Frames/Smoke Lenses, Medium US
-hit: True | first_hit_turn: 2 | best_rank: 1
+hit: True | first_hit_turn: 2 | best_rank: 2
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Sunglasses & Eyewear Accessories Sunglasses. A key requirement is: Imported.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B0084J438E', 'B06XPCDNS1', 'B084GMF3F9', 'B094LJTYNK', 'B00PA4AKN8', 'B0B5JN5NY8', 'B0C3HY7BJQ', 'B005VEELFK', 'B09HVBQXX8', 'B00NFYF3QO']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: color: gray; Polycarbonate frame.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B01KILT64Q', 'B000N5VLO6', 'B0B7JTM76J', 'B0BQPKZWJ9', 'B07D9RLKG2', 'B0BXBDDRP7', 'B089G6Q6TB', 'B00USO9NCY', 'B004KDXE1A', 'B00U0YO4NA']
-[Turn 2] target_rank: 1 | scored_hit: True
+[Turn 2] recommendations: ['B094LJTYNK', 'B01KILT64Q', 'B000N5VLO6', 'B0084J438E', 'B0B7JTM76J', 'B0BQPKZWJ9', 'B07D9RLKG2', 'B0BXBDDRP7', 'B089G6Q6TB', 'B00USO9NCY']
+[Turn 2] target_rank: 2 | scored_hit: True

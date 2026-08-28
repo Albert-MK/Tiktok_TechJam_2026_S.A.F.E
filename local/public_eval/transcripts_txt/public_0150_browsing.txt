@@ -2,10 +2,16 @@ sample_id: public_0150
 scenario_type: browsing
 target: B07P6MPQY5
 title: Sivvan Scrubs for Men - Zippered Short Sleeve Jacket
-hit: True | first_hit_turn: 1 | best_rank: 7
+hit: True | first_hit_turn: 2 | best_rank: 3
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Medical Scrub Jackets, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B097QG31KD', 'B083JSMQNC', 'B00GRIOW5I', 'B002B61ERE', 'B01MYUM67T', 'B07G4GXDVD', 'B07P6MPQY5', 'B01DE4O9D2', 'B00AZO7TKA', 'B00AZO9Q4W']
-[Turn 1] target_rank: 7 | scored_hit: True
+[Turn 1] recommendations: []
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: polyester; 65% Polyester, 35% Cotton.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B00E9AOVX4', 'B083JSMQNC', 'B07P6MPQY5', 'B06XV1865Z', 'B083JP2WZQ', 'B078WLMTZF', 'B07QMS8TX8', 'B01018OBJQ', 'B005K02WQA', 'B00K4BR7XS']
+[Turn 2] target_rank: 3 | scored_hit: True

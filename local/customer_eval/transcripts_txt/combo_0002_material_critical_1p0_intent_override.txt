@@ -5,21 +5,21 @@ title: Hide & Drink, Rustic Handmade Full Grain Leather Men's Belt, Two Row Stit
 hit: True | first_hit_turn: 7 | best_rank: 2
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Accessories Belts. Buckle closure
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B07QR2XRSJ', 'B07JBK5KBV', 'B08G44VC2Y', 'B0913DGMQ1', 'B08F77MSGJ', 'B091DZK1XF', 'B096BCG6F2', 'B07QGCJVRG', 'B0BX2RMJ54', 'B00EVB8AKG']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: leather; 100% Leather.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B06Y1RWRYH', 'B09CH2SNBM', 'B0058VB3AM', 'B0C4HGYDMF', 'B019G5UMD4', 'B07RQBD7MY', 'B08FSNTNKL', 'B07RW633ZF', 'B00DR05848', 'B07KP4XXHX']
+[Turn 2] recommendations: ['B0913DGMQ1', 'B091DZK1XF', 'B06Y1RWRYH', 'B09CH2SNBM', 'B0058VB3AM', 'B0C4HGYDMF', 'B019G5UMD4', 'B07RQBD7MY', 'B08FSNTNKL', 'B07RW633ZF']
 [Turn 2] target_rank: None | scored_hit: False
 
 [Turn 3] USER: I don't have an additional preference for material.
 [Turn 3] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
 [Turn 3] ask_attribute: other
-[Turn 3] recommendations: ['B08B818GZR', 'B00I1080VW', 'B000MKK9VI', 'B07VK1KF5D', 'B074D2V1J3', 'B01LYZ2810', 'B000FBBWEC', 'B072M9PJ3H', 'B071P5SP48', 'B07415W7FG']
+[Turn 3] recommendations: ['B00DR05848', 'B07KP4XXHX', 'B08B818GZR', 'B00I1080VW', 'B000MKK9VI', 'B07VK1KF5D', 'B074D2V1J3', 'B01LYZ2810', 'B000FBBWEC', 'B072M9PJ3H']
 [Turn 3] target_rank: None | scored_hit: False
 
 [Turn 4] USER: Actually, ignore my earlier preference. What I need is: leather.

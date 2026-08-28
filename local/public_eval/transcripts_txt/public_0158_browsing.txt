@@ -2,10 +2,16 @@ sample_id: public_0158
 scenario_type: browsing
 target: B012ZM6RGQ
 title: CreepyParty Novelty Halloween Costume Party Animal Head Mask - King Lion
-hit: True | first_hit_turn: 1 | best_rank: 8
+hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Men Masks, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B01A87ZR66', 'B0BJ29WF5K', 'B08KHQSQL2', 'B07YR7GCSG', 'B08KTBT6G2', 'B00CF0XI20', 'B079HM1VTM', 'B012ZM6RGQ', 'B08M63L7DH', 'B08R6ZMW7H']
-[Turn 1] target_rank: 8 | scored_hit: True
+[Turn 1] recommendations: []
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: Roomy enough to fit any adult.You can see through the nostrils or the mouth; Made from 100% natural latex, environmental friendly and non-toxic. We offer a range of quality choices with the best price.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B012ZM6RGQ', 'B07SC8YX95', 'B07WYTSRHL', 'B07NRSSLTS', 'B01M0LPSRS', 'B00FJFM6M6', 'B011ZCG9SI', 'B09FZJRGHB', 'B07W61FJ1K', 'B00IPDS77M']
+[Turn 2] target_rank: 1 | scored_hit: True

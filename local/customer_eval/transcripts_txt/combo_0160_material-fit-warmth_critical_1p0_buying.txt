@@ -2,10 +2,16 @@ sample_id: combo_0160_material-fit-warmth_critical_1p0
 scenario_type: buying
 target: B01AAANF2Y
 title: Amazon Basics 4 Piece Packing Travel Organizer Cubes Set - Slim, Black
-hit: True | first_hit_turn: 1 | best_rank: 5
+hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Travel Accessories Packing Organizers. A key requirement is: fabric.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B0834HJ8TS', 'B07MKGFSK2', 'B071CWNJWY', 'B06ZZYJ46M', 'B01AAANF2Y', 'B07ZBC1249', 'B07MYCQBYH', 'B075ZQTV39', 'B08P4PSWTZ', 'B0C6M8MB37']
-[Turn 1] target_rank: 5 | scored_hit: True
+[Turn 1] recommendations: []
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: color: black; Double zipper pulls make opening/closing simple and fast.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B01AAANF2Y', 'B08ZC4ZKTS', 'B08P4PSWTZ', 'B071CWNJWY', 'B06ZZYJ46M', 'B0C6M8MB37', 'B07ZBC1249', 'B075ZQTV39', 'B07MKFR1S2', 'B00QT7OI60']
+[Turn 2] target_rank: 1 | scored_hit: True

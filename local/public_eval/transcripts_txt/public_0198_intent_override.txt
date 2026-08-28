@@ -5,21 +5,21 @@ title: lola mae Quilted Crossbody Bag, Medium Lightweight Shoulder Purse Top Zip
 hit: True | first_hit_turn: 7 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Handbags & Wallets Crossbody Bags. Imported
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B08L8PV9ZW', 'B07S8NW7PV', 'B07G6WBSX9', 'B08VN4NHC1', 'B07LD9FJML', 'B07QV4HRW2', 'B01LZIGLSU', 'B07SPWRQV6', 'B07VJKRPGH', 'B092S3YGJZ']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: leather; color: black.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B07R6G9CTG', 'B07Q8VPHJJ', 'B0BY2LM1KR', 'B07R8V9H4G', 'B01IFU2L26', 'B018FSPJZE', 'B07GFQFP8Q', 'B01NCZVIP3', 'B0BJBG6YZX', 'B0832WHYH3']
+[Turn 2] recommendations: ['B07G6WBSX9', 'B07QV4HRW2', 'B07R6G9CTG', 'B07Q8VPHJJ', 'B0BY2LM1KR', 'B07R8V9H4G', 'B01IFU2L26', 'B018FSPJZE', 'B07S8NW7PV', 'B07GFQFP8Q']
 [Turn 2] target_rank: None | scored_hit: False
 
 [Turn 3] USER: I don't have an additional preference for material.
 [Turn 3] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
 [Turn 3] ask_attribute: other
-[Turn 3] recommendations: ['B0BZVGD2GP', 'B07YB5NK8W', 'B0126Y2ICU', 'B07YB6K599', 'B00S88AMWC', 'B087QMPXPV', 'B07B2S1XWM', 'B08ZXTQC8P', 'B09RTYB1GG', 'B0BGHFFFTJ']
+[Turn 3] recommendations: ['B01NCZVIP3', 'B0BJBG6YZX', 'B08VN4NHC1', 'B0832WHYH3', 'B08L8PV9ZW', 'B01LZIGLSU', 'B0BZVGD2GP', 'B07YB5NK8W', 'B0126Y2ICU', 'B07YB6K599']
 [Turn 3] target_rank: None | scored_hit: False
 
 [Turn 4] USER: Actually, ignore my earlier preference. What I need is: leather.

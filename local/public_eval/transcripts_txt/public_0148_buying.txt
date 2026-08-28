@@ -2,10 +2,16 @@ sample_id: public_0148
 scenario_type: buying
 target: B0BQC2NRG2
 title: Fruit of the Loom Women's Eversoft Cotton Bikini Underwear, Tag Free & Breathable
-hit: True | first_hit_turn: 1 | best_rank: 8
+hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Panties Bikinis. A key requirement is: cotton.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B09LH63S7S', 'B07WKDW9P6', 'B083D9V8W4', 'B07CH3VM3D', 'B0897FWZG1', 'B07K21Z6BY', 'B07Z6J5N6Y', 'B0BQC2NRG2', 'B010S8E3HO', 'B010S8DWNK']
-[Turn 1] target_rank: 8 | scored_hit: True
+[Turn 1] recommendations: []
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: 50% Cotton, 50% Polyester; Imported.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B0BQC2NRG2', 'B0BXXH77N8', 'B0BYCW1T1C', 'B0BMQPVBZH', 'B07FPV75NF', 'B00K1B57RY', 'B078NL8MXP', 'B07TVHSDMQ', 'B01BCEQ0K6', 'B07XT6PLTB']
+[Turn 2] target_rank: 1 | scored_hit: True

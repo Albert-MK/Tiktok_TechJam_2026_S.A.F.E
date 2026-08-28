@@ -5,21 +5,21 @@ title: Lanzom Womens Classic Wide Brim Floppy Panama Hat Belt Buckle Wool Fedora
 hit: True | first_hit_turn: 4 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Hats & Caps Fedoras. Buckle closure
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B07KH68XY2', 'B07VPTKW24', 'B085B22ZY7', 'B07HF4BL1Z', 'B07YN6K3B5', 'B07RHY8XB5', 'B085B23WBQ', 'B00BSTQC6S', 'B079H8Z47H', 'B07RDBG9T7']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: wool; 65% Polyester, 35% Wool.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B07CZ84YFJ', 'B08MXLQCQV', 'B00OKYI9PK', 'B07JHPC53T', 'B07YNHZDY2', 'B07583JR1F', 'B08GY1WQ9J', 'B00EQQQHTM', 'B0881KXXSL', 'B0989PNY1Y']
+[Turn 2] recommendations: ['B07CZ84YFJ', 'B08MXLQCQV', 'B07KH68XY2', 'B00OKYI9PK', 'B07JHPC53T', 'B07YNHZDY2', 'B07583JR1F', 'B08GY1WQ9J', 'B00EQQQHTM', 'B0881KXXSL']
 [Turn 2] target_rank: 1 | scored_hit: False
 
 [Turn 3] USER: I don't have an additional preference for material.
 [Turn 3] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.
 [Turn 3] ask_attribute: color
-[Turn 3] recommendations: ['B00MG2ARNU', 'B09C88GDY6', 'B071G29H3F', 'B01900O8HQ', 'B089LH1Z8M', 'B073DW3S4V', 'B0177NRW4O', 'B0B4KH11PV', 'B096BNFQ31', 'B004ULHDUU']
+[Turn 3] recommendations: ['B0989PNY1Y', 'B00MG2ARNU', 'B09C88GDY6', 'B071G29H3F', 'B079H8Z47H', 'B01900O8HQ', 'B089LH1Z8M', 'B073DW3S4V', 'B0177NRW4O', 'B0B4KH11PV']
 [Turn 3] target_rank: None | scored_hit: False
 
 [Turn 4] USER: Actually, ignore my earlier preference. What I need is: wool.

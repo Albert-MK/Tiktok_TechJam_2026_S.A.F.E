@@ -1,10 +1,10 @@
 {
   "sample_count": 187,
   "hit_rate_at_10": 1.0,
-  "mrr": 0.751263,
-  "mttc": 2.454545,
-  "efficiency": 0.854546,
-  "recommended_technical_score": 0.896288,
+  "mrr": 0.802432,
+  "mttc": 2.625668,
+  "efficiency": 0.837433,
+  "recommended_technical_score": 0.908216,
   "reported_token_usage": {
     "prompt_tokens": 0,
     "completion_tokens": 0,
@@ -15,19 +15,19 @@
       "sample_count": 9,
       "hit_rate_at_10": 1.0,
       "mrr": 0.788889,
-      "mttc": 3.555556
+      "mttc": 3.777778
     },
     "browsing": {
       "sample_count": 77,
       "hit_rate_at_10": 1.0,
-      "mrr": 0.709787,
-      "mttc": 2.155844
+      "mrr": 0.782066,
+      "mttc": 2.298701
     },
     "buying": {
       "sample_count": 73,
       "hit_rate_at_10": 1.0,
-      "mrr": 0.747804,
-      "mttc": 1.972603
+      "mrr": 0.802642,
+      "mttc": 2.232877
     },
     "intent_override": {
       "sample_count": 28,
@@ -82,8 +82,8 @@
       "scenario_type": "browsing",
       "hit": true,
       "first_hit_turn": 2,
-      "best_rank": 6,
-      "reciprocal_rank": 0.16666666666666666
+      "best_rank": 7,
+      "reciprocal_rank": 0.14285714285714285
     },
     {
       "sample_id": "combo_0007_fit_critical_3p0",
@@ -113,17 +113,17 @@
       "sample_id": "combo_0010_comfort_critical_3p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 7,
-      "reciprocal_rank": 0.14285714285714285
+      "first_hit_turn": 2,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
     },
     {
       "sample_id": "combo_0011_style_usually_positive_5p0",
       "scenario_type": "browsing",
       "hit": true,
-      "first_hit_turn": 2,
-      "best_rank": 3,
-      "reciprocal_rank": 0.3333333333333333
+      "first_hit_turn": 3,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
     },
     {
       "sample_id": "combo_0012_style_critical_1p0",
@@ -170,8 +170,8 @@
       "scenario_type": "buying",
       "hit": true,
       "first_hit_turn": 3,
-      "best_rank": 1,
-      "reciprocal_rank": 1.0
+      "best_rank": 3,
+      "reciprocal_rank": 0.3333333333333333
     },
     {
       "sample_id": "combo_0018_performance_mixed_4p0",
@@ -225,9 +225,9 @@
       "sample_id": "combo_0024_warmth_critical_3p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 3,
-      "best_rank": 9,
-      "reciprocal_rank": 0.1111111111111111
+      "first_hit_turn": 4,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
     },
     {
       "sample_id": "combo_0025_weather_usually_positive_5p0",
@@ -241,9 +241,9 @@
       "sample_id": "combo_0026_weather_mixed_4p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 2,
-      "best_rank": 8,
-      "reciprocal_rank": 0.125
+      "first_hit_turn": 3,
+      "best_rank": 3,
+      "reciprocal_rank": 0.3333333333333333
     },
     {
       "sample_id": "combo_0027_weather_critical_1p0",
@@ -258,8 +258,8 @@
       "scenario_type": "buying",
       "hit": true,
       "first_hit_turn": 6,
-      "best_rank": 3,
-      "reciprocal_rank": 0.3333333333333333
+      "best_rank": 8,
+      "reciprocal_rank": 0.125
     },
     {
       "sample_id": "combo_0029_material-durability_usually_positive_5p0",
@@ -330,8 +330,8 @@
       "scenario_type": "browsing",
       "hit": true,
       "first_hit_turn": 2,
-      "best_rank": 3,
-      "reciprocal_rank": 0.3333333333333333
+      "best_rank": 4,
+      "reciprocal_rank": 0.25
     },
     {
       "sample_id": "combo_0038_comfort-durability_mixed_4p0",
@@ -354,8 +354,8 @@
       "scenario_type": "browsing",
       "hit": true,
       "first_hit_turn": 4,
-      "best_rank": 5,
-      "reciprocal_rank": 0.2
+      "best_rank": 7,
+      "reciprocal_rank": 0.14285714285714285
     },
     {
       "sample_id": "combo_0041_style-durability_usually_positive_5p0",
@@ -385,7 +385,7 @@
       "sample_id": "combo_0044_style-durability_critical_3p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 1,
+      "first_hit_turn": 2,
       "best_rank": 1,
       "reciprocal_rank": 1.0
     },
@@ -418,8 +418,8 @@
       "scenario_type": "browsing",
       "hit": true,
       "first_hit_turn": 2,
-      "best_rank": 9,
-      "reciprocal_rank": 0.1111111111111111
+      "best_rank": 10,
+      "reciprocal_rank": 0.1
     },
     {
       "sample_id": "combo_0049_durability-warmth_usually_positive_5p0",
@@ -433,7 +433,7 @@
       "sample_id": "combo_0050_durability-warmth_mixed_4p0",
       "scenario_type": "boundary",
       "hit": true,
-      "first_hit_turn": 1,
+      "first_hit_turn": 2,
       "best_rank": 2,
       "reciprocal_rank": 0.5
     },
@@ -457,17 +457,17 @@
       "sample_id": "combo_0053_durability-weather_usually_positive_5p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 5,
-      "reciprocal_rank": 0.2
+      "first_hit_turn": 2,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
     },
     {
       "sample_id": "combo_0054_durability-weather_mixed_4p0",
       "scenario_type": "buying",
       "hit": true,
       "first_hit_turn": 2,
-      "best_rank": 1,
-      "reciprocal_rank": 1.0
+      "best_rank": 3,
+      "reciprocal_rank": 0.3333333333333333
     },
     {
       "sample_id": "combo_0055_durability-weather_critical_1p0",
@@ -498,16 +498,16 @@
       "scenario_type": "buying",
       "hit": true,
       "first_hit_turn": 2,
-      "best_rank": 3,
-      "reciprocal_rank": 0.3333333333333333
+      "best_rank": 6,
+      "reciprocal_rank": 0.16666666666666666
     },
     {
       "sample_id": "combo_0059_material-performance_critical_1p0",
       "scenario_type": "browsing",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 7,
-      "reciprocal_rank": 0.14285714285714285
+      "first_hit_turn": 2,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
     },
     {
       "sample_id": "combo_0060_material-performance_critical_3p0",
@@ -521,7 +521,7 @@
       "sample_id": "combo_0061_fit-performance_usually_positive_5p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 1,
+      "first_hit_turn": 2,
       "best_rank": 1,
       "reciprocal_rank": 1.0
     },
@@ -553,9 +553,9 @@
       "sample_id": "combo_0065_comfort-performance_usually_positive_5p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 6,
-      "reciprocal_rank": 0.16666666666666666
+      "first_hit_turn": 2,
+      "best_rank": 5,
+      "reciprocal_rank": 0.2
     },
     {
       "sample_id": "combo_0066_comfort-performance_mixed_4p0",
@@ -569,7 +569,7 @@
       "sample_id": "combo_0067_comfort-performance_critical_1p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 1,
+      "first_hit_turn": 2,
       "best_rank": 1,
       "reciprocal_rank": 1.0
     },
@@ -681,9 +681,9 @@
       "sample_id": "combo_0081_material-warmth_usually_positive_5p0",
       "scenario_type": "browsing",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 6,
-      "reciprocal_rank": 0.16666666666666666
+      "first_hit_turn": 2,
+      "best_rank": 3,
+      "reciprocal_rank": 0.3333333333333333
     },
     {
       "sample_id": "combo_0082_material-warmth_mixed_4p0",
@@ -697,9 +697,9 @@
       "sample_id": "combo_0083_material-warmth_critical_1p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 6,
-      "best_rank": 6,
-      "reciprocal_rank": 0.16666666666666666
+      "first_hit_turn": 7,
+      "best_rank": 2,
+      "reciprocal_rank": 0.5
     },
     {
       "sample_id": "combo_0084_material-warmth_critical_3p0",
@@ -737,9 +737,9 @@
       "sample_id": "combo_0088_fit-warmth_critical_3p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 7,
-      "reciprocal_rank": 0.14285714285714285
+      "first_hit_turn": 2,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
     },
     {
       "sample_id": "combo_0089_comfort-warmth_usually_positive_5p0",
@@ -841,9 +841,9 @@
       "sample_id": "combo_0101_material-weather_usually_positive_5p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 3,
-      "reciprocal_rank": 0.3333333333333333
+      "first_hit_turn": 2,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
     },
     {
       "sample_id": "combo_0102_material-weather_mixed_4p0",
@@ -882,16 +882,16 @@
       "scenario_type": "buying",
       "hit": true,
       "first_hit_turn": 2,
-      "best_rank": 4,
-      "reciprocal_rank": 0.25
+      "best_rank": 5,
+      "reciprocal_rank": 0.2
     },
     {
       "sample_id": "combo_0107_fit-weather_critical_1p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 6,
-      "reciprocal_rank": 0.16666666666666666
+      "first_hit_turn": 2,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
     },
     {
       "sample_id": "combo_0108_fit-weather_critical_3p0",
@@ -985,7 +985,7 @@
       "sample_id": "combo_0119_material-comfort_critical_3p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 1,
+      "first_hit_turn": 2,
       "best_rank": 1,
       "reciprocal_rank": 1.0
     },
@@ -1065,9 +1065,9 @@
       "sample_id": "combo_0129_fit-style_mixed_4p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 3,
-      "reciprocal_rank": 0.3333333333333333
+      "first_hit_turn": 2,
+      "best_rank": 2,
+      "reciprocal_rank": 0.5
     },
     {
       "sample_id": "combo_0130_fit-style_critical_1p0",
@@ -1081,7 +1081,7 @@
       "sample_id": "combo_0131_fit-style_critical_3p0",
       "scenario_type": "boundary",
       "hit": true,
-      "first_hit_turn": 1,
+      "first_hit_turn": 2,
       "best_rank": 10,
       "reciprocal_rank": 0.1
     },
@@ -1098,24 +1098,24 @@
       "scenario_type": "buying",
       "hit": true,
       "first_hit_turn": 2,
-      "best_rank": 1,
-      "reciprocal_rank": 1.0
+      "best_rank": 2,
+      "reciprocal_rank": 0.5
     },
     {
       "sample_id": "combo_0134_comfort-style_critical_1p0",
       "scenario_type": "browsing",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 4,
-      "reciprocal_rank": 0.25
+      "first_hit_turn": 2,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
     },
     {
       "sample_id": "combo_0135_comfort-style_critical_3p0",
       "scenario_type": "buying",
       "hit": true,
       "first_hit_turn": 2,
-      "best_rank": 5,
-      "reciprocal_rank": 0.2
+      "best_rank": 10,
+      "reciprocal_rank": 0.1
     },
     {
       "sample_id": "combo_0136_material-fit-durability_usually_positive_5p0",
@@ -1161,9 +1161,9 @@
       "sample_id": "combo_0141_material-style-durability_critical_1p0",
       "scenario_type": "browsing",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 7,
-      "reciprocal_rank": 0.14285714285714285
+      "first_hit_turn": 2,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
     },
     {
       "sample_id": "combo_0142_fit-comfort-durability_critical_1p0",
@@ -1177,9 +1177,9 @@
       "sample_id": "combo_0143_fit-style-durability_usually_positive_5p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 5,
-      "reciprocal_rank": 0.2
+      "first_hit_turn": 2,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
     },
     {
       "sample_id": "combo_0144_fit-style-durability_critical_1p0",
@@ -1194,8 +1194,8 @@
       "scenario_type": "buying",
       "hit": true,
       "first_hit_turn": 4,
-      "best_rank": 1,
-      "reciprocal_rank": 1.0
+      "best_rank": 5,
+      "reciprocal_rank": 0.2
     },
     {
       "sample_id": "combo_0146_comfort-style-durability_critical_1p0",
@@ -1217,33 +1217,33 @@
       "sample_id": "combo_0148_material-fit-performance_critical_1p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 8,
-      "reciprocal_rank": 0.125
+      "first_hit_turn": 2,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
     },
     {
       "sample_id": "combo_0149_material-comfort-performance_usually_positive_5p0",
       "scenario_type": "buying",
       "hit": true,
       "first_hit_turn": 2,
-      "best_rank": 3,
-      "reciprocal_rank": 0.3333333333333333
+      "best_rank": 4,
+      "reciprocal_rank": 0.25
     },
     {
       "sample_id": "combo_0150_material-comfort-performance_critical_1p0",
       "scenario_type": "browsing",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 7,
-      "reciprocal_rank": 0.14285714285714285
+      "first_hit_turn": 2,
+      "best_rank": 3,
+      "reciprocal_rank": 0.3333333333333333
     },
     {
       "sample_id": "combo_0151_material-style-performance_usually_positive_5p0",
       "scenario_type": "browsing",
       "hit": true,
-      "first_hit_turn": 3,
-      "best_rank": 10,
-      "reciprocal_rank": 0.1
+      "first_hit_turn": 4,
+      "best_rank": 2,
+      "reciprocal_rank": 0.5
     },
     {
       "sample_id": "combo_0152_material-style-performance_critical_1p0",
@@ -1273,9 +1273,9 @@
       "sample_id": "combo_0155_fit-style-performance_usually_positive_5p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 8,
-      "reciprocal_rank": 0.125
+      "first_hit_turn": 2,
+      "best_rank": 2,
+      "reciprocal_rank": 0.5
     },
     {
       "sample_id": "combo_0156_fit-style-performance_critical_1p0",
@@ -1290,16 +1290,16 @@
       "scenario_type": "buying",
       "hit": true,
       "first_hit_turn": 2,
-      "best_rank": 1,
-      "reciprocal_rank": 1.0
+      "best_rank": 8,
+      "reciprocal_rank": 0.125
     },
     {
       "sample_id": "combo_0158_comfort-style-performance_critical_1p0",
       "scenario_type": "browsing",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 8,
-      "reciprocal_rank": 0.125
+      "first_hit_turn": 2,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
     },
     {
       "sample_id": "combo_0159_material-fit-warmth_usually_positive_5p0",
@@ -1313,9 +1313,9 @@
       "sample_id": "combo_0160_material-fit-warmth_critical_1p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 5,
-      "reciprocal_rank": 0.2
+      "first_hit_turn": 2,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
     },
     {
       "sample_id": "combo_0161_material-comfort-warmth_usually_positive_5p0",
@@ -1345,7 +1345,7 @@
       "sample_id": "combo_0164_material-style-warmth_critical_1p0",
       "scenario_type": "browsing",
       "hit": true,
-      "first_hit_turn": 1,
+      "first_hit_turn": 2,
       "best_rank": 1,
       "reciprocal_rank": 1.0
     },
@@ -1394,8 +1394,8 @@
       "scenario_type": "browsing",
       "hit": true,
       "first_hit_turn": 2,
-      "best_rank": 9,
-      "reciprocal_rank": 0.1111111111111111
+      "best_rank": 10,
+      "reciprocal_rank": 0.1
     },
     {
       "sample_id": "combo_0171_material-fit-weather_usually_positive_5p0",
@@ -1426,24 +1426,24 @@
       "scenario_type": "buying",
       "hit": true,
       "first_hit_turn": 6,
-      "best_rank": 2,
-      "reciprocal_rank": 0.5
+      "best_rank": 8,
+      "reciprocal_rank": 0.125
     },
     {
       "sample_id": "combo_0175_material-style-weather_usually_positive_5p0",
       "scenario_type": "browsing",
       "hit": true,
       "first_hit_turn": 3,
-      "best_rank": 2,
-      "reciprocal_rank": 0.5
+      "best_rank": 5,
+      "reciprocal_rank": 0.2
     },
     {
       "sample_id": "combo_0176_material-style-weather_critical_1p0",
       "scenario_type": "browsing",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 10,
-      "reciprocal_rank": 0.1
+      "first_hit_turn": 2,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
     },
     {
       "sample_id": "combo_0177_fit-comfort-weather_usually_positive_5p0",
@@ -1482,16 +1482,16 @@
       "scenario_type": "browsing",
       "hit": true,
       "first_hit_turn": 2,
-      "best_rank": 1,
-      "reciprocal_rank": 1.0
+      "best_rank": 2,
+      "reciprocal_rank": 0.5
     },
     {
       "sample_id": "combo_0182_comfort-style-weather_critical_1p0",
       "scenario_type": "browsing",
       "hit": true,
-      "first_hit_turn": 1,
-      "best_rank": 9,
-      "reciprocal_rank": 0.1111111111111111
+      "first_hit_turn": 2,
+      "best_rank": 1,
+      "reciprocal_rank": 1.0
     },
     {
       "sample_id": "combo_0183_material-fit-comfort-style_mixed_4p0",
@@ -1513,7 +1513,7 @@
       "sample_id": "combo_0185_general shopping_mixed_4p0",
       "scenario_type": "buying",
       "hit": true,
-      "first_hit_turn": 1,
+      "first_hit_turn": 2,
       "best_rank": 1,
       "reciprocal_rank": 1.0
     },

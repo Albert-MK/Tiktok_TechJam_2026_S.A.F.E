@@ -5,9 +5,9 @@ title: Zeagoo Women's Polka Dots Shirt Striped 3/4 Sleeve Casual Scoop Neck Tops
 hit: True | first_hit_turn: 3 | best_rank: 3
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Tees & Blouses T-Shirts. Pull On closure
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B09228WKCF', 'B07ZHYSWZY', 'B08GK645DZ', 'B07S3FDZQB', 'B08VJDPWPN', 'B0948HF7BG', 'B07SVX4K3V', 'B07P6ZC4XN', 'B09FYBP7NM', 'B08BRNZ624']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: polyester; 95% Polyester, 5% Spandex.

@@ -2,16 +2,16 @@ sample_id: public_0037
 scenario_type: browsing
 target: B08KKBBMMD
 title: The Children's Place Boys' Pull on Cargo Pants
-hit: True | first_hit_turn: 2 | best_rank: 3
+hit: True | first_hit_turn: 2 | best_rank: 4
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Boys Pants, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B00JOC9KY2', 'B01DC6BKLQ', 'B06XYW868Y', 'B07YD1DLMY', 'B07B4XSW7K', 'B00JWM6UAQ', 'B07VZX7RLT', 'B07GK92LZQ', 'B00D4L7VV8', 'B076DKB6PL']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: cotton; Imported.
 [Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B09VLR3Z3W', 'B00K87IORG', 'B08KKBBMMD', 'B09VLT9C6F', 'B01FKMGLYQ', 'B01JW0XPI2', 'B0193YUVIE', 'B07FNF1X9V', 'B08LNDRXKR', 'B00B6EDIAI']
-[Turn 2] target_rank: 3 | scored_hit: True
+[Turn 2] recommendations: ['B09VLR3Z3W', 'B00K87IORG', 'B07GK92LZQ', 'B08KKBBMMD', 'B09VLT9C6F', 'B01FKMGLYQ', 'B01JW0XPI2', 'B0193YUVIE', 'B07FNF1X9V', 'B08LNDRXKR']
+[Turn 2] target_rank: 4 | scored_hit: True

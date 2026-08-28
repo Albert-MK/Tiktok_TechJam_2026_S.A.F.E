@@ -2,10 +2,16 @@ sample_id: public_0134
 scenario_type: browsing
 target: B081SF3QRL
 title: YOFANST 2pcs-12pcs Double Flare Stainless Steel Tunnels Gauges Screwed Gem Rhinestones Tunnels Plugs Stretcher Jewelry
-hit: True | first_hit_turn: 1 | best_rank: 4
+hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Piercing Jewelry Tunnels, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B013TMG9LO', 'B00LPQG81I', 'B07NDLFLGB', 'B081SF3QRL', 'B07GSWV3N3', 'B0B27QRWW1', 'B00DDO844O', 'B007U97OAS', 'B007TSJWN2', 'B0861B5M21']
-[Turn 1] target_rank: 4 | scored_hit: True
+[Turn 1] recommendations: []
+[Turn 1] target_rank: None | scored_hit: False
+
+[Turn 2] USER: For that, what matters is: Gauge in Choice: 8g(3mm), 6g(4mm), 4g(5mm), 2g(6mm), 0g(8mm), 00g(10mm), 1/2"(12mm), 9/16"(14mm); You will get 3 pairs fashion gem double flare screw-fit tunnels in same size, in same color.
+[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] ask_attribute: material
+[Turn 2] recommendations: ['B081SF3QRL', 'B07JXS7DXW', 'B07JNVT2NL', 'B019XQCVV2', 'B0811DGPJP', 'B07T19MBKK', 'B0725C9JXM', 'B0BDR1FYG1', 'B07QLLB5LD', 'B0BF54HZ4P']
+[Turn 2] target_rank: 1 | scored_hit: True

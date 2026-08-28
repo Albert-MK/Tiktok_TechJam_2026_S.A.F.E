@@ -5,9 +5,9 @@ title: Casio Men's Wrist Watch AQ-800E-7A
 hit: True | first_hit_turn: 3 | best_rank: 2
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Watches Wrist Watches. Stainless Steel Band
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Is there any other must-have detail I should lock in?
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B07C2VVXSZ', 'B09LZ4C7RM', 'B00K04PZJM', 'B00H40O794', 'B07S9W25K8', 'B085BMH2M9', 'B01ETFUBCS', 'B07Q2CRDLC', 'B07SWPYL9K', 'B0BJBC8H4M']
+[Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: Water Resistant; 3 Year Battery.
