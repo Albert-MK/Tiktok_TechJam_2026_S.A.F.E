@@ -1,4 +1,4 @@
-"""多轮购物推荐 Agent（当前默认：v1.4）。
+"""多轮购物推荐 Agent（当前默认：v1.5）。
 
 ===============================================================================
 给非计算机背景同学的总览
@@ -25,7 +25,7 @@
       -> 返回 message / ask_attribute / recommendations
 
 评分只看 parent_asin 是否命中隐藏目标商品，所以排序非常关键。
-详细实验记录见 docs/OPTIMIZATION_REPORT_V1_3.md 与 docs/OPTIMIZATION_REPORT_V1_4.md。
+详细实验记录见 docs/OPTIMIZATION_REPORT_V1_3.md、docs/OPTIMIZATION_REPORT_V1_4.md 与 docs/OPTIMIZATION_REPORT_V1_5.md。
 """
 
 from __future__ import annotations
@@ -78,6 +78,27 @@ ASK_ORDER_FEATURE_FIRST = (
     "other", "feature", "style", "use_case", "color", "budget", "size",
     "brand", "material", "category",
 )
+
+# 自适应收窄提问：other 之后按候选分支信息增益选 typed 属性（顺序本身不重要）。
+ADAPTIVE_TYPED_ATTRS = (
+    "feature", "material", "color", "style", "use_case", "budget", "size", "brand", "category",
+)
+
+# 画像 preference_tags → ask_attribute 先验（v8 profile_branch 实验）。
+TAG_TO_ASK_PRIOR: dict[str, dict[str, float]] = {
+    "material": {"material": 1.0, "feature": 0.5},
+    "fit": {"style": 1.0, "size": 0.8},
+    "comfort": {"feature": 1.0, "material": 0.4},
+    "style": {"style": 1.0, "color": 0.6},
+    "durability": {"feature": 1.0, "material": 0.5},
+    "performance": {"use_case": 1.0, "feature": 0.7},
+    "warmth": {"feature": 1.0, "material": 0.5},
+    "weather": {"use_case": 1.0, "feature": 0.6},
+    "general shopping": {},
+}
+
+# 模拟器里常空转、且不在 preference_tags 里的低产出维度。
+LOW_YIELD_ASK = frozenset({"brand", "budget", "category"})
 
 # 每个 ask_attribute 对应的顾客可见问题文案。
 ASK_QUESTIONS = {
@@ -344,7 +365,9 @@ class Agent:
             "history": [],                   # 原始用户句（调试用）
             "shown": set(),                  # 已推荐过的 ASIN（未命中则后续排除）
             "empty_streak": 0,               # 连续“无更多偏好”次数
+            "delayed_turns": 0,              # 本会话已暂缓交卷的次数
             "_candidates": [],               # 最近一轮重排候选，供动态提问估算区分度
+            "_top_scores": [],               # 最近一轮 Top 分，供不确定时再等一轮
         }
 
     def respond(
@@ -370,16 +393,16 @@ class Agent:
         self._update_state(state, user_message, turn)
         # 2) 根据记忆检索并排序
         recommendations = self._retrieve(state, top_k)
-        # 实验：约束还太弱时先不交卷，避免把目标锁在 Top-10 尾部。
-        # 只在首轮且尚无强约束时生效；否则有 miss 风险。
-        if self._should_delay_recommendations(state):
+        # 4) 先决定下一问：若已经不问了，就不能再交空列表（否则可能 miss）。
+        ask_attribute = self._next_ask(state) if self.cfg["ask"] else None
+        # 3) 弱约束 / 排序不确定时先不交卷，避免把目标锁在 Top-10 尾部。
+        if self._should_delay_recommendations(state, ask_attribute):
             recommendations = []
-        # 3) 把本轮推过的商品记入 shown（若仍未命中，后面会排除它们）
+            state["delayed_turns"] = int(state.get("delayed_turns") or 0) + 1
+        # 把本轮推过的商品记入 shown（若仍未命中，后面会排除它们）
         if self.cfg.get("exclude_shown", True):
             for item in recommendations:
                 state["shown"].add(str(item["parent_asin"]))
-        # 4) 决定下一问（也可能不问）
-        ask_attribute = self._next_ask(state) if self.cfg["ask"] else None
         if ask_attribute:
             state["asked"].append(ask_attribute)
 
@@ -471,25 +494,53 @@ class Agent:
             if looking:
                 state["category"] = looking.group(1).strip()
 
-    def _should_delay_recommendations(self, state: dict) -> bool:
-        """弱约束时是否暂缓交出 Top-10。
+    def _should_delay_recommendations(self, state: dict, ask_attribute: str | None) -> bool:
+        """弱约束或排序不确定时是否暂缓交出 Top-10。
 
-        评测在目标第一次进入 Top-10 时就锁死名次。首轮只有类目、没有
-        强约束时，排序往往很差；先交空列表可以换一轮更好的 MRR。
+        评测在目标第一次进入 Top-10 时就锁死名次。
+        v1.4：首轮没有强约束就先交空列表。
+        后续实验：在仍会提问、且未超过 delay_max_empty 时，再多等几轮。
         """
-        if not (
-            self.cfg.get("delay_weak_recs")
-            or self.cfg.get("delay_generic_first")
-        ):
-            return False
-        if any(self._is_distinctive(phrase) for phrase in state["constraints"]):
-            return False
+        has_distinctive = any(self._is_distinctive(phrase) for phrase in state["constraints"])
         first_turn = len(state.get("history") or []) <= 1
-        if not first_turn:
+        delayed = int(state.get("delayed_turns") or 0)
+        max_empty = int(self.cfg.get("delay_max_empty") or 0)
+
+        # v1.4：只挡首轮。
+        if (
+            (self.cfg.get("delay_generic_first") or self.cfg.get("delay_weak_recs"))
+            and first_turn
+            and not has_distinctive
+        ):
+            if self.cfg.get("delay_generic_first") or state["mode"] in {"browsing", "boundary"}:
+                return True
+
+        extra = bool(
+            self.cfg.get("delay_until_distinctive")
+            or self.cfg.get("delay_uncertain")
+            or int(self.cfg.get("delay_until_n_constraints") or 0)
+        )
+        if not extra:
             return False
-        if self.cfg.get("delay_generic_first"):
+        # 没有下一问就必须交卷，否则可能 10 轮都空。
+        if not ask_attribute:
+            return False
+        cap = max_empty if max_empty > 0 else 2
+        if delayed >= cap:
+            return False
+        if self.cfg.get("delay_until_distinctive") and not has_distinctive:
             return True
-        return state["mode"] in {"browsing", "boundary"}
+        need_n = int(self.cfg.get("delay_until_n_constraints") or 0)
+        if need_n and len(state["constraints"]) < need_n:
+            return True
+        if self.cfg.get("delay_uncertain"):
+            scores = list(state.get("_top_scores") or [])
+            min_margin = float(self.cfg.get("delay_min_margin") or 2.0)
+            if len(scores) >= 2 and (scores[0] - scores[1]) < min_margin:
+                return True
+            if not has_distinctive:
+                return True
+        return False
 
     def _classify_constraint(self, value: str) -> str:
         """粗分类约束类型，规则与评测模拟器保持一致。"""
@@ -512,6 +563,85 @@ class Agent:
         """已经从用户约束里拿到的属性类型。feature 可多条，不在跳过集合里。"""
         covered = {self._classify_constraint(phrase) for phrase in state["constraints"]}
         return {attr for attr in covered if attr in TYPED_ASK_SKIP_COVERED}
+
+    def _filter_candidates_by_constraints(self, asins: list[str], state: dict) -> list[str]:
+        """在候选池内做硬过滤：只保留满足已披露约束的商品。
+
+        用于估算“当前有效搜索范围”，让下一问基于已收窄的分支选属性。
+        """
+        constraints = [c for c in state.get("constraints") or [] if c.strip()]
+        if not constraints:
+            return list(asins)
+        kept: list[str] = []
+        for asin in asins:
+            product = self._products.get(asin)
+            if not product:
+                continue
+            if all(self._needle_in_product(c.lower(), product) for c in constraints):
+                kept.append(asin)
+        # 过滤过猛时回退，避免把目标误删后熵估计失真。
+        return kept if kept else list(asins)
+
+    def _active_narrow_candidates(self, state: dict) -> list[str]:
+        """自适应提问用的当前候选分支。"""
+        raw = list(state.get("_candidates") or [])
+        if not raw:
+            return []
+        if self.cfg.get("ask_mode") == "adaptive_narrow" or self.cfg.get("narrow_filter_active"):
+            return self._filter_candidates_by_constraints(raw, state)
+        if self.cfg.get("ask_mode") == "profile_branch":
+            return self._active_profile_branch_candidates(state)
+        return raw
+
+    def _distinctive_constraints(self, state: dict) -> list[str]:
+        """只取有区分度的约束，用于估算有效搜索分支。"""
+        return [
+            phrase
+            for phrase in state.get("constraints") or []
+            if phrase.strip() and self._is_distinctive(phrase)
+        ]
+
+    def _active_profile_branch_candidates(self, state: dict) -> list[str]:
+        """profile_branch：用 distinctive 约束硬过滤候选，泛词不参与。"""
+        raw = list(state.get("_candidates") or [])
+        if not raw:
+            return []
+        if self.cfg.get("profile_branch_all_constraints"):
+            return self._filter_candidates_by_constraints(raw, state)
+        distinctive = self._distinctive_constraints(state)
+        if not distinctive:
+            return raw
+        kept: list[str] = []
+        for asin in raw:
+            product = self._products.get(asin)
+            if not product:
+                continue
+            if all(self._needle_in_product(c.lower(), product) for c in distinctive):
+                kept.append(asin)
+        return kept if kept else raw
+
+    def _profile_ask_prior(self, state: dict, attr: str) -> float:
+        """用户画像 tag 与 ask_attribute 的对齐程度。"""
+        tags = state.get("profile", {}).get("preference_tags") or []
+        best = 0.0
+        for tag in tags:
+            priors = TAG_TO_ASK_PRIOR.get(str(tag).lower().strip(), {})
+            best = max(best, float(priors.get(attr, 0.0)))
+        return best
+
+    def _ask_yield_prior(self, attr: str) -> float:
+        """低产出维度降权（brand/budget/category）。"""
+        if self.cfg.get("profile_branch_no_low_yield_penalty"):
+            return 1.0
+        return 0.25 if attr in LOW_YIELD_ASK else 1.0
+
+    def _combined_ask_score(self, attr: str, candidate_asins: list[str], state: dict) -> float:
+        """分支 split × 画像对齐 × 产出先验。"""
+        split = self._narrow_ask_score(attr, candidate_asins)
+        if split <= 0:
+            return 0.0
+        profile = self._profile_ask_prior(state, attr)
+        return split * self._ask_yield_prior(attr) * (1.0 + profile)
 
     def _attribute_bucket(self, product: dict, attr: str) -> str | None:
         """从商品文本抽出某属性的一个桶值，用来估提问能拆多开。"""
@@ -566,6 +696,33 @@ class Agent:
         coverage = total / max(len(candidate_asins), 1)
         return entropy * coverage
 
+    def _narrow_ask_score(self, attr: str, candidate_asins: list[str]) -> float:
+        """估算问该属性能把当前分支收窄多少。
+
+        熵越高 = 候选在该属性上取值越分散 = 用户回答后更可能删掉大量竞品。
+        coverage 低则该属性在候选上几乎不可见，问了也白问。
+        """
+        if len(candidate_asins) < 2:
+            return 0.0
+        counts: Counter[str] = Counter()
+        for asin in candidate_asins:
+            product = self._products.get(asin)
+            if not product:
+                continue
+            bucket = self._attribute_bucket(product, attr)
+            if bucket:
+                counts[bucket] += 1
+        if len(counts) <= 1:
+            return 0.0
+        total = sum(counts.values())
+        entropy = -sum((count / total) * math.log(count / total) for count in counts.values())
+        max_entropy = math.log(len(counts))
+        norm_entropy = entropy / max_entropy if max_entropy > 0 else 0.0
+        coverage = total / len(candidate_asins)
+        max_bucket_share = max(counts.values()) / total
+        reduction_potential = 1.0 - max_bucket_share
+        return norm_entropy * coverage * (1.0 + reduction_potential)
+
     def _next_ask(self, state: dict) -> str | None:
         """决定下一轮问哪个属性；若不需要再问则返回 None。
 
@@ -575,7 +732,9 @@ class Agent:
           - 若 typed 问空且还没有强约束，允许再问一次 other（v1 关键修复）。
         """
         ask_mode = self.cfg["ask_mode"]
-        if ask_mode == "feature_first":
+        if ask_mode in {"adaptive_narrow", "profile_branch"}:
+            order = ("other", *ADAPTIVE_TYPED_ATTRS)
+        elif ask_mode == "feature_first":
             order = ASK_ORDER_FEATURE_FIRST
         elif ask_mode == "other_first":
             order = ASK_ORDER_OTHER_FIRST
@@ -600,8 +759,6 @@ class Agent:
 
         # After a typed attribute comes back empty, ask "other" once more so
         # leftover constraints of any type can still be disclosed.
-        # 经典场景：Boundary 烧掉第一次 other 后，typed 只拿到泛词，
-        # 真正有区分度的长句还藏着，需要第二次 other。
         if (
             other_asks == 1
             and last_ask not in {None, "other"}
@@ -609,6 +766,63 @@ class Agent:
             and not has_distinctive
         ):
             return "other"
+
+        # profile_branch：任意 typed 空答后优先回 other（避免连续空转 typed）。
+        if (
+            ask_mode == "profile_branch"
+            and last_ask not in {None, "other"}
+            and int(state.get("empty_streak") or 0) >= 1
+            and other_asks < 2
+            and "other" not in exhausted
+            and not has_distinctive
+        ):
+            return "other"
+
+        # ---- profile_branch：画像先验 × 分支 split 选下一问 ----
+        if ask_mode == "profile_branch" and other_asks >= 1:
+            active = self._active_profile_branch_candidates(state)
+            stop_at = int(self.cfg.get("narrow_stop_candidates") or 0)
+            if stop_at and 0 < len(active) <= stop_at:
+                if other_asks < 2 and not has_distinctive and "other" not in asked:
+                    return "other"
+                return None
+            typed_pool = [
+                attr
+                for attr in ADAPTIVE_TYPED_ATTRS
+                if attr not in asked and attr not in exhausted and attr not in covered
+            ]
+            if active and typed_pool:
+                scored = [
+                    (self._combined_ask_score(attr, active, state), attr)
+                    for attr in typed_pool
+                ]
+                scored = [(score, attr) for score, attr in scored if score > 0]
+                if scored:
+                    scored.sort(reverse=True)
+                    return scored[0][1]
+
+        # ---- 自适应收窄：基于当前候选分支的信息增益选下一问 ----
+        if ask_mode == "adaptive_narrow" and other_asks >= 1:
+            active = self._active_narrow_candidates(state)
+            stop_at = int(self.cfg.get("narrow_stop_candidates") or 0)
+            if stop_at and 0 < len(active) <= stop_at:
+                if other_asks < 2 and not has_distinctive and "other" not in asked:
+                    return "other"
+                return None
+            typed_pool = [
+                attr
+                for attr in ADAPTIVE_TYPED_ATTRS
+                if attr not in asked and attr not in exhausted and attr not in covered
+            ]
+            if active and typed_pool:
+                scored = [
+                    (self._narrow_ask_score(attr, active), attr)
+                    for attr in typed_pool
+                ]
+                scored = [(score, attr) for score, attr in scored if score > 0]
+                if scored:
+                    scored.sort(reverse=True)
+                    return scored[0][1]
 
         remaining = [
             attr
@@ -680,11 +894,16 @@ class Agent:
         """执行一次 FTS5 BM25 检索，返回 [(asin, rank), ...]。
 
         bm25(...) 里的一串数字是各字段权重：
-          title 最重，其次 categories / features / details，description 最轻。
+          parent_asin 不参与匹配（0），随后是
+          title / categories / features / details / store / description。
         """
+        weights = self.cfg.get("bm25_field_weights") or [6.0, 4.0, 2.5, 2.5, 1.5, 1.0]
+        if not isinstance(weights, (list, tuple)) or len(weights) != 6:
+            weights = [6.0, 4.0, 2.5, 2.5, 1.5, 1.0]
+        rendered = ", ".join(f"{float(weight):.4f}" for weight in (0.0, *weights))
         try:
             return self.connection.execute(
-                "SELECT parent_asin, bm25(products, 0.0, 6.0, 4.0, 2.5, 2.5, 1.5, 1.0) AS rank "
+                f"SELECT parent_asin, bm25(products, {rendered}) AS rank "
                 "FROM products WHERE products MATCH ? ORDER BY rank LIMIT ?",
                 (expression, limit),
             ).fetchall()
@@ -1084,6 +1303,7 @@ class Agent:
             scored.sort(key=lambda item: (item[0], item[1]), reverse=True)
         else:
             scored.sort(key=lambda item: item[1], reverse=True)
+        state["_top_scores"] = [score for _, score, _ in scored[:10]]
         return [asin for _, _, asin in scored]
 
     def _apply_similarity_adjustments(

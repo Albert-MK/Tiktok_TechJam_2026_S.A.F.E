@@ -93,9 +93,15 @@ docs/competition_specification.md participant rules and evaluation protocol
 docs/agent_api_contract.json      machine-readable Agent contract
 docs/evaluation_config.json       scoring configuration
 docs/baseline_results.json        reproducible weak-starter reference score
-starter/agent.py                  hybrid shopping agent (current: v1.4)
+starter/agent.py                  hybrid shopping agent (current: v1.5)
 starter/config.py                 strategy flags and VERSION
-docs/VERSION_HISTORY.md           baseline → v1.4 iteration log
+docs/VERSION_HISTORY.md           baseline → v1.5 iteration log
+docs/EXPERIMENTS.md               all experiments and results index
+docs/OPTIMIZATION_REPORT_V1_3.md  v1.3 retrieval / profile report
+docs/OPTIMIZATION_REPORT_V1_4.md  v1.4 delay / dynamic ask report
+docs/OPTIMIZATION_REPORT_V1_5.md  v1.5 delay + BM25 report
+docs/OPTIMIZATION_REPORT_ADAPTIVE_ASK.md  v7 adaptive ask (not adopted)
+docs/OPTIMIZATION_REPORT_PROFILE_BRANCH.md  v8 profile×branch ask (not adopted)
 snapshots/v1/                     frozen v1 snapshot
 snapshots/v1.1/                   frozen v1.1 snapshot
 evaluate_with_transcripts.py      local eval with dialogue transcripts

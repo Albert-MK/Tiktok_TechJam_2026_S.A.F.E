@@ -4,8 +4,8 @@
 评分：`TechnicalScore = 0.5×Hit@10 + 0.3×MRR + 0.2×Efficiency`，`Efficiency = clip((11−MTTC)/10, 0, 1)`。  
 未命中记 MTTC=11。只改 `starter/agent.py`，不改官方 evaluator 与标签。
 
-当前发布版本：**v1.4**（代码在 `starter/`）。  
-快照：`snapshots/v1/`、`snapshots/v1.1/`、`snapshots/v1.3/`、`snapshots/v1.4/`。
+当前发布版本：**v1.5**（代码在 `starter/`）。  
+快照：`snapshots/v1/`、`snapshots/v1.1/`、`snapshots/v1.3/`、`snapshots/v1.4/`、`snapshots/v1.5/`。
 
 ---
 
@@ -27,7 +27,8 @@
 | **v1.1** 长短语加分 + 类目必匹配 | **1.000** | 0.703 | 2.385 | **0.883** | |
 | **v1.2** 叶类目/放宽区分度/店铺/BM25 | **1.000** | **0.753** | 2.44 | **0.897** | |
 | **v1.3** 字段条目前缀 + Override 画像弱加权 | **1.000** | **0.756** | 2.44 | **0.898** | |
-| **v1.4** 首轮无强约束时暂缓交卷 | **1.000** | **0.812** | 2.61 | **0.911** | 当前 |
+| **v1.4** 首轮无强约束时暂缓交卷 | **1.000** | **0.812** | 2.61 | **0.911** | |
+| **v1.5** 约束未满 2 条再空一轮 + 降低 title BM25 | **1.000** | **0.825** | 2.64 | **0.915** | 当前 |
 
 ---
 
@@ -258,6 +259,82 @@ v1.3 已把官方 Hit@10 做到 1.0，剩余瓶颈是首次命中时的名次。
 
 ---
 
+## v1.5 — 约束未满再空一轮 + 降低 title BM25
+
+v1.4 之后仍有 26 条会话首次命中 rank≥5。两个新想法：
+
+1. 再多空几轮，换更高 MRR。
+2. 微调 FTS5 分字段 BM25 权重。
+
+**采用项：**
+
+1. `delay_until_n_constraints=2` + `delay_max_empty=2`：已披露约束不足 2 条、且本轮仍会提问时，最多再交一轮空列表。不问了就必须交卷。
+2. `bm25_field_weights=[4, 4, 2.5, 2.5, 1.5, 1.0]`：title 6→4，其余不变。
+3. 官方 Score 0.911382→**0.914778**（MRR 0.811940→0.825260，MTTC 2.61→2.64）。Hit@10=1.0。
+4. customer probe 同方向：Score 0.908216→**0.911808**，Hit@10=1.0。
+
+**未采用：** 等到强约束才交卷（max 3 会 miss）、按重排分差延迟（效率损失过大）、升高 title/features/categories。完整记录见 `docs/OPTIMIZATION_REPORT_V1_5.md` 与 `runs/v6_delay_bm25_attempts.json`。
+
+**默认策略：** `starter/config.py` 中 `VERSION = "v1.5"`，
+`PRESETS["final"]`。
+
+---
+
+## v7 — 自适应收窄提问（未采用）
+
+v1.5 之后尝试：在 `other` 之后，按当前候选分支上属性的**归一化熵**动态选下一个 typed 问题，而不是固定 `material → color → …`。
+
+**算法（`ask_mode=adaptive_narrow`）：**
+
+1. 用 `_candidates`（重排后约 40 个）作分支，可选硬过滤已披露约束；
+2. 从商品 metadata 抽属性桶值，打分 = 熵 × 覆盖率 × 淘汰潜力；
+3. 选分最高的 typed 属性。
+
+| 方法 | Hit@10 | MRR | MTTC | Score | Δ vs v1.5 |
+|------|--------|-----|------|-------|-----------|
+| v1.5 复测 | 1.000 | 0.825 | 2.640 | 0.915 | — |
+| adaptive_narrow | 0.995 | 0.804 | 2.715 | 0.904 | -0.010 |
+| adaptive + stop≤15/20 | 1.000 | 0.790–0.792 | 2.705–2.710 | 0.903 | -0.011~ |
+| adaptive 无 delay | 0.990 | 0.720 | 2.500 | 0.881 | -0.034 |
+
+**失败要点：** `public_0131`（Boundary）因问 brand（熵高）而非 material，rank 1→9；`public_0064`（Override）连续 typed 空转未回 `other` 导致 miss。熵衡量的是竞品差异，不是模拟器可披露维度。
+
+完整分析：`docs/OPTIMIZATION_REPORT_ADAPTIVE_ASK.md`；复现：`run_v7_adaptive_ask_experiments.py`。
+
+**结论：不采用。** 代码保留为实验开关 `ask_mode=adaptive_narrow`。
+
+---
+
+## v8 — 画像 × 分支精细化提问（未采用）
+
+在 v7 基础上叠加：
+
+1. `preference_tags` → ask_attribute 先验（`TAG_TO_ASK_PRIOR`）；
+2. brand/budget/category 低产出降权；
+3. distinctive 约束过滤 active 分支；
+4. typed 空答后强制回 `other`。
+
+| 方法 | Hit@10 | MRR | MTTC | Score | Δ vs v1.5 |
+|------|--------|-----|------|-------|-----------|
+| v1.5 复测 | 1.000 | 0.825 | 2.640 | 0.915 | — |
+| profile_branch | 0.990 | 0.808 | 2.660 | 0.904 | -0.011 |
+| profile_branch + 全约束过滤 | 0.995 | 0.814 | 2.655 | 0.909 | -0.006 |
+| profile_branch + 无 brand 降权 | 0.990 | 0.803 | 2.675 | 0.903 | -0.012 |
+
+**退化会话：** `public_0064`（Override）、`public_0187`（Boundary）— v1.5 命中，profile_branch miss。
+
+完整分析：`docs/OPTIMIZATION_REPORT_PROFILE_BRANCH.md`；复现：`run_v8_profile_branch_experiments.py`。
+
+**结论：不采用。** 代码保留为实验开关 `ask_mode=profile_branch`。
+
+---
+
+## 实验总索引
+
+所有轮次、主题分类与「尝试/未尝试」清单见 **`docs/EXPERIMENTS.md`**。
+
+---
+
 ## 复现
 
 ```text
@@ -270,4 +347,7 @@ python run_v4_entry_experiments.py    # 字段条目前缀权重
 python run_v4_profile_experiments.py  # profile 弱加权
 python run_v4_conditional_experiments.py # 条件化与最终组合
 python run_v5_direction_experiments.py   # v1.4 动态提问 / 延迟交卷 / 相似度
+python run_v6_delay_bm25_experiments.py  # v1.5 多轮延迟 / BM25 字段权重
+python run_v7_adaptive_ask_experiments.py  # v7 自适应收窄提问
+python run_v8_profile_branch_experiments.py  # v8 画像×分支提问
 ```
