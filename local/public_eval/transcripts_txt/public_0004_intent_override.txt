@@ -5,19 +5,19 @@ title: Emmalise Women's Basic Casual Long Camisole Adjustable Strap Cami Layerin
 hit: True | first_hit_turn: 3 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Tops & Tees Tanks & Camis. Long torso camisole for extra coverage with spagetti adjustable strap for perfect fit
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
+[Turn 1] AGENT: Tell me anything else that matters — details, features, must-haves.
 [Turn 1] ask_attribute: other
 [Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: polyester; Polyester,Cotton,Spandex.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] AGENT: Do you have a material in mind — cotton, leather, wool, something else?
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B07C2XPZ6D', 'B0823WZWZ7', 'B07NWXM3XW', 'B08T8YBQ88', 'B08C98F1CQ', 'B08JYD49HJ', 'B08XBTGV8K', 'B08DL4SL2M', 'B0915NM336', 'B078HBGFJJ']
-[Turn 2] target_rank: 1 | scored_hit: False
+[Turn 2] recommendations: []
+[Turn 2] target_rank: None | scored_hit: False
 
 [Turn 3] USER: Actually, ignore my earlier preference. What I need is: polyester.
-[Turn 3] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.
-[Turn 3] ask_attribute: color
-[Turn 3] recommendations: ['B07C2XPZ6D', 'B0823WZWZ7', 'B07NWXM3XW', 'B08T8YBQ88', 'B08C98F1CQ', 'B08JYD49HJ', 'B08XBTGV8K', 'B08DL4SL2M', 'B0915NM336', 'B078HBGFJJ']
+[Turn 3] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 3] ask_attribute: other
+[Turn 3] recommendations: ['B07C2XPZ6D']
 [Turn 3] target_rank: 1 | scored_hit: True

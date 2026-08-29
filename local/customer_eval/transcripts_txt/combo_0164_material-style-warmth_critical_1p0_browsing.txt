@@ -2,16 +2,22 @@ sample_id: combo_0164_material-style-warmth_critical_1p0
 scenario_type: browsing
 target: B0C61FG7GL
 title: BARTON Elite Silicone Watch Bands - Quick Release - Choose Strap Color & Buckle Color (Stainless Steel, Black PVD or Gunmetal Grey) - (ODD SIZE LUG WIDTHS ONLY 19mm, 21mm, 23mm - MOST WATCHES HAVE EVE
-hit: True | first_hit_turn: 2 | best_rank: 1
+hit: True | first_hit_turn: 3 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Watches Watch Bands, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
-[Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
+[Turn 1] AGENT: Here's my strongest match so far. Which specific features matter most to you?
+[Turn 1] ask_attribute: feature
+[Turn 1] recommendations: ['B09XHSLX4X']
 [Turn 1] target_rank: None | scored_hit: False
 
-[Turn 2] USER: For that, what matters is: leather; color: black.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
+[Turn 2] USER: For that, what matters is: Buckle closure.
+[Turn 2] AGENT: Here's my strongest match so far. Do you have a material in mind — cotton, leather, wool, something else?
 [Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B0C61FG7GL', 'B003LUKMNQ', 'B0BK6YR2BG', 'B00BDVZSR0', 'B008K9MNTE', 'B01EUDKYDK', 'B01EJJLAO2', 'B01MTNGX5F', 'B07CRJRKZD', 'B00MHZHVZ8']
-[Turn 2] target_rank: 1 | scored_hit: True
+[Turn 2] recommendations: ['B07CRJRKZD']
+[Turn 2] target_rank: None | scored_hit: False
+
+[Turn 3] USER: For that, what matters is: leather; SWAP IN SECONDS: Quick release spring bars allow you to swap bands in seconds to compliment your wardrobe or mix and match with BARTON's other Leather, Canvas and Silicone quick re.
+[Turn 3] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 3] ask_attribute: other
+[Turn 3] recommendations: ['B0C61FG7GL']
+[Turn 3] target_rank: 1 | scored_hit: True

@@ -5,13 +5,13 @@ title: Fzroezz 6Pcs Nose Studs L Shaped 20 Gauge Nose Piercings Nose Rings Studs
 hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Piercing Jewelry Screws, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
+[Turn 1] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
+[Turn 1] recommendations: ['B0BY2KGLW8']
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: You will receive 6 Pcs silver nose studs, coming with one free gift velvet bag. Can be used as nose rings, nose piercings, nose rings studs, nose piercing jewelry, nostril piercing; color: red.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B0BLH7JHG8', 'B0BY2KGLW8', 'B08DCFZ1WB', 'B07DR9LGDW', 'B0BC17W7G7', 'B07TXH6Z4T', 'B0018WNDTO', 'B013XEOEEW', 'B07RYS9CPP', 'B07KWHWSDJ']
+[Turn 2] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 2] ask_attribute: other
+[Turn 2] recommendations: ['B0BLH7JHG8']
 [Turn 2] target_rank: 1 | scored_hit: True

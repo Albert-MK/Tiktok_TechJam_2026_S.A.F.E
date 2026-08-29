@@ -2,16 +2,16 @@ sample_id: public_0129
 scenario_type: buying
 target: B0936ZJJ68
 title: MANGOPOP Women's Square Neck Short Sleeve Long Sleeve Tops Bodysuit Jumpsuit
-hit: True | first_hit_turn: 2 | best_rank: 2
+hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Women Bodysuits. A key requirement is: fabric.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
+[Turn 1] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
+[Turn 1] recommendations: ['B0929KL5W7']
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: Stretchy fabric: 95% gossypium, 5% spandex; Imported.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B0B97JNGGY', 'B0936ZJJ68', 'B0B53H6J51', 'B0929KL5W7', 'B093JQPT5G', 'B083BG1PY5', 'B09PMPGNVP', 'B08H2C3NGL', 'B08H2CKF4Z', 'B0B4P19VWJ']
-[Turn 2] target_rank: 2 | scored_hit: True
+[Turn 2] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 2] ask_attribute: other
+[Turn 2] recommendations: ['B0936ZJJ68']
+[Turn 2] target_rank: 1 | scored_hit: True

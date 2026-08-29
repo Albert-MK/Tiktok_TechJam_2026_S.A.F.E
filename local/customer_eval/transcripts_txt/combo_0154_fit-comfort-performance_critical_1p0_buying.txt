@@ -2,16 +2,16 @@ sample_id: combo_0154_fit-comfort-performance_critical_1p0
 scenario_type: buying
 target: B00CYNKSTE
 title: Bestform Women's Wire Free Bra
-hit: True | first_hit_turn: 2 | best_rank: 8
+hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Bras Everyday Bras. A key requirement is: cotton.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
+[Turn 1] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
+[Turn 1] recommendations: ['B08B3CHZX3']
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: color: white; Hand Wash Only.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B000MXB6NA', 'B07Q2MLX5N', 'B00L5YKFA0', 'B08ZKFD4GM', 'B07PWZXZVX', 'B0BPCC1KBT', 'B074V39WT8', 'B00CYNKSTE', 'B07YT6W4QZ', 'B00UAAEAM4']
-[Turn 2] target_rank: 8 | scored_hit: True
+[Turn 2] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 2] ask_attribute: other
+[Turn 2] recommendations: ['B00CYNKSTE']
+[Turn 2] target_rank: 1 | scored_hit: True

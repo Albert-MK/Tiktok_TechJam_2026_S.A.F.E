@@ -2,16 +2,16 @@ sample_id: combo_0081_material-warmth_usually_positive_5p0
 scenario_type: browsing
 target: B0BSS36XCS
 title: Fruit of the Loom Men's Eversoft Cotton Stay Tucked V-Neck T-Shirt
-hit: True | first_hit_turn: 2 | best_rank: 3
+hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Underwear Undershirts, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
-[Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
+[Turn 1] AGENT: Here's my strongest match so far. Which specific features matter most to you?
+[Turn 1] ask_attribute: feature
+[Turn 1] recommendations: ['B0BT8T2FQ3']
 [Turn 1] target_rank: None | scored_hit: False
 
-[Turn 2] USER: For that, what matters is: cotton; 100% Cotton.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B019P5WRLK', 'B07C3J1VSQ', 'B0BSS36XCS', 'B0036UZNBC', 'B0BT8T2FQ3', 'B004JYCIDU', 'B0891LTVHT', 'B00W57TS6S', 'B07CLKVV5K', 'B00F0TO1S8']
-[Turn 2] target_rank: 3 | scored_hit: True
+[Turn 2] USER: For that, what matters is: Pull On closure; Machine Wash.
+[Turn 2] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 2] ask_attribute: other
+[Turn 2] recommendations: ['B0BSS36XCS']
+[Turn 2] target_rank: 1 | scored_hit: True

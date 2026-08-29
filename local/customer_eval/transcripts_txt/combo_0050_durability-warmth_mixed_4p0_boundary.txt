@@ -2,16 +2,10 @@ sample_id: combo_0050_durability-warmth_mixed_4p0
 scenario_type: boundary
 target: B07BYR6T7W
 title: EverBoots Mens Work Boots for Men, Leather EverFit Lightweight Comfort Boot, Anti Slip & Shock Absorption, Soft Oil Grain, Goodyear Welt, Industrial Construction, Roofing, Electrician Moc Toe Wedge
-hit: True | first_hit_turn: 2 | best_rank: 2
+hit: True | first_hit_turn: 1 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Work & Utility Industrial & Construction Boots, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
-[Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
-[Turn 1] target_rank: None | scored_hit: False
-
-[Turn 2] USER: I don't have a preference for other; please use your judgment.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B07L5WB8ZX', 'B07BYR6T7W', 'B009ZNBRBY', 'B08LNYHDXX', 'B09R3Q8WLS', 'B000M0EMES', 'B01KU3L5IM', 'B0BW16W3K8', 'B01M02CHLV', 'B097P262R7']
-[Turn 2] target_rank: 2 | scored_hit: True
+[Turn 1] AGENT: Here's my strongest match so far. Which specific features matter most to you?
+[Turn 1] ask_attribute: feature
+[Turn 1] recommendations: ['B07BYR6T7W']
+[Turn 1] target_rank: 1 | scored_hit: True

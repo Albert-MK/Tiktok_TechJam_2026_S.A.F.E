@@ -2,22 +2,16 @@ sample_id: public_0075
 scenario_type: browsing
 target: B08L13LJ5M
 title: BULLIANT Men's Belt, Slide Ratchet Belt For Men Dress Pant Shirt Oxfords,trim To Fit
-hit: True | first_hit_turn: 3 | best_rank: 1
+hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Accessories Belts, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
-[Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
+[Turn 1] AGENT: Here's my strongest match so far. Which specific features matter most to you?
+[Turn 1] ask_attribute: feature
+[Turn 1] recommendations: ['B08FLYBP2J']
 [Turn 1] target_rank: None | scored_hit: False
 
-[Turn 2] USER: For that, what matters is: leather; 100% Leather.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B0913DGMQ1', 'B091DZK1XF', 'B06Y1RWRYH', 'B09CH2SNBM', 'B0058VB3AM', 'B0C4HGYDMF', 'B019G5UMD4', 'B07RQBD7MY', 'B08FSNTNKL', 'B07RW633ZF']
-[Turn 2] target_rank: None | scored_hit: False
-
-[Turn 3] USER: For that, what matters is: Genuine Leather,New Design for Exact Fit,Width 1 3/8".
-[Turn 3] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.
-[Turn 3] ask_attribute: color
-[Turn 3] recommendations: ['B08L13LJ5M', 'B08FLYBP2J', 'B07PRDZYG7', 'B00EBGJEUG', 'B078HG9KCY', 'B07CWP2973', 'B07NZ4YQ3F', 'B08L13H7SY', 'B0C2TZXDNP', 'B07SKPJZ2P']
-[Turn 3] target_rank: 1 | scored_hit: True
+[Turn 2] USER: For that, what matters is: Ratchet closure.
+[Turn 2] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 2] ask_attribute: other
+[Turn 2] recommendations: ['B08L13LJ5M']
+[Turn 2] target_rank: 1 | scored_hit: True

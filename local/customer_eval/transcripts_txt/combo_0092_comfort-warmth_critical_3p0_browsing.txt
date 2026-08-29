@@ -2,22 +2,22 @@ sample_id: combo_0092_comfort-warmth_critical_3p0
 scenario_type: browsing
 target: B07FKNZC43
 title: COSOSA Womens Satin Striped Pajamas Long Sleeve V-neck Tops and Pants 2-piece Pj Set
-hit: True | first_hit_turn: 3 | best_rank: 5
+hit: True | first_hit_turn: 3 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Sleep & Lounge Sets, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
-[Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
+[Turn 1] AGENT: Here's my strongest match so far. Do you have a material in mind — cotton, leather, wool, something else?
+[Turn 1] ask_attribute: material
+[Turn 1] recommendations: ['B0963L93JY']
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: polyester; 95% Polyester, 5% Spandex.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B09M3YXM5G', 'B08GX2JLWL', 'B08HYMDL18', 'B08PTQYNQH', 'B0B457FN69', 'B08QJ5K69H', 'B08XYT1B28', 'B08X64X1VN', 'B08LDKWB1F', 'B08GKN3D9B']
+[Turn 2] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 2] ask_attribute: other
+[Turn 2] recommendations: ['B0953BX2J8']
 [Turn 2] target_rank: None | scored_hit: False
 
-[Turn 3] USER: I don't have an additional preference for material.
-[Turn 3] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.
-[Turn 3] ask_attribute: color
-[Turn 3] recommendations: ['B08889Q88B', 'B08F5GXT67', 'B07N13M32R', 'B09J2MZD4N', 'B07FKNZC43', 'B0C5MH6KT2', 'B096X9M1TT', 'B09HSB37WN', 'B08VVCJKPW', 'B0BHYQ6K48']
-[Turn 3] target_rank: 5 | scored_hit: True
+[Turn 3] USER: For that, what matters is: Imported; Button closure.
+[Turn 3] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 3] ask_attribute: other
+[Turn 3] recommendations: ['B07FKNZC43']
+[Turn 3] target_rank: 1 | scored_hit: True

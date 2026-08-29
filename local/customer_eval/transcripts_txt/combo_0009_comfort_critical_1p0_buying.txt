@@ -5,13 +5,13 @@ title: Angel Barcelo Roomy Fashion Hobo Womens Handbags Ladies Purse Satchel Sho
 hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Handbags & Wallets Totes. A key requirement is: leather.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
+[Turn 1] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
+[Turn 1] recommendations: ['B07CS9CG1Q']
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: Soft Washed PU Leather with Convenient side Pockets; Imported.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B07GXHPWTJ', 'B07NQD7JYK', 'B07CS9CG1Q', 'B08RJBXXRH', 'B07HT6S5L9', 'B08G896NVK', 'B0878TRV2J', 'B07MMH1579', 'B087JDKCJM', 'B07SHQ6N8T']
+[Turn 2] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 2] ask_attribute: other
+[Turn 2] recommendations: ['B07GXHPWTJ']
 [Turn 2] target_rank: 1 | scored_hit: True

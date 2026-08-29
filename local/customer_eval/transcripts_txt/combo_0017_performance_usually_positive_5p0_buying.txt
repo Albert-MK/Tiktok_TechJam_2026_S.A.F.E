@@ -2,22 +2,16 @@ sample_id: combo_0017_performance_usually_positive_5p0
 scenario_type: buying
 target: B089RXP8K2
 title: Travelambo Womens Wallet RFID Blocking Bifold Multi Card Case Wallet with Zipper Pocket
-hit: True | first_hit_turn: 3 | best_rank: 3
+hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Card Cases & Money Organizers Wallets. A key requirement is: leather.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
+[Turn 1] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
+[Turn 1] recommendations: ['B0B9ZYDDZ1']
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: color: red; Leather.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B006UTCYWM', 'B07N25CNB6', 'B07YDDWCQG', 'B00CORDTWI', 'B016QUDKCW', 'B00DQMF2W0', 'B0768CLQ4W', 'B07KY7TQBP', 'B00BRSVXFK', 'B000LZ02YS']
-[Turn 2] target_rank: None | scored_hit: False
-
-[Turn 3] USER: For that, what matters is: Leather lining.
-[Turn 3] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.
-[Turn 3] ask_attribute: color
-[Turn 3] recommendations: ['B07L2TRX4P', 'B00793M0Z4', 'B089RXP8K2', 'B004D9CUWU', 'B07VJHL9XN', 'B009S01Y5I', 'B018J3KQLW', 'B0051XTYKI', 'B008UZO4KO', 'B000AI5EBW']
-[Turn 3] target_rank: 3 | scored_hit: True
+[Turn 2] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 2] ask_attribute: other
+[Turn 2] recommendations: ['B089RXP8K2']
+[Turn 2] target_rank: 1 | scored_hit: True

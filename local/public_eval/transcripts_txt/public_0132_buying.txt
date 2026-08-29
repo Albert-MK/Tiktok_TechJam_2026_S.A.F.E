@@ -2,16 +2,10 @@ sample_id: public_0132
 scenario_type: buying
 target: B08X2X83DW
 title: isotoner Women's Terry Slip on Clog Slipper with Memory Foam for Indoor/Outdoor Comfort
-hit: True | first_hit_turn: 2 | best_rank: 1
+hit: True | first_hit_turn: 1 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Shoes Slippers. A key requirement is: cotton.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
+[Turn 1] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
-[Turn 1] target_rank: None | scored_hit: False
-
-[Turn 2] USER: For that, what matters is: 80% Cotton, 20% Polyester; Imported.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B08X2X83DW', 'B0721R3422', 'B0BV2C1V44', 'B08G1WN3Z7', 'B01853HFBU', 'B07BTCGM69', 'B015WJIHB2', 'B07NW1L9TR', 'B079VM7VX8', 'B01549KN3K']
-[Turn 2] target_rank: 1 | scored_hit: True
+[Turn 1] recommendations: ['B08X2X83DW']
+[Turn 1] target_rank: 1 | scored_hit: True

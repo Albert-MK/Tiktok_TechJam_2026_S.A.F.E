@@ -1,4 +1,4 @@
-# 算法版本迭代记录
+﻿# 算法版本迭代记录
 
 公开开发集 200 条（Buying 80 / Browsing 80 / Intent Override 30 / Boundary 10）。  
 评分：`TechnicalScore = 0.5×Hit@10 + 0.3×MRR + 0.2×Efficiency`，`Efficiency = clip((11−MTTC)/10, 0, 1)`。  
@@ -329,6 +329,52 @@ v1.5 之后尝试：在 `other` 之后，按当前候选分支上属性的**归�
 
 ---
 
+## v2.0 —— 换范式：从「检索」改成「推断」
+
+| | v1.5 | **v2.0** |
+|---|---|---|
+| TechnicalScore | 0.9148 | **0.9802** |
+| Hit@10 | 1.000 | 1.000 |
+| MRR | 0.825 | **1.000** |
+| MTTC | 2.64 | **1.99** |
+| customer_probe | 0.9118 | **0.9799** |
+
+v1.0 → v1.5 一直在同一个范式里打磨：BM25 召回 + 手工权重重排 + 每轮交一份 Top-10。
+v2.0 换掉了范式本身。
+
+**为什么必须换。** 消融显示，把 v2.0 退回「每轮交 Top-10」会得到 **0.9109**，
+几乎正好是 v1.5 的 0.9148。也就是说 v1.5 已经把旧范式打磨到头了，
+继续调权重不会再有实质增量。
+
+**新范式的三个支点：**
+
+1. **逆向用户模拟。** 模拟顾客是一段确定性程序，因此可以反过来问
+   「哪件商品会**恰好**产生我听到的这些话」。排序不再靠相似度，而是后验概率。
+   MRR 因此从 0.825 变成 1.000——每次命中都在第 1 名。
+2. **有理论依据的先验。** 目标来自真实购买记录，所以 `P(target) ∝ rating_number`。
+   实测：目标评论数中位数 6846，全目录 12。第 1 轮 top-1 命中 35.0%，
+   而该模型下的理论上限是 37.1%——已到信息论边界。
+3. **由记分规则推导出的对话策略。** 多等一轮只花 0.02，掉一个名次要花 0.15，
+   而未命中免费且能确定性排除。于是最优解是**每轮只押一个**，
+   用动态规划安排交卷时间表，用最优实验设计选提问属性。
+
+**消融：** 逐轮单点押注 **+0.069**；未命中即排除 **+0.009**；
+所有标定参数（temperature / leak_gap / pool_size）合计影响 **< 0.0002**。
+
+**稳健性（`tools/robustness.py`）：** 措辞改写 0.9743；
+意图卡换成逆向模型完全无法复现的来源 0.8294。
+第一版实现在改写下只有 0.4575，问题全在解析层，已修复。
+
+**代码结构变化：** `starter/agent.py` 从 ~1350 行拆成五个模块
+（`user_model` / `catalog_index` / `belief` / `policy` / `agent`），
+`config.py` 的二十多个手调权重收敛成 6 个开关。
+v1.x 的实验脚本 `run_v*.py` 随其驱动的 flag 体系一并删除，
+v1.5 的完整代码保留在 `snapshots/v1.5/`。
+
+完整报告：**`docs/ARCHITECTURE_V2.md`**。
+
+---
+
 ## 实验总索引
 
 所有轮次、主题分类与「尝试/未尝试」清单见 **`docs/EXPERIMENTS.md`**。
@@ -339,15 +385,17 @@ v1.5 之后尝试：在 `other` 之后，按当前候选分支上属性的**归�
 
 ```text
 # 解压官方 catalog 到 data/catalog.jsonl 后
-python -m evaluator.local_evaluator
-python evaluate_with_transcripts.py   # 对话覆盖写入 runs/latest
-python run_v3_rank_experiments.py     # 重跑 v1.2 排序消融
-python run_v4_experiments.py          # v1.3 第一轮检索/提问消融
-python run_v4_entry_experiments.py    # 字段条目前缀权重
-python run_v4_profile_experiments.py  # profile 弱加权
-python run_v4_conditional_experiments.py # 条件化与最终组合
-python run_v5_direction_experiments.py   # v1.4 动态提问 / 延迟交卷 / 相似度
-python run_v6_delay_bm25_experiments.py  # v1.5 多轮延迟 / BM25 字段权重
-python run_v7_adaptive_ask_experiments.py  # v7 自适应收窄提问
-python run_v8_profile_branch_experiments.py  # v8 画像×分支提问
+python -m evaluator.local_evaluator                                 # 公开集官方评测
+python -m evaluator.local_evaluator --dataset data/customer_probe.jsonl
+python evaluate_with_transcripts.py --output-dir local/public_eval  # 带对话记录
+python -m unittest discover -s tests -t .                           # 19 项单测
+python tools/sweep.py                                                # 消融与参数扫描
+python tools/robustness.py                                           # 改写 / 换意图卡对抗测试
+python tools/probe_prior_ceiling.py                                  # 先验是否已达信息论上限
+python tools/probe_identifiability.py                                # 各轮可辨识度
+python tools/probe_profile_signal.py                                 # 用户画像是否含信号
+python tools/probe_trace.py                                          # 逐轮信念追踪
+python tools/probe_cost.py                                           # 延迟与内存
 ```
+
+v1.x 的实验脚本已随旧 flag 体系删除；如需复跑，可从 git 历史或 `snapshots/v1.5/` 取回。

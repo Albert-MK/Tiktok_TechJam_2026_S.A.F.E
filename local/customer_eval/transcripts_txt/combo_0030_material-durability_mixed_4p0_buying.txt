@@ -2,16 +2,10 @@ sample_id: combo_0030_material-durability_mixed_4p0
 scenario_type: buying
 target: B09V5RTXG9
 title: #followme Microfleece Men’s Buffalo Plaid Pajama Pants with Pockets
-hit: True | first_hit_turn: 2 | best_rank: 1
+hit: True | first_hit_turn: 1 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Sleep & Lounge Sleep Bottoms. A key requirement is: polyester.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
-[Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
-[Turn 1] target_rank: None | scored_hit: False
-
-[Turn 2] USER: For that, what matters is: Polyester,Polar Fleece; Button closure.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B09V5RTXG9', 'B008OL9HS8', 'B0BL2HN7H1', 'B01MEF538D', 'B00V3XA5X0', 'B01D90JMUQ', 'B0BB79DXQ5', 'B00MUKX302', 'B01NA85GL1', 'B07JG7TL72']
-[Turn 2] target_rank: 1 | scored_hit: True
+[Turn 1] AGENT: Here's my strongest match so far. Which specific features matter most to you?
+[Turn 1] ask_attribute: feature
+[Turn 1] recommendations: ['B09V5RTXG9']
+[Turn 1] target_rank: 1 | scored_hit: True

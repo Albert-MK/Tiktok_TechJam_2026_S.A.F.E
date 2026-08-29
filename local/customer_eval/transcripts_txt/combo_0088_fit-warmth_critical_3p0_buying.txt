@@ -2,16 +2,10 @@ sample_id: combo_0088_fit-warmth_critical_3p0
 scenario_type: buying
 target: B07Z6J5N6Y
 title: Amazon Essentials Women's Cotton Bikini Brief Underwear (Available in Plus Size), Multipacks
-hit: True | first_hit_turn: 2 | best_rank: 1
+hit: True | first_hit_turn: 1 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Panties Bikinis. A key requirement is: cotton.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
-[Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
-[Turn 1] target_rank: None | scored_hit: False
-
-[Turn 2] USER: For that, what matters is: 95% Cotton, 5% Spandex; Imported.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B07Z6J5N6Y', 'B0897FWZG1', 'B07X9V6HZX', 'B08MPZFHCY', 'B09SYVPC12', 'B08975T43L', 'B07WK8T3ZB', 'B085L58P9F', 'B09PLMQCL7', 'B07BYS98Q6']
-[Turn 2] target_rank: 1 | scored_hit: True
+[Turn 1] AGENT: Here's my strongest match so far. Do you have a material in mind — cotton, leather, wool, something else?
+[Turn 1] ask_attribute: material
+[Turn 1] recommendations: ['B07Z6J5N6Y']
+[Turn 1] target_rank: 1 | scored_hit: True

@@ -2,46 +2,16 @@ sample_id: combo_0087_fit-warmth_critical_1p0
 scenario_type: browsing
 target: B0BT158RRR
 title: Goodthreads Men's Standard-Fit Short-Sleeve Printed Poplin Shirt
-hit: True | first_hit_turn: 7 | best_rank: 6
+hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Shirts Casual Button-Down Shirts, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
-[Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
+[Turn 1] AGENT: Here's my strongest match so far. Which specific features matter most to you?
+[Turn 1] ask_attribute: feature
+[Turn 1] recommendations: ['B0BGQFMD6L']
 [Turn 1] target_rank: None | scored_hit: False
 
-[Turn 2] USER: For that, what matters is: cotton; 100% Cotton.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B07XHPVVCW', 'B075F6PX8W', 'B09P39YM3Z', 'B075F615WT', 'B07PMV29LB', 'B07XXS4WDT', 'B09QB2NP99', 'B097K8YT3K', 'B085T9Q34Z', 'B09NN4WPYJ']
-[Turn 2] target_rank: None | scored_hit: False
-
-[Turn 3] USER: I don't have an additional preference for material.
-[Turn 3] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
-[Turn 3] ask_attribute: other
-[Turn 3] recommendations: ['B0781FBSJK', 'B0057XA406', 'B083NT5B68', 'B07Q4CN3R7', 'B083ZPTRRF', 'B09JMYDRT1', 'B07KQ4PF54', 'B08GL3PRDN', 'B07KQ36LVT', 'B00HUH76KS']
-[Turn 3] target_rank: None | scored_hit: False
-
-[Turn 4] USER: For that, what matters is: Imported; Button closure.
-[Turn 4] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.
-[Turn 4] ask_attribute: color
-[Turn 4] recommendations: ['B00MLPDFL8', 'B00S1GQMV6', 'B00LNCECL2', 'B0788L9M7W', 'B09BVST19L', 'B07QW6Z8S4', 'B06VXNJ4YH', 'B009FWGUO4', 'B0B37VMWDY', 'B0BGQFMD6L']
-[Turn 4] target_rank: None | scored_hit: False
-
-[Turn 5] USER: I don't have an additional preference for color.
-[Turn 5] AGENT: Which features or details are most important? I also shortlisted options that already match what you told me.
-[Turn 5] ask_attribute: feature
-[Turn 5] recommendations: ['B07S28K6LP', 'B07DT93HKL', 'B075N4Q8MP', 'B07GXP4TR2', 'B06XSLS8GP', 'B075VN9KQ9', 'B09T6FH4L4', 'B0083VPQBQ', 'B083YZDXNC', 'B004R1I3YS']
-[Turn 5] target_rank: None | scored_hit: False
-
-[Turn 6] USER: I don't have an additional preference for feature.
-[Turn 6] AGENT: What budget should I stay around? I also shortlisted options that already match what you told me.
-[Turn 6] ask_attribute: budget
-[Turn 6] recommendations: ['B0994DQB69', 'B07SHVBHXL', 'B09CSXKYX7', 'B00FN6D1IE', 'B07G45SGST', 'B07NK8PMNJ', 'B00OYJQNKY', 'B09RQMQGKT', 'B00GYQQ7PQ', 'B0B2KK4V2W']
-[Turn 6] target_rank: None | scored_hit: False
-
-[Turn 7] USER: I don't have an additional preference for budget.
-[Turn 7] AGENT: Any style, fit, or department preference? I also shortlisted options that already match what you told me.
-[Turn 7] ask_attribute: style
-[Turn 7] recommendations: ['B08GGC2J8C', 'B0BB6W7X3D', 'B00COZK5WW', 'B08DSWWW7K', 'B073HYLBL5', 'B0BT158RRR', 'B01N6LBTBX', 'B07T6PJYSG', 'B071G3NH69', 'B01ASUDPMG']
-[Turn 7] target_rank: 6 | scored_hit: True
+[Turn 2] USER: For that, what matters is: Imported; Button closure.
+[Turn 2] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 2] ask_attribute: other
+[Turn 2] recommendations: ['B0BT158RRR']
+[Turn 2] target_rank: 1 | scored_hit: True

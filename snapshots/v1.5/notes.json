@@ -1,0 +1,26 @@
+{
+  "version": "v1.5",
+  "parent": "v1.4",
+  "dataset": "data/public_set.jsonl",
+  "added_vs_v1.4": [
+    "delay_until_n_constraints=2",
+    "delay_max_empty=2",
+    "bm25_field_weights=[4.0, 4.0, 2.5, 2.5, 1.5, 1.0]"
+  ],
+  "rejected": [
+    "delay_until_distinctive max 2/3",
+    "delay_uncertain margin 1/2/4",
+    "higher title/features/categories BM25"
+  ],
+  "metrics": {
+    "sample_count": 200,
+    "hit_rate_at_10": 1.0,
+    "mrr": 0.82526,
+    "mttc": 2.64,
+    "efficiency": 0.836,
+    "recommended_technical_score": 0.914778
+  },
+  "v1.4_technical_score": 0.911382,
+  "customer_probe_score": 0.911808,
+  "report": "docs/OPTIMIZATION_REPORT_V1_5.md"
+}

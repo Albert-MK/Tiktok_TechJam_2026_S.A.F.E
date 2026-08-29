@@ -5,7 +5,7 @@ title: Hicarer 21 Pieces Surfer Wave Bracelet Ocean Wave Adjustable Waterproof H
 hit: True | first_hit_turn: 1 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Bracelets Strand. A key requirement is: 21 Styles: the package contains 21 pieces beach bracelet anklets in different styles as shown in the picture, coming with various elements, enough quantity to use and share with fa.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
+[Turn 1] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: ['B09BPZCWDP', 'B0B18JB5MD', 'B09QY8RHVB', 'B09D3RD12Y', 'B097YLHX5Q', 'B078YDYM3P', 'B08GHXMZJ5', 'B0914WCL2M', 'B09JS8WWSS', 'B09251WRDY']
+[Turn 1] recommendations: ['B09BPZCWDP']
 [Turn 1] target_rank: 1 | scored_hit: True

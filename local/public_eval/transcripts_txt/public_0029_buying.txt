@@ -5,13 +5,13 @@ title: Sanuk Yoga Sling 2 Light Natural 5 B (M)
 hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Sandals Flats. A key requirement is: fabric.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
+[Turn 1] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
+[Turn 1] recommendations: ['B08V13PVM8']
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: Back for a second time, it's the ever comfy, ever stylish Yoga Sling 2 sandal from Sanuk®. A sandal that's a flexible as you—win!; New lightweight, two-way stretch knit upper with sling comfort construction.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B01IAKCZEK', 'B07MR4P4KD', 'B01D304XVU', 'B07M9STRX8', 'B097F2JXYB', 'B0C148CJC3', 'B0967CP9J3', 'B08V13PVM8', 'B09Z24DPVY', 'B082YN2GYP']
+[Turn 2] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 2] ask_attribute: other
+[Turn 2] recommendations: ['B01IAKCZEK']
 [Turn 2] target_rank: 1 | scored_hit: True

@@ -2,16 +2,10 @@ sample_id: public_0091
 scenario_type: browsing
 target: B0C5XB43GG
 title: 925 Sterling Silver Small Hoop Earrings Cubic Zirconia Huggie Hoop Earrings, 3 Pairs 14K White Gold Plated Cartilage Piercing Earrings Ear Cuff Tiny Hoop Earrings for Women Men
-hit: True | first_hit_turn: 2 | best_rank: 1
+hit: True | first_hit_turn: 1 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Jewelry Earrings, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
+[Turn 1] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
-[Turn 1] target_rank: None | scored_hit: False
-
-[Turn 2] USER: For that, what matters is: 【HIGH QUALITY】This Sterling Silver Huggie Hoop Earring is made of 925 Sterling Silver post,Hypoallergenic.Best Choice for Sensitive Ears. Earrings Surface Mounted with Sparkling AA; color: white.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B0C5XB43GG', 'B0876BP8LJ', 'B0BQN7NG5N', 'B0BBZDTSLM', 'B0BG4WSCM6', 'B09WJ4Z19L', 'B081D16G2P', 'B0C8CHHHQ9', 'B08XB8C1LT', 'B09KMNWJT9']
-[Turn 2] target_rank: 1 | scored_hit: True
+[Turn 1] recommendations: ['B0C5XB43GG']
+[Turn 1] target_rank: 1 | scored_hit: True

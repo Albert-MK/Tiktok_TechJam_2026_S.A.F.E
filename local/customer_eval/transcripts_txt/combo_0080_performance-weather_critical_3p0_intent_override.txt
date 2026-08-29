@@ -2,22 +2,22 @@ sample_id: combo_0080_performance-weather_critical_3p0
 scenario_type: intent_override
 target: B0BPRQY4CF
 title: IZOD Men's Advantage Performance Short Sleeve Polo Shirt
-hit: True | first_hit_turn: 3 | best_rank: 2
+hit: True | first_hit_turn: 3 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Shirts Polos. Button closure
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
+[Turn 1] AGENT: Tell me anything else that matters — details, features, must-haves.
 [Turn 1] ask_attribute: other
 [Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: cotton; 60% Cotton, 40% Polyester.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B07PW4T128', 'B0BPRQY4CF', 'B076K8QHTV', 'B00XBYH2GM', 'B00HUOI15A', 'B00IZKU0TS', 'B00XBYIXTW', 'B07HJDBN4L', 'B07PH33837', 'B07QRW6JL1']
-[Turn 2] target_rank: 2 | scored_hit: False
+[Turn 2] AGENT: Tell me anything else that matters — details, features, must-haves.
+[Turn 2] ask_attribute: other
+[Turn 2] recommendations: []
+[Turn 2] target_rank: None | scored_hit: False
 
 [Turn 3] USER: Actually, ignore my earlier preference. What I need is: cotton.
-[Turn 3] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.
-[Turn 3] ask_attribute: color
-[Turn 3] recommendations: ['B07PW4T128', 'B0BPRQY4CF', 'B076K8QHTV', 'B00XBYH2GM', 'B00HUOI15A', 'B00IZKU0TS', 'B00XBYIXTW', 'B07HJDBN4L', 'B07PH33837', 'B07QRW6JL1']
-[Turn 3] target_rank: 2 | scored_hit: True
+[Turn 3] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 3] ask_attribute: other
+[Turn 3] recommendations: ['B0BPRQY4CF']
+[Turn 3] target_rank: 1 | scored_hit: True

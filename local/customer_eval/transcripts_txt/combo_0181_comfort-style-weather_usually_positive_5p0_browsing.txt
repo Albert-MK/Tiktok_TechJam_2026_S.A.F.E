@@ -2,16 +2,16 @@ sample_id: combo_0181_comfort-style-weather_usually_positive_5p0
 scenario_type: browsing
 target: B08M3WKDFJ
 title: Fixmatti Women's 2 Piece Outfits Long Sleeve Pullover Sweatshirt Jogger Pants Sweatsuit
-hit: True | first_hit_turn: 2 | best_rank: 2
+hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Sets Tracksuits, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
+[Turn 1] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
+[Turn 1] recommendations: ['B08NTGBDD8']
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: polyester; Drawstring closure.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B08ZBZ51KY', 'B08M3WKDFJ', 'B088FHB31Q', 'B09BKYS7HX', 'B09X2H58LN', 'B093NVYM9F', 'B09YQZ83JS', 'B09MKFFG8L', 'B09G6KVRSG', 'B099RRB54W']
-[Turn 2] target_rank: 2 | scored_hit: True
+[Turn 2] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 2] ask_attribute: other
+[Turn 2] recommendations: ['B08M3WKDFJ']
+[Turn 2] target_rank: 1 | scored_hit: True

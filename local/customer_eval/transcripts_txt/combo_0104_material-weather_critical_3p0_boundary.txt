@@ -2,22 +2,10 @@ sample_id: combo_0104_material-weather_critical_3p0
 scenario_type: boundary
 target: B00QSAICLU
 title: Black 1 Inch Wide Leather Like Headband Solid Hair band for Women and Girls
-hit: True | first_hit_turn: 3 | best_rank: 1
+hit: True | first_hit_turn: 1 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Hats & Caps Headbands, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
-[Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
-[Turn 1] target_rank: None | scored_hit: False
-
-[Turn 2] USER: I don't have a preference for other; please use your judgment.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B07PZJT27J', 'B08H1HMBF3', 'B074531PW9', 'B00FS70LL8', 'B07LG3KPKZ', 'B00IRED0V2', 'B07NWC4JYB', 'B01N7GMDCP', 'B07V1MG139', 'B09ZKPDRZQ']
-[Turn 2] target_rank: None | scored_hit: False
-
-[Turn 3] USER: For that, what matters is: leather; Classy Leather-like Fabric.
-[Turn 3] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.
-[Turn 3] ask_attribute: color
-[Turn 3] recommendations: ['B00QSAICLU', 'B08WYXBRVB', 'B09XWXVTJQ', 'B09KC8VMDH', 'B07HCG4QMD', 'B0B6BTLLKR', 'B0B9GN8FLR', 'B09KYB7J9K', 'B06W5GXN8N', 'B08G49G22S']
-[Turn 3] target_rank: 1 | scored_hit: True
+[Turn 1] AGENT: Here's my strongest match so far. Which specific features matter most to you?
+[Turn 1] ask_attribute: feature
+[Turn 1] recommendations: ['B00QSAICLU']
+[Turn 1] target_rank: 1 | scored_hit: True

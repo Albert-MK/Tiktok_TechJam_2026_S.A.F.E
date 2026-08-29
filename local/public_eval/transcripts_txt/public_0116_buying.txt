@@ -2,16 +2,10 @@ sample_id: public_0116
 scenario_type: buying
 target: B07S2Y3THP
 title: Lugz Men's Clipper Sneaker
-hit: True | first_hit_turn: 2 | best_rank: 1
+hit: True | first_hit_turn: 1 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Shoes Fashion Sneakers. A key requirement is: 100% Canvas.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
+[Turn 1] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
-[Turn 1] target_rank: None | scored_hit: False
-
-[Turn 2] USER: For that, what matters is: Rubber sole; Cushioned Insole for added comfort.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B07S2Y3THP', 'B08Z83QL62', 'B01MPY7BKD', 'B075LVZPH4', 'B005BI8P26', 'B01KC4WMA4', 'B00ELQAHTS', 'B07H137L57', 'B07CSP2GKF', 'B07CSR2724']
-[Turn 2] target_rank: 1 | scored_hit: True
+[Turn 1] recommendations: ['B07S2Y3THP']
+[Turn 1] target_rank: 1 | scored_hit: True

@@ -5,13 +5,13 @@ title: DREAM PAIRS Women's Sole-Simple Ballerina Walking Flats Shoes
 hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Shoes Flats, but I'm still exploring.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
-[Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
+[Turn 1] AGENT: Here's my strongest match so far. Which specific features matter most to you?
+[Turn 1] ask_attribute: feature
+[Turn 1] recommendations: ['B07NZZGR2D']
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: Rubber sole; Design in USA.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B073T364MM', 'B00VSBN73W', 'B07VWRNGFQ', 'B089DMMH4X', 'B0B5YD1RHY', 'B07K6J7HH7', 'B09RQVM4KV', 'B09778WSLF', 'B0B38V1VWY', 'B08QVVDSQQ']
+[Turn 2] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 2] ask_attribute: other
+[Turn 2] recommendations: ['B073T364MM']
 [Turn 2] target_rank: 1 | scored_hit: True

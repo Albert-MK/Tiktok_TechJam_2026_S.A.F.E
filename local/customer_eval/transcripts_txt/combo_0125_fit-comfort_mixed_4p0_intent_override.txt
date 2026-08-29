@@ -5,19 +5,19 @@ title: Baseball Cap Custom Personalized Text Dad Hats for Men & Women Strap Clos
 hit: True | first_hit_turn: 3 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Hats & Caps Baseball Caps. HOOK & LOOP CLOSURE: Our hats for women and men feature a strap closure in the back letting you easily adjust the size for a perfect fit
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
-[Turn 1] ask_attribute: other
+[Turn 1] AGENT: Which specific features matter most to you?
+[Turn 1] ask_attribute: feature
 [Turn 1] recommendations: []
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: 100% Acrylic; Hook and Loop closure.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B07VCYFB5D', 'B07MKW27V5', 'B072HHGYWC', 'B00DEJI6GE', 'B08HGL5MTV', 'B07CHXLG33', 'B081S71WR9', 'B071HNYGMJ', 'B07CNF35BF', 'B0B4C6Z3GP']
-[Turn 2] target_rank: 1 | scored_hit: False
+[Turn 2] AGENT: Tell me anything else that matters — details, features, must-haves.
+[Turn 2] ask_attribute: other
+[Turn 2] recommendations: []
+[Turn 2] target_rank: None | scored_hit: False
 
 [Turn 3] USER: Actually, ignore my earlier preference. What I need is: 100% Acrylic.
-[Turn 3] AGENT: Is there a color you want me to prioritize? I also shortlisted options that already match what you told me.
-[Turn 3] ask_attribute: color
-[Turn 3] recommendations: ['B07VCYFB5D', 'B07MKW27V5', 'B072HHGYWC', 'B00DEJI6GE', 'B08HGL5MTV', 'B07CHXLG33', 'B081S71WR9', 'B071HNYGMJ', 'B07CNF35BF', 'B0B4C6Z3GP']
+[Turn 3] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 3] ask_attribute: other
+[Turn 3] recommendations: ['B07VCYFB5D']
 [Turn 3] target_rank: 1 | scored_hit: True

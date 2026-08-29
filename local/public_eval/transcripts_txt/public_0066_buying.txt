@@ -2,16 +2,10 @@ sample_id: public_0066
 scenario_type: buying
 target: B0BFLFSB2Y
 title: GRAPENT Women's Plus Size Sequin 3/4 Sleeves Evening Gown Party Long Maxi Dress
-hit: True | first_hit_turn: 2 | best_rank: 1
+hit: True | first_hit_turn: 1 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Dresses Formal. A key requirement is: polyester.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
+[Turn 1] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
-[Turn 1] target_rank: None | scored_hit: False
-
-[Turn 2] USER: For that, what matters is: 96% Polyester, 4% Spandex; Imported.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B0BFLFSB2Y', 'B07K632MPC', 'B00Y37XP5I', 'B01N74ON8L', 'B07XM1LX8L', 'B01M728GGI', 'B07QTCHJTV', 'B00NIM1C18', 'B07R7XDWRF', 'B06XZVKLK7']
-[Turn 2] target_rank: 1 | scored_hit: True
+[Turn 1] recommendations: ['B0BFLFSB2Y']
+[Turn 1] target_rank: 1 | scored_hit: True

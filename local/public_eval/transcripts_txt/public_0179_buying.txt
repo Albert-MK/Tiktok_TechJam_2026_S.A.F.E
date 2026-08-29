@@ -2,22 +2,16 @@ sample_id: public_0179
 scenario_type: buying
 target: B08JK818ZD
 title: Azules Women's Long Sleeve Flowy Tunic
-hit: True | first_hit_turn: 3 | best_rank: 7
+hit: True | first_hit_turn: 2 | best_rank: 1
 ------------------------------------------------------------------------
 [Turn 1] USER: I'm looking for Tees & Blouses Tunics. A key requirement is: spandex.
-[Turn 1] AGENT: Is there any other must-have detail I should lock in?
+[Turn 1] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
 [Turn 1] ask_attribute: other
-[Turn 1] recommendations: []
+[Turn 1] recommendations: ['B07BBH2R9M']
 [Turn 1] target_rank: None | scored_hit: False
 
 [Turn 2] USER: For that, what matters is: 5% spandex; Made in the USA.
-[Turn 2] AGENT: Do you have a material preference? I also shortlisted options that already match what you told me.
-[Turn 2] ask_attribute: material
-[Turn 2] recommendations: ['B06XYKH39F', 'B01BLVH0NG', 'B075YBY238', 'B01DL7UBT8', 'B01BO1IIOS', 'B07BB28L5G', 'B01FRB4R64', 'B01B8BV4GI', 'B01ICF4B68', 'B07B132RD2']
-[Turn 2] target_rank: None | scored_hit: False
-
-[Turn 3] USER: I don't have an additional preference for material.
-[Turn 3] AGENT: Is there any other must-have detail I should lock in? I also shortlisted options that already match what you told me.
-[Turn 3] ask_attribute: other
-[Turn 3] recommendations: ['B01BMEJTLI', 'B0791Z6HJ4', 'B010G9EDTS', 'B01LW8ZRRA', 'B071NJH34P', 'B06XDS81J9', 'B08JK818ZD', 'B00W0UIC76', 'B01K2LYOYO', 'B00IV59FN4']
-[Turn 3] target_rank: 7 | scored_hit: True
+[Turn 2] AGENT: Here's my strongest match so far. Tell me anything else that matters — details, features, must-haves.
+[Turn 2] ask_attribute: other
+[Turn 2] recommendations: ['B08JK818ZD']
+[Turn 2] target_rank: 1 | scored_hit: True

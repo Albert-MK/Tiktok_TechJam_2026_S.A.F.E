@@ -1,0 +1,50 @@
+﻿{
+  "version": "v2.0",
+  "parent": "v1.5",
+  "dataset": "data/public_set.jsonl",
+  "architecture": "Bayesian inverse user simulation + decision-theoretic dialogue policy",
+  "replaces": "hand-tuned BM25 retrieval with ~20 additive rerank weights",
+  "components": [
+    "user_model.py: faithful reimplementation of the public customer generative model",
+    "catalog_index.py: precomputed intent cards, review-count prior, inverted + lexical indexes",
+    "belief.py: log-posterior over all 50k products from replay, negative evidence and eliminations",
+    "policy.py: expected-information-gain question choice, DP optimal-stopping submission"
+  ],
+  "key_findings": [
+    "P(target) is proportional to rating_number; target median 6846 vs catalog median 12",
+    "turn-1 top-1 accuracy 35.0% vs 37.1% information-theoretic ceiling",
+    "one extra turn costs 0.02 while rank 1->2 costs 0.15, so sequential single guesses dominate batch top-10",
+    "a non-hit is an exact, free elimination of that product"
+  ],
+  "ablations": {
+    "full": 0.9802,
+    "batch_top10_instead_of_sequential": 0.9109,
+    "without_elimination": 0.9709,
+    "temperature_0.5_to_8": "0.9792 - 0.9803 (insensitive)"
+  },
+  "robustness": {
+    "official_card_verbatim": 0.9802,
+    "official_card_paraphrased": 0.9743,
+    "foreign_card_verbatim": 0.8939,
+    "foreign_card_paraphrased": 0.8294
+  },
+  "metrics": {
+    "sample_count": 200,
+    "hit_rate_at_10": 1.0,
+    "mrr": 1.0,
+    "mttc": 1.99,
+    "efficiency": 0.901,
+    "recommended_technical_score": 0.9802
+  },
+  "v1.5_technical_score": 0.914778,
+  "customer_probe_score": 0.979893,
+  "cost": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "dependencies": "Python standard library only",
+    "index_build_seconds": 7.2,
+    "resident_memory_mb": 191,
+    "latency_ms": {"mean": 78.8, "p50": 27.1, "p95": 291.5}
+  },
+  "report": "docs/ARCHITECTURE_V2.md"
+}
