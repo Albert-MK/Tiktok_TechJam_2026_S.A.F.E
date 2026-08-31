@@ -1,32 +1,34 @@
-"""对话式商品检索 Agent（v2.0，贝叶斯逆向推理架构）。
+"""Conversational product-search agent (v2.0, Bayesian inverse inference).
 
-## 一句话概括
+## One-line summary
 
-不再把用户的话当成「查询词」去搜商品，而是把每件商品当成一个**假设**，
-用公开的顾客模拟规则预测「如果目标是它，用户这轮会怎么说」，
-再用实际听到的话做贝叶斯更新。提问和交卷都由期望得分的动态规划直接决定。
+Instead of treating user utterances as query strings, each catalog product is a
+**hypothesis**. We replay the public customer simulator to predict what the user
+*should* say if that product were the target, then update beliefs with what we
+actually hear. Questions and submissions are chosen by expected-score dynamic
+programming.
 
-## 四个部件
+## Four components
 
-    user_model.py     顾客生成模型：商品 → 顾客会说的话（可逆）
-    catalog_index.py  5 万件商品的意图卡、评论数先验、倒排索引
-    belief.py         后验 P(目标 = p | 对话)，含正面/负面/淘汰三类证据
-    policy.py         提问用最优实验设计，交卷用最优停止的动态规划
+    user_model.py     Customer generative model: product -> utterance (invertible)
+    catalog_index.py  Intent cards, review-count prior, inverted indexes (50k items)
+    belief.py         Posterior P(target = p | dialogue); positive / negative / elimination evidence
+    policy.py         Optimal-experiment question choice + optimal-stopping submission schedule
 
-## 与 v1.5 的关键差异
+## Key differences vs v1.5
 
-| 环节 | v1.5 | v2.0 |
-| --- | --- | --- |
-| 排序 | 20 多个手调权重相加 | 先验 × 似然的后验概率 |
-| 先验 | 评分/评价数微弱加权 | 正比于评论数（抽样过程本身决定） |
-| 提问 | 写死的属性顺序 | 每轮按期望信息价值现算 |
-| 交卷 | 前几轮交空列表 | 动态规划求最优列表长度 |
-| 未命中 | 只做去重排除 | 作为确定性证据参与后验更新 |
+| Stage      | v1.5                              | v2.0                                      |
+| ---------- | --------------------------------- | ----------------------------------------- |
+| Ranking    | ~20 hand-tuned additive weights   | Posterior = prior × likelihood            |
+| Prior      | Weak rating / review boost        | Proportional to review count (sampling)   |
+| Questions  | Fixed attribute order             | Expected information gain each turn       |
+| Submit     | Empty list early turns            | DP-optimal list length                    |
+| Miss       | Dedup exclusion only              | Deterministic evidence in posterior       |
 
-## 成本
+## Cost profile
 
-全程零外部调用、零 token、无第三方依赖，只用 Python 标准库。
-启动时一次性构建索引，之后每轮决策都是毫秒级的纯内存计算。
+Zero external calls, zero tokens, standard library only. Index built once at
+startup; per-turn decisions are millisecond-scale in-memory computation.
 """
 
 from __future__ import annotations
@@ -45,6 +47,8 @@ from .user_model import TOP_K
 
 
 class _Session:
+    """Per-dialogue mutable state."""
+
     __slots__ = ("belief", "profile", "last_ask", "last_recs", "last_turn", "last_scoreable", "started")
 
     def __init__(self, belief: Belief, profile: dict) -> None:
@@ -58,21 +62,22 @@ class _Session:
 
 
 class Agent:
-    """评测器要求的对外接口：reset / respond。"""
+    """Official evaluator interface: reset / respond."""
 
     version = VERSION
 
     def __init__(self, catalog_path: str = "data/catalog.jsonl", index: CatalogIndex | None = None,
                  config: dict | None = None) -> None:
-        # index / config 只在本地扫参时复用，避免重复构建 5 万件商品的索引；
-        # 正式评测走默认分支。
+        # index / config are optional for local sweeps to reuse a built index;
+        # official evaluation uses the default branches.
         self.cfg = dict(active_config()) if config is None else dict(config)
         self.index = index if index is not None else CatalogIndex(catalog_path)
         self._sessions: dict[str, _Session] = {}
 
-    # -- 接口 ---------------------------------------------------------------
+    # -- Public API -----------------------------------------------------------
 
     def reset(self, session_id: str, user_profile: dict) -> None:
+        """Start a new session with a fresh belief state."""
         belief = Belief(
             self.index,
             pool_size=int(self.cfg.get("pool_size", 400)),
@@ -82,6 +87,7 @@ class Agent:
         self._sessions[session_id] = _Session(belief, user_profile or {})
 
     def respond(self, session_id: str, user_message: str, turn: int, top_k: int) -> dict:
+        """Produce the next agent turn: message, optional question, and recommendations."""
         session = self._sessions.get(session_id)
         if session is None:
             self.reset(session_id, {})
@@ -122,19 +128,19 @@ class Agent:
             "usage": {"prompt_tokens": 0, "completion_tokens": 0},
         }
 
-    # -- 内部 ---------------------------------------------------------------
+    # -- Internal -------------------------------------------------------------
 
     def _ingest(self, session: _Session, user_message: str) -> None:
-        """把这轮听到的话（以及上一轮未命中的事实）并入信念状态。"""
+        """Merge this turn's utterance (and prior miss evidence) into belief."""
         belief = session.belief
         if not session.started:
             session.started = True
             belief.observe_opening(user_message)
             return
-        # 又被调用了一次，说明上一轮推荐没有命中。
-        # 只有在「当时确实能计分」的前提下，这条否定信息才成立
-        # （意图覆盖场景在新意图到达前，命中根本不会被记录）。
-        # 场景识别不确定时 belief.safe_from_turn 会抬高门槛，宁可少排除也不能误杀目标。
+        # Called again => last turn's recommendations did not hit the target.
+        # Negative evidence is valid only when that turn was actually scoreable
+        # (intent-override sessions are not scored until the override arrives).
+        # belief.safe_from_turn raises the bar when scenario is uncertain.
         if (
             self.cfg.get("eliminate", True)
             and session.last_recs

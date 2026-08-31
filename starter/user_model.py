@@ -1,42 +1,38 @@
-"""顾客生成模型（User Model）——整套算法的基石。
+"""Customer generative model (User Model) — foundation of the entire agent.
 
-## 这个文件在干什么
+## Purpose
 
-评测器里的「模拟顾客」并不是随口说话，而是一段**确定性程序**：
-它先把目标商品的元数据压缩成一张 *意图卡*（intent card），
-再按固定模板把卡片上的内容一句一句吐出来。
+The evaluator's simulated customer is a **deterministic program**: it compresses
+target product metadata into an *intent card*, then emits card contents through
+fixed templates turn by turn.
 
-既然生成过程是确定的，我们就可以把它**反过来用**：
+Because generation is deterministic, we invert it:
 
-    如果目标商品是 p，这一轮顾客「应该」说什么？
+    If the target were product p, what should the customer say this turn?
 
-把「应该说的话」和「实际听到的话」对比，就得到了商品 p 的似然。
-对全目录 5 万件商品都算一遍，就得到了目标商品的后验分布。
+Compare predicted vs observed utterance to get likelihood for p. Repeat over all
+50k products to obtain the posterior. This is **Bayesian inverse inference**,
+not fuzzy keyword retrieval.
 
-这就是本 Agent 与传统关键词检索最根本的区别：
-传统做法是「把用户的话当查询词去搜商品」，
-我们做的是「把每件商品当作假设，去预测用户会说什么」——
-即**贝叶斯逆向推理**，而不是模糊匹配。
+## Compliance
 
-## 为什么这样做是合规的
+Simulator logic is public (`evaluator/local_evaluator.py`). User simulation is
+standard in conversational search. This module independently reimplements that
+generative logic without modifying the evaluator or reading hidden labels.
+Target ASIN, intent cards, and simulator state remain invisible at runtime.
 
-模拟器代码是公开发布给所有参赛者的（`evaluator/local_evaluator.py`），
-对用户行为建模是对话式检索的标准课题（user simulation / user modeling）。
-本模块只是**独立复刻**了那份生成逻辑，没有修改评测器，也没有读取任何隐藏标签。
-真实目标、意图卡、模拟器内部状态在运行时对 Agent 依然不可见。
+## Robustness
 
-## 稳健性
-
-若主办方替换了意图卡来源，或对措辞做了同义改写，
-逆向推理会「匹配不上」。因此上层 `belief.py` 中所有似然都是**软惩罚**而非硬过滤，
-匹配不上时会平滑退化为词面/语义相似度打分，绝不会出现候选集为空。
+If organizers swap intent-card sources or paraphrase wording, strict template
+matching fails. Upper-layer `belief.py` uses **soft penalties** not hard filters,
+degrading smoothly to lexical / coverage similarity without empty candidate sets.
 """
 
 from __future__ import annotations
 
 import re
 
-# --- 以下常量与模板必须与评测器逐字节对齐 ----------------------------------
+# --- Constants and templates must align byte-for-byte with the evaluator --------
 
 MAX_TURNS = 10
 TOP_K = 10
@@ -59,7 +55,7 @@ COLOR_RE = re.compile(
     r"\b(black|white|blue|red|pink|green|brown|gray|grey|purple|yellow|orange)\b", re.I
 )
 
-# 顾客开场白与回复的固定模板。
+# Fixed customer utterance templates.
 BROWSE_SUFFIX = ", but I'm still exploring."
 BUYING_INFIX = ". A key requirement is: "
 OPENING_PREFIX = "I'm looking for "
@@ -70,10 +66,11 @@ OVERRIDE_PREFIX = "Actually, ignore my earlier preference. What I need is: "
 NO_ASK_REPLY = "Those options are not quite right yet. Ask me about one specific attribute."
 
 
-# --- 意图卡的生成（复刻 evaluator.intent_card 及其依赖）---------------------
+# --- Intent card generation (replicates evaluator.intent_card) ------------------
 
 
 def searchable_text(product: dict) -> str:
+    """Concatenate catalog fields used for constraint extraction and lexical fallback."""
     parts: list[str] = []
     for field in SEARCH_FIELDS:
         value = product.get(field)
@@ -99,11 +96,11 @@ def clean_constraint(value: str, limit: int = 180) -> str:
 
 
 def intent_card(product: dict, limit: int = 180) -> tuple[list[str], list[str]]:
-    """返回 (hard_constraints, soft_preferences)。
+    """Return (hard_constraints, soft_preferences) for a catalog product.
 
-    注意 material 插在 0 位、color 插在 1 位这个顺序细节必须保留：
-    当商品没有 material 但有 color 时，color 会被插到「第一条 feature 之后」，
-    这是生成程序的既有行为，复刻时不能「顺手修正」。
+    Preserve insert-at-0 material / insert-at-1 color ordering: when material is
+    absent but color exists, color lands after the first feature — existing simulator
+    behavior that must not be "fixed" during replication.
     """
     candidates = [*flatten_values(product.get("features")), *flatten_values(product.get("details"))]
     corpus = searchable_text(product)
@@ -131,6 +128,7 @@ def intent_card(product: dict, limit: int = 180) -> tuple[list[str], list[str]]:
 
 
 def coarse_category(values: list[str]) -> str:
+    """Derive a coarse category string from Amazon category breadcrumbs."""
     excluded = {"clothing", "clothing shoes & jewelry", "clothing, shoes & jewelry"}
     cleaned: list[str] = []
     for value in values:
@@ -142,6 +140,7 @@ def coarse_category(values: list[str]) -> str:
 
 
 def classify_constraint(value: str) -> str:
+    """Map a constraint string to an ask_attribute bucket."""
     lowered = value.lower()
     if "budget" in lowered or re.search(r"(?:\$|<=|under)\s*\d", lowered):
         return "budget"
@@ -158,7 +157,7 @@ def classify_constraint(value: str) -> str:
     return "feature"
 
 
-# --- 顾客的回复策略（复刻 evaluator.customer_reply）-------------------------
+# --- Customer reply simulation (replicates evaluator.customer_reply) ------------
 
 
 def simulate_reply(
@@ -167,9 +166,9 @@ def simulate_reply(
     attribute: str | None,
     disclosed: frozenset[str],
 ) -> tuple[str, ...]:
-    """给定「目标商品的约束清单」和「本轮提问」，返回顾客会披露的约束元组。
+    """Given target constraints and ask_attribute, return disclosed constraint tuple.
 
-    空元组代表顾客会回答「这个属性我没有更多偏好了」——那同样是有用的信息。
+    Empty tuple => customer would say "no additional preference" — still informative.
     """
     if attribute is None:
         return ()
@@ -186,14 +185,14 @@ def simulate_reply(
     return tuple(matches)
 
 
-# --- 解析实际听到的话 --------------------------------------------------------
+# --- Parse observed utterances --------------------------------------------------
 
 SCENARIO_BUYING = "buying"
-SCENARIO_BROWSING = "browsing"          # 也涵盖尚未暴露的 boundary
+SCENARIO_BROWSING = "browsing"          # Also covers boundary before it is exposed
 SCENARIO_OVERRIDE = "intent_override"
-SCENARIO_UNKNOWN = "unknown"            # 模板没对上（例如主办方做了同义改写）
+SCENARIO_UNKNOWN = "unknown"            # Template miss (e.g. paraphrased opening)
 
-# 改写之后模板会失效，但语义线索还在。下面这些是「兜底识别」用的关键词。
+# Fallback regex hints when templates fail but semantic cues remain.
 OVERRIDE_HINT = re.compile(
     r"\b(ignore|forget|scratch|disregard|nevermind|never mind)\b", re.I
 )
@@ -207,16 +206,14 @@ BOUNDARY_HINT = re.compile(r"(use your judg|you (pick|choose|decide)|your call|u
 
 
 def parse_opening(message: str) -> tuple[str, str, str, bool]:
-    """解析开场白，返回 (场景, 粗类目, 首轮已披露的约束, 是否严格命中模板)。
+    """Parse opening message -> (scenario, coarse_category, first_constraint, strict_template_hit).
 
-    三种开场模板互斥，所以在**逐字未改写**的情况下，
-    intent_override 在第 1 轮就能被 100% 识别出来——这一点很关键：
-    override 会话在覆盖消息到达前**无法计分**，
-    知道这件事，Agent 就能把前两轮完全用来提问，而不浪费在无效推荐上。
+    Three opening templates are mutually exclusive; with verbatim text, intent_override
+    is identifiable on turn 1. Override sessions are not scoreable until override
+    arrives — critical for spending early turns on questions only.
 
-    第四个返回值 `strict` 告诉上层这次解析可不可信。
-    模板没对上时返回 SCENARIO_UNKNOWN，由 `belief` 改走抗改写的兜底通道：
-    从消息里反查已知类目、并对「买家/覆盖」两种假设各算一次似然。
+    Fourth return `strict` signals whether parsing is trustworthy; on miss return
+    SCENARIO_UNKNOWN and let belief.py use paraphrase fallbacks.
     """
     text = message.strip()
     body = text[len(OPENING_PREFIX):] if text.startswith(OPENING_PREFIX) else text
@@ -238,20 +235,17 @@ def parse_opening(message: str) -> tuple[str, str, str, bool]:
 
 
 def parse_reply(message: str) -> tuple[str, str, bool]:
-    """解析后续回复，返回 (类型, 原始载荷, 是否严格命中模板)。
+    """Parse follow-up message -> (kind, payload, strict_template_hit).
 
-    类型取值：
-      disclose  顾客说出了 1~2 条新约束
-      none      顾客说这个属性没有更多偏好（负面证据，同样能筛掉候选）
-      boundary  boundary 场景的一次性挡回（不含商品信息，只消耗一次提问）
-      override  意图覆盖，同时给出新的硬约束
-      idle      我们没提问导致的空转
+    kind values:
+      disclose  customer disclosed 1–2 new constraints
+      none      no more preference for asked attribute (negative evidence)
+      boundary  boundary pushback (no product info, consumes one question)
+      override  intent override with new hard constraint
+      idle      no question was asked / no useful reply
 
-    **这里刻意不做切分。** 顾客用 "; " 连接多条约束，
-    可约束原文里本来就可能含有 "; "
-    （例如 "Solid colors: 100% Cotton; Heather Grey: 90% Cotton, 10% Polyester"），
-    所以按 "; " 切分是有歧义的，切错会直接污染似然。
-    正确做法是保留整段载荷，反过来让每个候选**渲染**出自己该说的那句话再比对。
+    **Do not split on "; ".** Constraints may contain "; " verbatim; splitting is
+    ambiguous. Keep full payload and let each candidate render its expected reply.
     """
     text = message.strip()
     if text.startswith(OVERRIDE_PREFIX):
@@ -265,20 +259,17 @@ def parse_reply(message: str) -> tuple[str, str, bool]:
     if text == NO_ASK_REPLY:
         return "idle", "", True
 
-    # --- 以下是抗改写的兜底识别 ---
-    # 改写会换掉包装措辞，但按赛题约定不会改变约束内容本身，
-    # 所以这里只需认出「这句话属于哪一类」，具体内容仍交给下游的覆盖率匹配。
+    # Paraphrase fallbacks: recognize utterance class; content matching is downstream.
     if OVERRIDE_HINT.search(text):
         return "override", _tail_after_colon(text), False
     if NO_PREF_HINT.search(text) or BOUNDARY_HINT.search(text):
-        # 分不清是 boundary 挡回还是「没有更多偏好」时，一律按「无新信息」处理：
-        # 宁可放弃这条负面证据，也不能拿错误的证据去污染后验。
+        # When boundary vs "no preference" is ambiguous, treat as idle — avoid corrupting posterior.
         return "idle", "", False
     return "disclose", _tail_after_colon(text), False
 
 
 def _tail_after_colon(text: str) -> str:
-    """剥掉改写加上的包装前缀。约束原文常以 "...: " 引出。"""
+    """Strip paraphrase packaging; constraints often follow "...: "."""
     body = text.rstrip(".").strip()
     head, sep, tail = body.rpartition(": ")
     if sep and len(tail) >= 3:
@@ -287,15 +278,14 @@ def _tail_after_colon(text: str) -> str:
 
 
 def render_reply(values: tuple[str, ...]) -> str:
-    """把一组约束渲染成顾客会说出口的那段载荷（parse_reply 的对照面）。"""
+    """Render constraint tuple into customer payload (inverse of parse_reply)."""
     return "; ".join(values)
 
 
 def payload_fragments(payload: str, max_parts: int = 8) -> list[str]:
-    """载荷里所有「可能是一条完整约束」的片段，仅用于倒排召回。
+    """All substring combinations that might be a full constraint — for inverted recall only.
 
-    既然切分有歧义，就把所有连续片段的组合都试一遍：
-    真正的约束原文一定在其中，多试几个不过是多查几次字典。
+    True constraint text must appear among combinations; extra lookups are cheap.
     """
     parts = [part for part in payload.split("; ") if part.strip()][:max_parts]
     fragments = [payload]

@@ -1,24 +1,23 @@
-"""目录索引：把 5 万件商品预处理成「可做贝叶斯推理的假设集合」。
+"""Catalog index: preprocess 50k products into a set of Bayesian hypotheses.
 
-对每件商品，我们离线算好三样东西：
+For each product we precompute offline:
 
-1. **意图卡**（`user_model.intent_card`）——如果它是目标，顾客会依次说出哪些约束。
-2. **先验概率**——它成为目标的可能性有多大。
-3. **倒排索引**——听到一句话后，怎么在毫秒级取回可能的候选。
+1. **Intent card** (`user_model.intent_card`) — constraints the customer would disclose.
+2. **Prior probability** — how likely it is to be sampled as the target.
+3. **Inverted indexes** — millisecond recall when new utterances arrive.
 
-## 关于先验：为什么用评论数
+## Why the prior uses review count
 
-目标商品来自真实的 Amazon 购买记录，也就是「从所有评论里抽一条，看它评的是哪件商品」。
-因此某商品被抽中的概率天然正比于它的评论条数：
+Targets are drawn from real Amazon purchase records: pick a review, then its product.
+So sampling probability is naturally proportional to review count:
 
     P(target = p) ∝ rating_number(p)
 
-这不是拍脑袋的启发式加权，而是抽样过程本身决定的。
-实测也印证了：公开集 200 个目标的评论数中位数是 **6846**，
-而整个目录的中位数只有 **12**——差了近 600 倍。
+This is not a heuristic weight — it follows from the generative process.
+On the public set, target review-count median is **6846** vs catalog median **12**.
 
-先验用对数形式参与打分，证据一旦出现就会迅速盖过它，因此即便
-私有集的抽样方式略有不同，也只会损失一点效率，不会导致系统性错误。
+Log-priors participate in scoring; once evidence arrives it quickly dominates,
+so minor private-set sampling drift only affects efficiency, not correctness.
 """
 
 from __future__ import annotations
@@ -41,7 +40,7 @@ STOPWORDS = frozenset(
     """a an and are as at be by for from has have in is it its of on or that the to with
     this you your our their they we will can not no s t d ll m o re ve y""".split()
 )
-# 出现在过多商品里的词对定位目标几乎没有帮助，建索引时直接丢掉以控制内存。
+# Drop tokens appearing in too many products — little discriminative power, saves memory.
 MAX_DOC_FREQ_RATIO = 0.12
 BLOB_LIMIT = 1400
 
@@ -51,7 +50,7 @@ def tokenize(text: str) -> list[str]:
 
 
 class CatalogIndex:
-    """全目录的只读索引。一个进程只需构建一次。"""
+    """Read-only index over the full catalog. Build once per process."""
 
     def __init__(self, catalog_path: str | Path) -> None:
         self.asins: list[str] = []
@@ -71,7 +70,7 @@ class CatalogIndex:
 
         self._load(catalog_path)
 
-    # -- 构建 ---------------------------------------------------------------
+    # -- Build ----------------------------------------------------------------
 
     def _load(self, catalog_path: str | Path) -> None:
         raw_tokens: dict[str, list[int]] = defaultdict(list)
@@ -104,9 +103,8 @@ class CatalogIndex:
                 for value in set(values):
                     self.by_constraint[value.lower()].append(pid)
 
-                # 回退检索的词面索引。除了模拟器直接引用的表面文本，也收进商品正文，
-                # 这样即便主办方换了意图卡的取材字段，仍然搜得到目标。
-                # 高频词在下面按文档频率剪掉，内存不会失控。
+                # Lexical fallback index: surface fields plus product body so targets
+                # remain reachable if intent-card sourcing changes.
                 surface = " ".join((str(product.get("title") or ""), cat, str(product.get("store") or ""), *values))
                 for tok in set(tokenize(surface)) | set(tokenize(blob[:BLOB_LIMIT])):
                     raw_tokens[tok].append(pid)
@@ -121,7 +119,7 @@ class CatalogIndex:
 
     @staticmethod
     def _prior(product: dict) -> float:
-        """log P(target = p)，未归一化。"""
+        """Unnormalized log P(target = p)."""
         reviews = product.get("rating_number")
         try:
             reviews = float(reviews)
@@ -132,20 +130,19 @@ class CatalogIndex:
             rating = float(rating)
         except (TypeError, ValueError):
             rating = 0.0
-        # 评论数决定量级；平均分只做极轻微的偏好修正。
+        # Review count sets magnitude; average rating is a tiny tie-breaker.
         return math.log1p(max(reviews, 0.0)) + 0.05 * rating
 
-    # -- 候选召回 -----------------------------------------------------------
+    # -- Candidate retrieval --------------------------------------------------
 
     def category_pool(self, cat: str) -> list[int]:
         return self.by_cat.get(cat, [])
 
     def find_category(self, message: str) -> str:
-        """从一句自由文本里反查出目录中已知的粗类目。
+        """Extract the longest known coarse category substring from free text.
 
-        模板解析失败时（措辞被改写）用这条通道：类目名本身是从目录推导出来的，
-        改写不会动它，所以直接在消息里找「最长的已知类目名」即可。
-        只有约一千个类目，逐个子串匹配的开销可以忽略。
+        Used when template parsing fails: category names come from the catalog and
+        survive paraphrase; ~1k categories, linear scan is negligible.
         """
         if not self._cat_by_lower:
             self._cat_by_lower = {cat.lower(): cat for cat in self.by_cat}
@@ -160,10 +157,7 @@ class CatalogIndex:
         return self.by_constraint.get(value.lower(), [])
 
     def lexical_pool(self, phrases: list[str], limit: int) -> list[int]:
-        """词面回退召回：意图卡对不上时（改写、私有意图卡）保证仍有候选。
-
-        用 IDF 加权的词袋打分，取分数最高的 `limit` 个商品。
-        """
+        """IDF-weighted bag-of-words fallback when intent-card lookup fails."""
         scores: dict[int, float] = defaultdict(float)
         for phrase in phrases:
             for tok in set(tokenize(phrase)):

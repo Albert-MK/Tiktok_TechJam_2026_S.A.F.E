@@ -1,10 +1,10 @@
-"""策略开关面板。
+"""Strategy configuration and experiment presets.
 
-v2.0 的可调参数比 v1.5 少了一个数量级：老版本有二十多个手工调出来的打分权重，
-新版本的排序完全由「先验 × 似然」的贝叶斯推理决定，交卷和提问由动态规划决定，
-真正需要人来定的只剩下几个校准量。
+v2.0 exposes far fewer tunables than v1.5: ranking is driven by prior × likelihood
+Bayesian inference, and ask/submit decisions by dynamic programming. Only a handful
+of calibration knobs remain.
 
-本地做实验时可以用环境变量临时覆盖：
+For local sweeps, override via environment variable:
 
     AGENT_EXP_FLAGS='{"temperature": 3.0}' python -m evaluator.local_evaluator
 """
@@ -18,16 +18,16 @@ VERSION = "v2.0"
 STRATEGY = os.environ.get("AGENT_STRATEGY", "bayes").strip().lower()
 
 PRESETS = {
-    # 主力配方：完整的逆向模拟 + 贝叶斯后验 + 动态规划决策。
+    # Production recipe: full inverse simulation + Bayesian posterior + DP policy.
     "bayes": {
-        "pool_size": 400,        # 保留多少候选参与推理
-        "temperature": 1.0,      # 后验软化系数；越大越不敢下重注
-        "leak_gap": 9.0,         # 「目标根本不在候选池里」的兜底概率
-        "sequential": True,      # 允许逐轮单点押注（关掉就退化成每轮交 Top-10）
-        "eliminate": True,       # 利用「推过没命中 ⇒ 一定不是它」这一确定信息
-        "ask": True,             # 允许追问
+        "pool_size": 400,        # Max candidates kept in the belief pool
+        "temperature": 1.0,      # Posterior softening; higher => less aggressive bets
+        "leak_gap": 9.0,         # Log-penalty for "target not in candidate pool"
+        "sequential": True,      # Single-guess-per-turn submission (False => batch Top-10)
+        "eliminate": True,       # Use "shown but missed => definitely not target"
+        "ask": True,             # Allow clarification questions
     },
-    # 消融用：不做逐轮押注，每轮直接交满 Top-10。
+    # Ablation: no sequential betting; submit full Top-10 every turn.
     "batch": {
         "pool_size": 400,
         "temperature": 1.0,
@@ -36,7 +36,7 @@ PRESETS = {
         "eliminate": True,
         "ask": True,
     },
-    # 消融用：关掉「未命中即排除」。
+    # Ablation: disable miss-based elimination.
     "no_elimination": {
         "pool_size": 400,
         "temperature": 1.0,
@@ -45,7 +45,7 @@ PRESETS = {
         "eliminate": False,
         "ask": True,
     },
-    # 消融用：不追问，只靠开场白。
+    # Ablation: no questions; rely on opening message only.
     "no_ask": {
         "pool_size": 400,
         "temperature": 1.0,
