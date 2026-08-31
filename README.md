@@ -4,6 +4,16 @@
 
 Instead of scoring products by text similarity, we ask the inverse question: *which product, run through the customer's generative process, would produce exactly the words I heard?* Paired with a decision-theoretic dialogue policy derived from the scoring formula itself, this reaches **TechnicalScore 0.9802** with **zero LLM calls and zero tokens**.
 
+## Team
+
+This project was built by:
+
+- **WU YULUN** (team lead) — led the project end to end and owned the iteration and development of the core algorithm.
+- **ZHANG TONGWEI** — contributed to early algorithm conception and subsequent optimizations.
+- **YIN QIHAO** — built the website and handled visual / art design.
+- **PAN WENHAO** — joined early algorithm discussions and narrated the demo video.
+- **LIN JINGZHAO** — contributed to early algorithm conception and team discussions.
+
 ---
 
 ## Results at a Glance
